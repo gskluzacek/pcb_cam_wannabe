@@ -1,0 +1,23 @@
+[project]
+name = "cnc_eda_utils"
+version = "1.0.0"
+description = "Some CLI Uitilities for working with CNC / EDA files"
+authors = [
+    {name = "Greg Skluzacek", email = "gskluzacek@gmail.com"},
+]
+requires-python = ">=3.11"
+license = {text = "MIT License"}
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.scripts]
+grbr-exp = "grbr_explain.min_gerber_parser:main"
+
+[build-system]
+requires = ["setuptools >= 65.5.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

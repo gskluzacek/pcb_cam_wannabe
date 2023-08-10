@@ -1,0 +1,2972 @@
+-1: onMachine()
+  Post Engine Version = 4.5971.0
+  Program Name = 1001
+  Program Comment = 
+-1: onOpen()
+0: onParameter('product-id', 'fusion360')
+1: onParameter('generated-by', 'Fusion 360 CAM 2.0.16490')
+2: onParameter('generated-at', 'Tue Jul 18 02:13:15 2023')
+3: onParameter('hostname', 'Mac-Studio.local')
+4: onParameter('username', 'root')
+5: onParameter('document-path', 'Untitled')
+6: onParameter('document-id', '9206e36e-730c-44c7-a84c-7cebe6ea792f')
+7: onParameter('model-version', '43c91535-7048-424d-b3cc-9047a5b378cf')
+9: onParameter('leads-supported', 1)
+10: onParameter('job-description', 'Setup1')
+11: onParameter('machine-id', '1')
+12: onParameter('machine-v2', '{
+   "controller" : {
+      "synced_configuration" : {
+         "max_block_processing_speed" : 0,
+         "max_normal_speed" : 4000.0000000000005,
+         "parts" : {
+            "X" : {
+               "coordinate" : 0,
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            },
+            "Y" : {
+               "coordinate" : 1,
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            },
+            "Z" : {
+               "coordinate" : 2,
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            },
+            "head" : {
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            },
+            "static_0" : {
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            },
+            "table" : {
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "negative",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : false,
+               "zero_position_offset" : 0
+            }
+         }
+      }
+   },
+   "general" : {
+      "capabilities" : [ "cutting", "milling" ],
+      "description" : "Makera Carvera 3-axis",
+      "minimumRevision" : 45805,
+      "model" : "Carvera 3-axis",
+      "vendor" : "Makera"
+   },
+   "kinematics" : {
+      "default" : {
+         "conventions" : {
+            "rotation" : "right-handed"
+         },
+         "parts" : [
+            {
+               "display_name" : "static_0",
+               "id" : "static_0",
+               "type" : "static"
+            },
+            {
+               "control" : "driven",
+               "direction" : [ 0, 0, 1 ],
+               "id" : "Z",
+               "name" : "Z",
+               "parts" : [
+                  {
+                     "attach_frame" : {
+                        "point" : [ 0, 0, 0 ],
+                        "x_direction" : [ 1, 0, 0 ],
+                        "z_direction" : [ 0, 0, 1 ]
+                     },
+                     "display_name" : "head",
+                     "id" : "head",
+                     "spindle" : {
+                        "max_speed" : 0,
+                        "min_speed" : 0
+                     },
+                     "tool_station" : {
+                        "coolants" : [ "air" ],
+                        "max_tool_diameter" : 0,
+                        "max_tool_length" : 0
+                     },
+                     "type" : "head"
+                  }
+               ],
+               "step_size" : 0.0001,
+               "type" : "linear"
+            },
+            {
+               "control" : "driven",
+               "direction" : [ 0, -1, 0 ],
+               "id" : "Y",
+               "name" : "Y",
+               "parts" : [
+                  {
+                     "control" : "driven",
+                     "direction" : [ -1, 0, 0 ],
+                     "id" : "X",
+                     "name" : "X",
+                     "parts" : [
+                        {
+                           "attach_frame" : {
+                              "point" : [ 0, 0, 0 ],
+                              "x_direction" : [ 1, 0, 0 ],
+                              "z_direction" : [ 0, 0, 1 ]
+                           },
+                           "display_name" : "table",
+                           "id" : "table",
+                           "type" : "table"
+                        }
+                     ],
+                     "step_size" : 0.0001,
+                     "type" : "linear"
+                  }
+               ],
+               "step_size" : 0.0001,
+               "type" : "linear"
+            }
+         ],
+         "units" : {
+            "angle" : "degrees",
+            "length" : "mm"
+         }
+      }
+   },
+   "machining" : {
+      "default" : {
+         "feedrate_ratio" : 1,
+         "tool_change_time" : 30
+      }
+   },
+   "post" : {
+      "default" : {
+         "path" : "user://Carvera.cps"
+      }
+   },
+   "tooling" : {
+      "default" : {
+         "has_tool_changer" : true,
+         "number_of_tools" : 6,
+         "supports_tool_preload" : false
+      }
+   }
+}
+
+')
+13: onParameter('stock-type', 'box')
+15: onParameter('stock', '((0, 0, -10), (25, 25, 0))')
+17: onParameter('stock-lower-x', 0)
+19: onParameter('stock-lower-y', 0)
+21: onParameter('stock-lower-z', -10)
+23: onParameter('stock-upper-x', 25)
+25: onParameter('stock-upper-y', 25)
+27: onParameter('stock-upper-z', 0)
+29: onParameter('part-lower-x', 0)
+31: onParameter('part-lower-y', 0)
+33: onParameter('part-lower-z', -10)
+35: onParameter('part-upper-x', 25)
+37: onParameter('part-upper-y', 25)
+39: onParameter('part-upper-z', 0)
+44: onParameter('notes', '')
+45: onParameter('operation-strategy', 'adaptive2d')
+46: onParameter('operation-comment', '2D Adaptive1')
+47: onParameter('autodeskcam:operation-id', 3)
+48: onParameter('leads-supported', 1)
+49: onParameter('autodeskcam:path', 'Setups\Setup1\2D Adaptive1')
+50: onParameter('operation:is2DStrategy', 1)
+51: onParameter('operation:is3DStrategy', 0)
+52: onParameter('operation:isRoughingStrategy', 1)
+53: onParameter('operation:isFinishingStrategy', 0)
+54: onParameter('operation:isMillingStrategy', 1)
+55: onParameter('operation:isTurningStrategy', 0)
+56: onParameter('operation:isJetStrategy', 0)
+57: onParameter('operation:isAdditiveStrategy', 0)
+58: onParameter('operation:isProbingStrategy', 0)
+59: onParameter('operation:isInspectionStrategy', 0)
+60: onParameter('operation:isDrillingStrategy', 0)
+61: onParameter('operation:isHoleMillingStrategy', 0)
+62: onParameter('operation:isThreadStrategy', 0)
+63: onParameter('operation:isSamplingStrategy', 0)
+64: onParameter('operation:isRotaryStrategy', 1)
+65: onParameter('operation:isSecondarySpindleStrategy', 0)
+66: onParameter('operation:isSurfaceStrategy', 0)
+67: onParameter('operation:isCheckSurfaceStrategy', 0)
+68: onParameter('operation:isMultiAxisStrategy', 0)
+69: onParameter('operation:advancedMode', 0)
+70: onParameter('operation:betaMode', 0)
+71: onParameter('operation:alphaMode', 0)
+72: onParameter('operation:isXpress', 0)
+73: onParameter('operation:licenseMultiaxis', 1)
+74: onParameter('operation:license3D', 1)
+75: onParameter('operation:metric', 1)
+76: onParameter('operation:isAssemblyDocument', 1)
+77: onParameter('operation:context', 'operation')
+78: onParameter('operation:strategy', 'adaptive2d')
+79: onParameter('operation:operation_description', '2D Adaptive')
+80: onParameter('operation:tool_type', 'flat end mill')
+81: onParameter('operation:undercut', 0)
+82: onParameter('operation:tool_isTurning', 0)
+83: onParameter('operation:tool_isMill', 1)
+84: onParameter('operation:tool_isDrill', 0)
+85: onParameter('operation:tool_isJet', 0)
+86: onParameter('operation:tool_isDepositing', 0)
+87: onParameter('operation:tool_taperedType', 'tapered_bull_nose')
+88: onParameter('operation:tool_unit', 'millimeters')
+89: onParameter('operation:tool_number', 1)
+90: onParameter('operation:tool_diameterOffset', 1)
+91: onParameter('operation:tool_lengthOffset', 1)
+92: onParameter('operation:tool_compensationOffset', 1)
+93: onParameter('operation:tool_turret', 0)
+94: onParameter('operation:tool_manualToolChange', 0)
+95: onParameter('operation:tool_breakControl', 0)
+96: onParameter('operation:tool_live', 1)
+97: onParameter('operation:tool_coolant', 'disabled')
+98: onParameter('operation:tool_material', 'carbide')
+99: onParameter('operation:tool_description', '25mm Flute End Mill')
+100: onParameter('operation:tool_comment', '')
+101: onParameter('operation:tool_vendor', '')
+102: onParameter('operation:tool_productId', '')
+104: onParameter('operation:tool_diameter', 3.175)
+106: onParameter('operation:tool_tipDiameter', 3.175)
+108: onParameter('operation:tool_tipOffset', 0)
+110: onParameter('operation:tool_cornerRadius', 0)
+112: onParameter('operation:tool_inclusiveAngle', 0)
+114: onParameter('operation:tool_taperAngle', 0)
+116: onParameter('operation:tool_tipAngle', 0)
+118: onParameter('operation:tool_threadProfileAngle', 0)
+120: onParameter('operation:tool_tipLength', 0)
+122: onParameter('operation:tool_fluteLength', 25)
+124: onParameter('operation:tool_shoulderLength', 33)
+126: onParameter('operation:tool_bodyLength', 33)
+128: onParameter('operation:tool_overallLength', 45)
+130: onParameter('operation:tool_shaftDiameter', 3.175)
+132: onParameter('operation:tool_segmentHeight', 1.5875)
+134: onParameter('operation:tool_segmentDiameterLower', 6.35)
+136: onParameter('operation:tool_segmentDiameterUpper', 6.35)
+138: onParameter('operation:tool_shaftSegmentHeight', 1)
+140: onParameter('operation:tool_shaftSegmentDiameterLower', 3.175)
+142: onParameter('operation:tool_shaftSegmentDiameterUpper', 3.175)
+144: onParameter('operation:tool_threadPitch', 0)
+145: onParameter('operation:tool_numberOfTeeth', 0)
+146: onParameter('operation:tool_numberOfFlutes', 1)
+147: onParameter('operation:holder_attached', 0)
+148: onParameter('operation:holder_description', '')
+149: onParameter('operation:holder_comment', '')
+150: onParameter('operation:holder_vendor', '')
+151: onParameter('operation:holder_productId', '')
+152: onParameter('operation:holder_productLink', '')
+153: onParameter('operation:holder_libraryName', '')
+154: onParameter('operation:tool_productLink', '')
+156: onParameter('operation:tool_spindleSpeed', 10000)
+158: onParameter('operation:tool_stockDiameter', 3.175)
+160: onParameter('operation:tool_surfaceSpeed', 99745.56675147593)
+162: onParameter('operation:tool_rampSpindleSpeed', 10000)
+164: onParameter('operation:tool_feedCutting', 1000)
+166: onParameter('operation:tool_feedPerTooth', 0.1)
+168: onParameter('operation:tool_feedProbeLink', 3000)
+170: onParameter('operation:tool_feedEntry', 1000)
+172: onParameter('operation:tool_feedExit', 1000)
+174: onParameter('operation:tool_feedProbeMeasure', 102)
+176: onParameter('operation:tool_feedRamp', 500)
+178: onParameter('operation:tool_feedPlunge', 300)
+180: onParameter('operation:tool_feedPerRevolution', 0.03)
+182: onParameter('operation:tool_feedRetract', 300)
+183: onParameter('operation:tool_clockwise', 1)
+184: onParameter('operation:featureOperationId', 'none')
+186: onParameter('operation:surfaceZHigh', 0)
+188: onParameter('operation:surfaceZLow', -10)
+190: onParameter('operation:surfaceXLow', 0)
+192: onParameter('operation:surfaceXHigh', 25)
+194: onParameter('operation:surfaceYLow', 0)
+196: onParameter('operation:surfaceYHigh', 25)
+198: onParameter('operation:stockZHigh', 0)
+200: onParameter('operation:stockZLow', -10)
+202: onParameter('operation:stockXLow', 0)
+204: onParameter('operation:stockXHigh', 25)
+206: onParameter('operation:stockYLow', 0)
+208: onParameter('operation:stockYHigh', 25)
+209: onParameter('operation:pockets_detectOpenPockets', 1)
+210: onParameter('operation:pockets_extensionMethod', 'tangent')
+211: onParameter('operation:pockets_connectOpenPockets', 1)
+212: onParameter('operation:pockets_errorCheck', 1)
+213: onParameter('operation:pockets_detectOverlaps', 0)
+215: onParameter('operation:restMaterialCutterDiameter', 6.35)
+217: onParameter('operation:restMaterialCornerRadius', 0)
+219: onParameter('operation:restMaterialTaperAngle', 0)
+221: onParameter('operation:restMaterialShoulderLength', 0)
+222: onParameter('operation:restMaterialTool', '')
+223: onParameter('operation:unwrap', 0)
+225: onParameter('operation:wrap_cylinder_radius', 0)
+227: onParameter('operation:wrap_nominalRadius_offset', 0)
+229: onParameter('operation:wrap_nominalRadius_value', 0)
+230: onParameter('operation:view_orientation_mode', 'useWCS')
+231: onParameter('operation:view_orientation_flipZ', 0)
+233: onParameter('operation:view_turn_from_recipe', 0)
+235: onParameter('operation:view_tilt_from_recipe', 0)
+236: onParameter('operation:view_orientation_flipX', 0)
+237: onParameter('operation:view_orientation_flipY', 0)
+238: onParameter('operation:view_origin_mode', 'jobOrigin')
+239: onParameter('operation:view_origin_boxPoint', 'top center')
+240: onParameter('operation:clearanceHeight_mode', 'from retract height')
+242: onParameter('operation:clearanceHeight_offset', 10)
+244: onParameter('operation:clearanceHeight_value', 15)
+245: onParameter('operation:clearanceHeight_absolute', 1)
+246: onParameter('operation:retractHeight_mode', 'from stock top')
+248: onParameter('operation:retractHeight_offset', 5)
+250: onParameter('operation:retractHeight_value', 5)
+251: onParameter('operation:retractHeight_absolute', 1)
+252: onParameter('operation:topHeight_mode', 'from stock top')
+254: onParameter('operation:topHeight_offset', 0)
+256: onParameter('operation:topHeight_value', 0)
+257: onParameter('operation:topHeight_absolute', 1)
+258: onParameter('operation:bottomHeight_mode', 'from contour')
+260: onParameter('operation:bottomHeight_offset', 0)
+262: onParameter('operation:bottomHeight_value', 0)
+263: onParameter('operation:bottomHeight_absolute', 0)
+265: onParameter('operation:tolerance', 0.1)
+267: onParameter('operation:contourTolerance', 0.05)
+269: onParameter('operation:surfaceTolerance', 0.05)
+271: onParameter('operation:calculationTolerance', 0.05)
+273: onParameter('operation:thinningTolerance', 0.0005)
+275: onParameter('operation:chainingTolerance', 0.01)
+277: onParameter('operation:gougingTolerance', 0.05)
+279: onParameter('operation:optimalLoad', 2)
+281: onParameter('operation:loadDeviation', 0.2)
+283: onParameter('operation:maximumLoad', 2.2)
+284: onParameter('operation:bothWays', 0)
+286: onParameter('operation:optimalLoadOtherWay', 2)
+288: onParameter('operation:loadDeviationOtherWay', 0.2)
+290: onParameter('operation:maximumLoadOtherWay', 2.2)
+292: onParameter('operation:otherWayFeedrate', 900)
+294: onParameter('operation:maximumCuspHeight', 0)
+296: onParameter('operation:minimumCuttingRadius', 0.3175)
+298: onParameter('operation:minimumCuttingRadiusJl', 0.3175)
+299: onParameter('operation:machineCavities', 1)
+300: onParameter('operation:useSlotClearing', 0)
+302: onParameter('operation:slotClearingWidth', 3.96875)
+303: onParameter('operation:direction', 'climb')
+305: onParameter('operation:maximumStepdown', 2)
+307: onParameter('operation:maximumStepdownJl', 2)
+309: onParameter('operation:slopeAngle', 0)
+311: onParameter('operation:curveInRadius', 0.25416666666666665)
+313: onParameter('operation:fineStepdown', 2)
+315: onParameter('operation:fineStepdownJl', 2)
+317: onParameter('operation:minimumStepdownJobline', 0)
+318: onParameter('operation:useSilhouetteAsStockBoundary', 0)
+319: onParameter('operation:orderByDepth', 0)
+320: onParameter('operation:orderByArea', 0)
+322: onParameter('operation:stockToLeave', 0)
+324: onParameter('operation:verticalStockToLeave', 0)
+325: onParameter('operation:simpleStockToLeave', 0)
+327: onParameter('operation:smoothingFilterTolerance', 0)
+329: onParameter('operation:reducedFeedChange', 25)
+331: onParameter('operation:reducedFeedRadius', 0)
+333: onParameter('operation:reducedFeedDistance', 0)
+335: onParameter('operation:reducedFeedrate', 900)
+336: onParameter('operation:reduceOnlyInnerCorners', 1)
+337: onParameter('operation:retractionPolicy', 'full')
+338: onParameter('operation:highFeedrateMode', 'disabled')
+340: onParameter('operation:highFeedrate', 1000)
+341: onParameter('operation:allowRapidRetract', 1)
+343: onParameter('operation:stayDownDistance', 15.875)
+345: onParameter('operation:minimumStayDownClearance', 2)
+346: onParameter('operation:stayDownLevel', 'level0')
+348: onParameter('operation:astarSpeedRatioJl', 0)
+350: onParameter('operation:liftHeight', 0.2)
+352: onParameter('operation:noEngagementFeedrate', 1000)
+354: onParameter('operation:leadRadius', 0.3175)
+356: onParameter('operation:verticalLeadRadius', 0.3175)
+358: onParameter('operation:leadInRadius', 0.3175)
+360: onParameter('operation:leadInVerticalRadius', 0.3175)
+362: onParameter('operation:leadOutRadius', 0.3175)
+364: onParameter('operation:leadOutVerticalRadius', 0.3175)
+365: onParameter('operation:rampType', 'helix')
+366: onParameter('operation:allowPlungingOutsideStockJl', 0)
+368: onParameter('operation:rampAngle', 2)
+370: onParameter('operation:rampTaperAngle', 1)
+372: onParameter('operation:rampClearanceHeight', 2.5)
+374: onParameter('operation:helicalRampDiameter', 3.01625)
+376: onParameter('operation:minimumRampDiameter', 1.5875)
+377: onParameter('operation:allowPlunging', 0)
+378: onParameter('operation:allowHelicalRamps', 1)
+379: onParameter('operation:use_tool_stepdown', 1)
+381: onParameter('operation:tool_stepdown', 2)
+383: onParameter('operation:tool_finishingStepdown', 0.2)
+384: onParameter('operation:use_tool_stepover', 1)
+386: onParameter('operation:tool_stepover', 2)
+388: onParameter('operation:tool_finishingStepover', 0.3175)
+389: onParameter('operation:tool_rampType', 'helix')
+391: onParameter('operation:tool_rampAngle', 2)
+394: onComment('When using Fusion 360 for Personal Use, the feedrate of')
+395: onComment('rapid moves is reduced to match the feedrate of cutting')
+396: onComment('moves, which can increase machining time. Unrestricted rapid')
+397: onComment('moves are available with a Fusion 360 Subscription.')
+398: onParameter('movement:lead_in', 1000)
+399: onParameter('movement:cutting', 1000)
+400: onParameter('movement:lead_out', 1000)
+401: onParameter('movement:transition', 1000)
+402: onParameter('movement:direct', 1000)
+403: onParameter('movement:helix_ramp', 500)
+404: onParameter('movement:profile_ramp', 500)
+405: onParameter('movement:zigzag_ramp', 500)
+406: onParameter('movement:ramp', 500)
+407: onParameter('movement:plunge', 300)
+408: onParameter('movement:predrill', 1000)
+409: onParameter('movement:extended', 1000)
+410: onParameter('movement:reduced', 1000)
+411: onParameter('movement:finish_cutting', 1000)
+412: onParameter('movement:high_feed', 0)
+413: onParameter('movement:depositing', 0)
+414: onSection()
+  currentSection.unit=1
+  currentSection.workOrigin=(0, 0, 0)
+  currentSection.workPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  currentSection.wcsOrigin=(0, 0, 0)
+  currentSection.wcsPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  currentSection.workOffset=1
+  currentSection.probeWorkOffset=1
+  currentSection.wcs=''
+  currentSection.wcsIndex=-1
+  currentSection.dynamicWCSOrigin=(0, 0, 0)
+  currentSection.dynamicWCSPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  currentSection.dynamicWorkOffset=1
+  currentSection.fcsOrigin=(0, 0, -10)
+  currentSection.fcsPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  currentSection.modelOrigin=(-0, -0, -10)
+  currentSection.modelPlane=[[1, -0, 0], [0, 1, -0], [0, 0, 1]]
+  currentSection.type=0 (TYPE_MILLING)
+  currentSection.quality=0 ({AUTO})
+  currentSection.jetMode=0 (JET_MODE_THROUGH)
+  currentSection.tailstock=false
+  currentSection.partCatcher=false
+  currentSection.spindle=0
+  currentSection.feedMode=0
+  currentSection.toolOrientation=0
+  currentSection.properties=[object Object]
+  currentSection.strategy='adaptive2d' (STRATEGY_2D STRATEGY_ROUGHING STRATEGY_MILLING STRATEGY_ROTARY )
+  tool.toolId='1'
+  tool.number=1
+  tool.diameterOffset=1
+  tool.lengthOffset=1
+  tool.secondaryLengthOffset=0
+  tool.turningTool=false
+  tool.jetTool=false
+  tool.holderNumber=0
+  tool.surfaceSpeed=0
+  tool.maximumSpindleSpeed=0
+  tool.spindleRPM=10000
+  tool.rampingSpindleRPM=10000
+  tool.clockwise=true
+  tool.numberOfFlutes=1
+  tool.threadPitch=0
+  tool.coolant=0
+  tool.material=0
+  tool.description='25mm Flute End Mill'
+  tool.comment=''
+  tool.vendor=''
+  tool.productId=''
+  tool.holderDescription=''
+  tool.holderComment=''
+  tool.holderVendor=''
+  tool.holderProductId=''
+  tool.aggregateId=''
+  tool.unit=1
+  tool.type=5 (TOOL_MILLING_END_FLAT, flat end mill)
+  tool.diameter=3.175
+  tool.tipDiameter=3.175
+  tool.cornerRadius=0
+  tool.taperAngle=0
+  tool.fluteLength=25
+  tool.shoulderLength=33
+  tool.shaftDiameter=3.175
+  tool.bodyLength=33
+  tool.overallLength=45
+  tool.shaft=[object Shaft]
+  tool.holderTipDiameter=0
+  tool.holderDiameter=0
+  tool.holderLength=0
+  tool.holder=[object Holder]
+  tool.boringBarOrientation=0
+  tool.jetDistance=0
+  tool.jetDiameter=undefined
+  tool.kerfWidth=undefined
+  tool.machineQualityControl=undefined
+  tool.cutHeight=undefined
+  tool.pierceHeight=undefined
+  tool.pressure=undefined
+  tool.pierceTime=undefined
+  tool.abrasiveFlowRate=undefined
+  tool.piercePower=undefined
+  tool.cutPower=undefined
+  tool.assistGas=undefined
+  tool.compensationOffset=0
+  tool.secondaryCompensationOffset=0
+  tool.turret=0
+  tool.insertType=3 (TURNING_INSERT_ISO_C)
+  tool.holderType=0 (TURNING_INSERT_USER_DEFINED)
+  tool.compensationMode=0 (TOOL_COMPENSATION_INSERT_CENTER)
+  tool.inscribedCircleDiameter=10
+  tool.edgeLength=0
+  tool.noseRadius=1
+  tool.reliefAngle=0
+  tool.thickness=0
+  tool.grooveWidth=0
+  tool.crossSection=''
+  tool.tolerance='M'
+  tool.pitch=0
+  tool.hand='R'
+  tool.clamping=''
+  tool.manualToolChange=false
+  tool.breakControl=false
+  tool.liveTool=true
+  tool.tappingFeedrate=0
+  STATE position=[13.975816, 13.077116, 15]
+  STATE spindleSpeed=10000
+  STATE radiusCompensation=RADIUS_COMPENSATION_OFF // off
+415: onMovement(MOVEMENT_CUTTING /*cutting*/)
+415: onLinear(13.975815773010254, 13.077116012573242, 15, 1000)
+416: onLinear(13.975815773010254, 13.077116012573242, 5, 1000)
+417: onLinear(13.975815773010254, 13.077116012573242, 2.5, 1000)
+418: onMovement(MOVEMENT_RAMP_HELIX /*helix ramp*/)
+418: onCircular(false, 12.499789237976074, 12.4999361038208, 2.3902440071105957, 11.379459381103516, 13.620941162109375, 2.3902440071105957, 500)
+  direction: CCW
+  sweep: 113.625439deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.584863
+  helical pitch: 0.34774
+419: onCircular(false, 12.498435020446777, 12.501290321350098, 2.2804877758026123, 11.921064376831055, 11.027395248413086, 2.2804877758026123, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.582948
+  helical pitch: 0.347741
+420: onCircular(false, 12.497735977172852, 12.499506950378418, 2.170731782913208, 14.077568054199219, 12.561125755310059, 2.170731782913208, 500)
+  direction: CCW
+  sweep: 113.62541deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.581033
+  helical pitch: 0.347741
+421: onCircular(false, 12.499650001525879, 12.499581336975098, 2.0609755516052246, 11.810905456542969, 13.920581817626953, 2.0609755516052246, 500)
+  direction: CCW
+  sweep: 113.625391deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.579117
+  helical pitch: 0.347741
+422: onCircular(false, 12.498814582824707, 12.50130558013916, 1.9512195587158203, 11.4741792678833, 11.302268981933594, 1.9512195587158203, 500)
+  direction: CCW
+  sweep: 113.625486deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.577202
+  helical pitch: 0.34774
+423: onCircular(false, 12.497570991516113, 12.499849319458008, 1.8414634466171265, 14.004905700683594, 12.042170524597168, 1.8414634466171265, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.575287
+  helical pitch: 0.347741
+424: onCircular(false, 12.49940299987793, 12.499292373657227, 1.7317073345184326, 12.314873695373535, 14.061805725097656, 1.7317073345184326, 500)
+  direction: CCW
+  sweep: 113.625381deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.573372
+  helical pitch: 0.347741
+425: onCircular(false, 12.499178886413574, 12.501194953918457, 1.6219512224197388, 11.143232345581055, 11.706913948059082, 1.6219512224197388, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.571456
+  helical pitch: 0.347741
+426: onCircular(false, 12.497526168823242, 12.500226974487305, 1.512195110321045, 13.767088890075684, 11.577367782592773, 1.512195110321045, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.569541
+  helical pitch: 0.347741
+427: onCircular(false, 12.499074935913086, 12.499100685119629, 1.402438998222351, 12.835389137268066, 14.030224800109863, 1.402438998222351, 500)
+  direction: CCW
+  sweep: 113.625415deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.567625
+  helical pitch: 0.347741
+428: onCircular(false, 12.499485969543457, 12.500971794128418, 1.2926828861236572, 10.963791847229004, 12.195863723754883, 1.2926828861236572, 500)
+  direction: CCW
+  sweep: 113.625449deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.56571
+  helical pitch: 0.347741
+429: onCircular(false, 12.497607231140137, 12.500597953796387, 1.1829267740249634, 13.391486167907715, 11.217463493347168, 1.1829267740249634, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.563795
+  helical pitch: 0.347741
+430: onCircular(false, 12.498702049255371, 12.49902629852295, 1.073170781135559, 13.315062522888184, 13.830574989318848, 1.073170781135559, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.561879
+  helical pitch: 0.34774
+431: onCircular(false, 12.499703407287598, 12.500658988952637, 0.9634146094322205, 10.954495429992676, 12.71470832824707, 0.9634146094322205, 500)
+  direction: CCW
+  sweep: 113.625389deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.559963
+  helical pitch: 0.347741
+432: onCircular(false, 12.497806549072266, 12.500922203063965, 0.8536585569381714, 12.920430183410645, 11.001287460327148, 0.8536585569381714, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.558048
+  helical pitch: 0.347741
+433: onCircular(false, 12.498326301574707, 12.499078750610352, 0.7439024448394775, 13.70141887664795, 13.486052513122559, 0.7439024448394775, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.556133
+  helical pitch: 0.347741
+434: onCircular(false, 12.49980640411377, 12.500293731689453, 0.6341463327407837, 11.115117073059082, 13.206143379211426, 0.6341463327407837, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.554216
+  helical pitch: 0.347741
+435: onCircular(false, 12.498100280761719, 12.501163482666016, 0.5243902206420898, 12.40644645690918, 10.951569557189941, 0.5243902206420898, 500)
+  direction: CCW
+  sweep: 113.625422deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.552302
+  helical pitch: 0.347741
+436: onCircular(false, 12.497986793518066, 12.499251365661621, 0.4146341383457184, 13.952634811401367, 13.035625457763672, 0.4146341383457184, 500)
+  direction: CCW
+  sweep: 113.625419deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.550386
+  helical pitch: 0.347741
+437: onCircular(false, 12.499784469604492, 12.499914169311523, 0.3048780560493469, 11.426734924316406, 13.616304397583008, 0.3048780560493469, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.548471
+  helical pitch: 0.347741
+438: onCircular(false, 12.498456954956055, 12.50129508972168, 0.19512194395065308, 11.906400680541992, 11.072552680969238, 0.19512194395065308, 500)
+  direction: CCW
+  sweep: 113.625428deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.546556
+  helical pitch: 0.347741
+439: onCircular(false, 12.497723579406738, 12.49952507019043, 0.08536585420370102, 14.042070388793945, 12.529631614685059, 0.08536585420370102, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54464
+  helical pitch: 0.347741
+440: onCircular(false, 12.499638557434082, 12.49956226348877, -0.024390242993831635, 11.853952407836914, 13.900665283203125, -0.024390242993831635, 500)
+  direction: CCW
+  sweep: 113.625376deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.542725
+  helical pitch: 0.347741
+441: onCircular(false, 12.4988374710083, 12.501302719116211, -0.13414634764194489, 11.475203514099121, 11.349665641784668, -0.13414634764194489, 500)
+  direction: CCW
+  sweep: 113.625432deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54081
+  helical pitch: 0.347741
+442: onCircular(false, 12.497564315795898, 12.499870300292969, -0.24390244483947754, 13.961082458496094, 12.024149894714355, -0.24390244483947754, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.538894
+  helical pitch: 0.347741
+443: onCircular(false, 12.499385833740234, 12.499279022216797, -0.353658527135849, 12.348908424377441, 14.028873443603516, -0.353658527135849, 500)
+  direction: CCW
+  sweep: 113.625444deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.536978
+  helical pitch: 0.347741
+444: onCircular(false, 12.499198913574219, 12.501184463500977, -0.46341463923454285, 11.159783363342285, 11.751261711120605, -0.46341463923454285, 500)
+  direction: CCW
+  sweep: 113.625397deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.535063
+  helical pitch: 0.347741
+445: onCircular(false, 12.497527122497559, 12.500248908996582, -0.5731707215309143, 13.719846725463867, 11.574789047241211, -0.5731707215309143, 500)
+  direction: CCW
+  sweep: 113.625436deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.533147
+  helical pitch: 0.347741
+446: onCircular(false, 12.499054908752441, 12.499093055725098, -0.6829268336296082, 12.856648445129395, 13.987984657287598, -0.6829268336296082, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.531232
+  helical pitch: 0.347741
+447: onCircular(false, 12.499502182006836, 12.500955581665039, -0.792682945728302, 10.993979454040527, 12.232232093811035, -0.792682945728302, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.529317
+  helical pitch: 0.347741
+448: onCircular(false, 12.497615814208984, 12.500618934631348, -0.9024389982223511, 13.346098899841309, 11.23056697845459, -0.9024389982223511, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.527402
+  helical pitch: 0.347741
+449: onCircular(false, 12.498680114746094, 12.49902629852295, -1.012195110321045, 13.321215629577637, 13.783761024475098, -1.012195110321045, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.525486
+  helical pitch: 0.347741
+450: onCircular(false, 12.499712944030762, 12.500638961791992, -1.1219512224197388, 10.994914054870605, 12.739068984985352, -1.1219512224197388, 500)
+  direction: CCW
+  sweep: 113.625425deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.523571
+  helical pitch: 0.347741
+451: onCircular(false, 12.497820854187012, 12.500938415527344, -1.2317073345184326, 12.881948471069336, 11.028566360473633, -1.2317073345184326, 500)
+  direction: CCW
+  sweep: 113.625465deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.521655
+  helical pitch: 0.347741
+452: onCircular(false, 12.49830436706543, 12.499085426330566, -1.3414634466171265, 13.691824913024902, 13.43989372253418, -1.3414634466171265, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.519741
+  helical pitch: 0.347741
+453: onCircular(false, 12.499809265136719, 12.50027084350586, -1.4512195587158203, 11.161233901977539, 13.215819358825684, -1.4512195587158203, 500)
+  direction: CCW
+  sweep: 113.625397deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.517825
+  helical pitch: 0.347741
+454: onCircular(false, 12.498119354248047, 12.501173973083496, -1.5609755516052246, 12.37913703918457, 10.989941596984863, -1.5609755516052246, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.515909
+  helical pitch: 0.34774
+455: onCircular(false, 12.497969627380371, 12.49926471710205, -1.6707316637039185, 13.928410530090332, 12.995262145996094, -1.6707316637039185, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.513993
+  helical pitch: 0.347741
+456: onCircular(false, 12.499778747558594, 12.499892234802246, -1.7804877758026123, 11.473396301269531, 13.610260963439941, -1.7804877758026123, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.512078
+  helical pitch: 0.347741
+457: onCircular(false, 12.498478889465332, 12.501298904418945, -1.8902438879013062, 11.893272399902344, 11.11771011352539, -1.8902438879013062, 500)
+  direction: CCW
+  sweep: 113.625446deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.510163
+  helical pitch: 0.347741
+458: onCircular(false, 12.497711181640625, 12.499544143676758, -2, 14.005958557128906, 12.499544143676758, -2, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+  helical pitch: 0.347741
+459: onCircular(false, 12.497711181640625, 12.499544143676758, -2, 14.005958557128906, 12.499544143676758, -2, 500)
+  direction: CCW
+  sweep: 360deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+460: onMovement(MOVEMENT_CUTTING /*cutting*/)
+460: onLinear(14.008058547973633, 12.579790115356445, -2, 1000)
+461: onLinear(14.224227905273438, 13.18449878692627, -2, 1000)
+462: onLinear(14.30195140838623, 13.31279182434082, -2, 1000)
+463: onLinear(14.355342864990234, 13.45296859741211, -2, 1000)
+464: onLinear(14.38642692565918, 13.599712371826172, -2, 1000)
+465: onLinear(14.397710800170898, 13.758232116699219, -2, 1000)
+466: onLinear(14.38711929321289, 13.931784629821777, -2, 1000)
+467: onLinear(14.350835800170898, 14.117473602294922, -2, 1000)
+468: onLinear(14.285414695739746, 14.311638832092285, -2, 1000)
+469: onLinear(14.187935829162598, 14.509880065917969, -2, 1000)
+470: onLinear(14.056164741516113, 14.707101821899414, -2, 1000)
+471: onLinear(13.888731002807617, 14.89760684967041, -2, 1000)
+472: onLinear(13.685291290283203, 15.075226783752441, -2, 1000)
+473: onLinear(13.446691513061523, 15.233511924743652, -2, 1000)
+474: onLinear(13.175067901611328, 15.365967750549316, -2, 1000)
+475: onLinear(12.873905181884766, 15.466338157653809, -2, 1000)
+476: onLinear(12.547999382019043, 15.528908729553223, -2, 1000)
+477: onLinear(12.20334529876709, 15.548806190490723, -2, 1000)
+478: onLinear(11.84692096710205, 15.522256851196289, -2, 1000)
+479: onLinear(11.486425399780273, 15.446788787841797, -2, 1000)
+480: onLinear(11.129963874816895, 15.321344375610352, -2, 1000)
+481: onLinear(10.78573226928711, 15.14631462097168, -2, 1000)
+482: onLinear(10.46172046661377, 14.92349624633789, -2, 1000)
+483: onLinear(10.165454864501953, 14.655989646911621, -2, 1000)
+484: onLinear(9.903786659240723, 14.348055839538574, -2, 1000)
+485: onLinear(9.682732582092285, 14.0049467086792, -2, 1000)
+486: onLinear(9.507355690002441, 13.632731437683105, -2, 1000)
+487: onLinear(9.38168716430664, 13.238113403320312, -2, 1000)
+488: onLinear(9.308676719665527, 12.828258514404297, -2, 1000)
+489: onLinear(9.290176391601562, 12.410629272460938, -2, 1000)
+490: onLinear(9.32693099975586, 11.992817878723145, -2, 1000)
+491: onLinear(9.418604850769043, 11.582404136657715, -2, 1000)
+492: onLinear(9.563806533813477, 11.186806678771973, -2, 1000)
+493: onLinear(9.760141372680664, 10.813149452209473, -2, 1000)
+494: onLinear(10.004271507263184, 10.468137741088867, -2, 1000)
+495: onLinear(10.291988372802734, 10.15794563293457, -2, 1000)
+496: onLinear(10.618297576904297, 9.888105392456055, -2, 1000)
+497: onLinear(10.977518081665039, 9.663423538208008, -2, 1000)
+498: onLinear(11.363383293151855, 9.487892150878906, -2, 1000)
+499: onLinear(11.769157409667969, 9.364632606506348, -2, 1000)
+500: onLinear(12.18775749206543, 9.295836448669434, -2, 1000)
+501: onLinear(12.611876487731934, 9.282737731933594, -2, 1000)
+502: onLinear(13.034111022949219, 9.32558822631836, -2, 1000)
+503: onLinear(13.447093963623047, 9.423662185668945, -2, 1000)
+504: onLinear(13.843621253967285, 9.575262069702148, -2, 1000)
+505: onLinear(14.216778755187988, 9.777758598327637, -2, 1000)
+506: onLinear(14.560059547424316, 10.027631759643555, -2, 1000)
+507: onLinear(14.867480278015137, 10.320535659790039, -2, 1000)
+508: onLinear(15.133682250976562, 10.651371955871582, -2, 1000)
+509: onLinear(15.466900825500488, 11.20034122467041, -2, 1000)
+510: onLinear(15.755839347839355, 11.77385425567627, -2, 1000)
+511: onLinear(15.988543510437012, 12.343191146850586, -2, 1000)
+512: onLinear(16.1253719329834, 12.865966796875, -2, 1000)
+513: onLinear(16.187379837036133, 13.363561630249023, -2, 1000)
+514: onLinear(16.18349838256836, 13.846214294433594, -2, 1000)
+515: onLinear(16.116989135742188, 14.3179931640625, -2, 1000)
+516: onLinear(15.988873481750488, 14.777202606201172, -2, 1000)
+517: onLinear(15.799777030944824, 15.21940803527832, -2, 1000)
+518: onLinear(15.550702095031738, 15.638623237609863, -2, 1000)
+519: onLinear(15.243438720703125, 16.0279598236084, -2, 1000)
+520: onLinear(14.880317687988281, 16.380531311035156, -2, 1000)
+521: onLinear(14.463022232055664, 16.69034767150879, -2, 1000)
+522: onLinear(13.996045112609863, 16.949491500854492, -2, 1000)
+523: onLinear(13.485668182373047, 17.150161743164062, -2, 1000)
+524: onLinear(12.93973159790039, 17.28526496887207, -2, 1000)
+525: onLinear(12.367486000061035, 17.34880256652832, -2, 1000)
+526: onLinear(11.779363632202148, 17.33619499206543, -2, 1000)
+527: onLinear(11.186668395996094, 17.244524002075195, -2, 1000)
+528: onLinear(10.601229667663574, 17.07270622253418, -2, 1000)
+529: onLinear(10.035037994384766, 16.82156753540039, -2, 1000)
+530: onLinear(9.499886512756348, 16.493831634521484, -2, 1000)
+531: onLinear(9.007194519042969, 16.094175338745117, -2, 1000)
+532: onLinear(8.567397117614746, 15.628908157348633, -2, 1000)
+533: onLinear(8.191526412963867, 15.108213424682617, -2, 1000)
+534: onLinear(7.887006759643555, 14.542819023132324, -2, 1000)
+535: onLinear(7.658463001251221, 13.94267749786377, -2, 1000)
+536: onLinear(7.509304046630859, 13.31805419921875, -2, 1000)
+537: onLinear(7.441680431365967, 12.679439544677734, -2, 1000)
+538: onLinear(7.456455707550049, 12.037424087524414, -2, 1000)
+539: onLinear(7.553194046020508, 11.402565956115723, -2, 1000)
+540: onLinear(7.730165481567383, 10.785246849060059, -2, 1000)
+541: onLinear(7.984374523162842, 10.195517539978027, -2, 1000)
+542: onLinear(8.311586380004883, 9.64294719696045, -2, 1000)
+543: onLinear(8.70633316040039, 9.136411666870117, -2, 1000)
+544: onLinear(9.162117958068848, 8.684015274047852, -2, 1000)
+545: onLinear(9.671525001525879, 8.292983055114746, -2, 1000)
+546: onLinear(10.226320266723633, 7.9695563316345215, -2, 1000)
+547: onLinear(10.81756591796875, 7.71889591217041, -2, 1000)
+548: onLinear(11.435758590698242, 7.544998645782471, -2, 1000)
+549: onLinear(12.07097339630127, 7.450634002685547, -2, 1000)
+550: onLinear(12.713020324707031, 7.437300205230713, -2, 1000)
+551: onLinear(13.351606369018555, 7.505199432373047, -2, 1000)
+552: onLinear(13.976497650146484, 7.653232574462891, -2, 1000)
+553: onLinear(14.577682495117188, 7.879018306732178, -2, 1000)
+554: onLinear(15.145533561706543, 8.178930282592773, -2, 1000)
+555: onLinear(15.6709623336792, 8.548155784606934, -2, 1000)
+556: onLinear(16.14556121826172, 8.980772972106934, -2, 1000)
+557: onLinear(16.56760597229004, 9.464798927307129, -2, 1000)
+558: onLinear(16.939804077148438, 9.98812484741211, -2, 1000)
+559: onLinear(17.267024993896484, 10.540691375732422, -2, 1000)
+560: onLinear(17.54762840270996, 11.118328094482422, -2, 1000)
+561: onLinear(17.77485466003418, 11.718969345092773, -2, 1000)
+562: onLinear(17.941329956054688, 12.339201927185059, -2, 1000)
+563: onLinear(18.040056228637695, 12.973752975463867, -2, 1000)
+564: onLinear(18.066635131835938, 13.615388870239258, -2, 1000)
+565: onLinear(18.019624710083008, 14.255850791931152, -2, 1000)
+566: onLinear(17.924978256225586, 14.750432014465332, -2, 1000)
+567: onLinear(17.916091918945312, 14.780524253845215, -2, 1000)
+568: onLinear(17.873977661132812, 14.900876998901367, -2, 1000)
+569: onLinear(17.821455001831055, 15.046384811401367, -2, 1000)
+570: onLinear(17.811031341552734, 15.069032669067383, -2, 1000)
+571: onLinear(17.735679626464844, 15.191892623901367, -2, 1000)
+572: onLinear(17.141368865966797, 16.137691497802734, -2, 1000)
+573: onLinear(17.115755081176758, 16.174068450927734, -2, 1000)
+574: onLinear(17.083492279052734, 16.21134376525879, -2, 1000)
+575: onLinear(16.210445404052734, 17.084388732910156, -2, 1000)
+576: onLinear(16.174068450927734, 17.115755081176758, -2, 1000)
+577: onLinear(16.137691497802734, 17.141368865966797, -2, 1000)
+578: onLinear(15.191892623901367, 17.735679626464844, -2, 1000)
+579: onLinear(15.069032669067383, 17.811031341552734, -2, 1000)
+580: onLinear(15.046384811401367, 17.821455001831055, -2, 1000)
+581: onLinear(14.900876998901367, 17.873977661132812, -2, 1000)
+582: onLinear(13.831711769104004, 18.247554779052734, -2, 1000)
+583: onLinear(13.736815452575684, 18.263134002685547, -2, 1000)
+584: onLinear(12.57275390625, 18.394264221191406, -2, 1000)
+585: onLinear(12.5, 18.40045166015625, -2, 1000)
+586: onLinear(12.416577339172363, 18.393062591552734, -2, 1000)
+587: onLinear(11.263184547424316, 18.263134002685547, -2, 1000)
+588: onLinear(11.168283462524414, 18.247554779052734, -2, 1000)
+589: onLinear(10.099123001098633, 17.873985290527344, -2, 1000)
+590: onLinear(9.953615188598633, 17.82146453857422, -2, 1000)
+591: onLinear(9.930939674377441, 17.811031341552734, -2, 1000)
+592: onLinear(9.808107376098633, 17.73569107055664, -2, 1000)
+593: onLinear(8.86230754852295, 17.141355514526367, -2, 1000)
+594: onLinear(8.82593059539795, 17.115737915039062, -2, 1000)
+595: onLinear(8.788677215576172, 17.083492279052734, -2, 1000)
+596: onLinear(7.915579795837402, 16.210445404052734, -2, 1000)
+597: onLinear(7.884213924407959, 16.174068450927734, -2, 1000)
+598: onLinear(7.858599662780762, 16.137691497802734, -2, 1000)
+599: onLinear(7.264337062835693, 15.191892623901367, -2, 1000)
+600: onLinear(7.188969135284424, 15.068990707397461, -2, 1000)
+601: onLinear(7.178574085235596, 15.046384811401367, -2, 1000)
+602: onLinear(7.1260552406311035, 14.900876998901367, -2, 1000)
+603: onLinear(6.769644737243652, 13.882323265075684, -2, 1000)
+604: onLinear(6.752446174621582, 13.831576347351074, -2, 1000)
+605: onLinear(6.736900806427002, 13.736815452575684, -2, 1000)
+606: onLinear(6.605742454528809, 12.57275390625, -2, 1000)
+607: onLinear(6.599554061889648, 12.5, -2, 1000)
+608: onLinear(6.606938362121582, 12.416632652282715, -2, 1000)
+609: onLinear(6.736900806427002, 11.263184547424316, -2, 1000)
+610: onLinear(6.752446174621582, 11.168418884277344, -2, 1000)
+611: onLinear(7.075131893157959, 10.244630813598633, -2, 1000)
+612: onLinear(7.126046657562256, 10.099123001098633, -2, 1000)
+613: onLinear(7.178563594818115, 9.953615188598633, -2, 1000)
+614: onLinear(7.188969135284424, 9.930980682373047, -2, 1000)
+615: onLinear(7.264326095581055, 9.808107376098633, -2, 1000)
+616: onLinear(7.85861349105835, 8.86230754852295, -2, 1000)
+617: onLinear(7.884230613708496, 8.82593059539795, -2, 1000)
+618: onLinear(7.916507720947266, 8.788646697998047, -2, 1000)
+619: onLinear(8.78955364227295, 7.915600776672363, -2, 1000)
+620: onLinear(8.82593059539795, 7.884230613708496, -2, 1000)
+621: onLinear(8.86230754852295, 7.85861349105835, -2, 1000)
+622: onLinear(9.808107376098633, 7.264326095581055, -2, 1000)
+623: onLinear(9.930980682373047, 7.188969135284424, -2, 1000)
+624: onLinear(9.953615188598633, 7.178563594818115, -2, 1000)
+625: onLinear(10.099123001098633, 7.126046657562256, -2, 1000)
+626: onLinear(11.117676734924316, 6.769643306732178, -2, 1000)
+627: onLinear(11.168418884277344, 6.752446174621582, -2, 1000)
+628: onLinear(11.263184547424316, 6.736900806427002, -2, 1000)
+629: onLinear(12.42724609375, 6.605742454528809, -2, 1000)
+630: onLinear(12.5, 6.599554061889648, -2, 1000)
+631: onLinear(12.583367347717285, 6.606938362121582, -2, 1000)
+632: onLinear(13.736815452575684, 6.736900806427002, -2, 1000)
+633: onLinear(13.831576347351074, 6.752446174621582, -2, 1000)
+634: onLinear(14.755369186401367, 7.075139045715332, -2, 1000)
+635: onLinear(14.900876998901367, 7.1260552406311035, -2, 1000)
+636: onLinear(15.046384811401367, 7.178574085235596, -2, 1000)
+637: onLinear(15.068990707397461, 7.188969135284424, -2, 1000)
+638: onLinear(15.191892623901367, 7.264337062835693, -2, 1000)
+639: onLinear(16.137691497802734, 7.858599662780762, -2, 1000)
+640: onLinear(16.174068450927734, 7.884213924407959, -2, 1000)
+641: onLinear(16.211374282836914, 7.916507720947266, -2, 1000)
+642: onLinear(17.084369659423828, 8.78955364227295, -2, 1000)
+643: onLinear(17.115737915039062, 8.82593059539795, -2, 1000)
+644: onLinear(17.141355514526367, 8.86230754852295, -2, 1000)
+645: onLinear(17.73569107055664, 9.808107376098633, -2, 1000)
+646: onLinear(17.811031341552734, 9.930939674377441, -2, 1000)
+647: onLinear(17.82146453857422, 9.953615188598633, -2, 1000)
+648: onLinear(17.873985290527344, 10.099123001098633, -2, 1000)
+649: onLinear(18.247554779052734, 11.168283462524414, -2, 1000)
+650: onLinear(18.263134002685547, 11.263184547424316, -2, 1000)
+651: onLinear(18.394264221191406, 12.42724609375, -2, 1000)
+652: onLinear(18.40045166015625, 12.5, -2, 1000)
+653: onLinear(18.393062591552734, 12.583422660827637, -2, 1000)
+654: onLinear(18.263134002685547, 13.736815452575684, -2, 1000)
+655: onLinear(18.247554779052734, 13.831711769104004, -2, 1000)
+656: onLinear(17.916091918945312, 14.780524253845215, -2, 1000)
+657: onMovement(MOVEMENT_LEAD_OUT /*lead out*/)
+657: onCircular(false, 17.62025260925293, 14.665263175964355, -2, 17.621007919311523, 14.982762336730957, -2, 1000)
+  direction: CCW
+  sweep: 68.577459deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+658: onLinear(17.62025260925293, 14.982763290405273, -2, 1000)
+659: onCircular(false, 17.62025260925293, 14.665263175964355, -2, 17.534215927124023, 14.970884323120117, -2, 1000)
+  direction: CCW
+  sweep: 15.722663deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.317501
+660: onCircular(false, 17.535633087158203, 14.971702575683594, -1.6825000047683716, 17.398679733276367, 14.892666816711426, -1.9578293561935425, 1000)
+  direction: CCW
+  sweep: 29.573653deg
+  normal: X=-0.499837 Y=0.866119 Z=0 
+  radius: 0.317505
+  helical pitch: 0.000004
+661: onCircular(false, 17.482542037963867, 15.029637336730957, -1.68300199508667, 17.31696891784668, 14.759209632873535, -1.7108945846557617, 1000)
+  direction: CCW
+  sweep: 54.671646deg
+  normal: X=-0.852844 Y=0.522166 Z=0 
+  radius: 0.318314
+  helical pitch: 0.000002
+662: onCircular(false, 17.40993309020996, 15.061463356018066, -1.6825000047683716, 17.31659507751465, 14.757993698120117, -1.6825000047683716, 1000)
+  direction: CCW
+  sweep: 5.130926deg
+  normal: X=-0.955812 Y=0.293979 Z=0 
+  radius: 0.317499
+  helical pitch: 0.00001
+663: onMovement(MOVEMENT_CUTTING /*cutting*/)
+663: onLinear(17.31659507751465, 14.757993698120117, 5, 1000)
+664: onLinear(13.975992202758789, 13.0772705078125, 5, 1000)
+665: onLinear(13.975992202758789, 13.0772705078125, 0.5, 1000)
+666: onMovement(MOVEMENT_RAMP_HELIX /*helix ramp*/)
+666: onCircular(false, 12.499964714050293, 12.500090599060059, 0.39024388790130615, 11.379634857177734, 13.621095657348633, 0.39024388790130615, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.584863
+  helical pitch: 0.347741
+667: onCircular(false, 12.498610496520996, 12.501444816589355, 0.2804878056049347, 11.921239852905273, 11.027549743652344, 0.2804878056049347, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.582948
+  helical pitch: 0.347741
+668: onCircular(false, 12.497912406921387, 12.499661445617676, 0.17073170840740204, 14.077743530273438, 12.561280250549316, 0.17073170840740204, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.581032
+  helical pitch: 0.347741
+669: onCircular(false, 12.499825477600098, 12.499735832214355, 0.060975611209869385, 11.811080932617188, 13.920736312866211, 0.060975611209869385, 500)
+  direction: CCW
+  sweep: 113.625391deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.579117
+  helical pitch: 0.347741
+670: onCircular(false, 12.498990058898926, 12.501460075378418, -0.04878048598766327, 11.47435474395752, 11.302423477172852, -0.04878048598766327, 500)
+  direction: CCW
+  sweep: 113.625486deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.577202
+  helical pitch: 0.347741
+671: onCircular(false, 12.497746467590332, 12.500003814697266, -0.15853658318519592, 14.005081176757812, 12.042325019836426, -0.15853658318519592, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.575287
+  helical pitch: 0.347741
+672: onCircular(false, 12.499578475952148, 12.499446868896484, -0.26829269528388977, 12.315049171447754, 14.061960220336914, -0.26829269528388977, 500)
+  direction: CCW
+  sweep: 113.625381deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.573372
+  helical pitch: 0.347741
+673: onCircular(false, 12.499354362487793, 12.501349449157715, -0.37804877758026123, 11.143407821655273, 11.70706844329834, -0.37804877758026123, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.571456
+  helical pitch: 0.347741
+674: onCircular(false, 12.497701644897461, 12.500381469726562, -0.4878048896789551, 13.767264366149902, 11.577522277832031, -0.4878048896789551, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.569541
+  helical pitch: 0.347741
+675: onCircular(false, 12.499250411987305, 12.499255180358887, -0.5975610017776489, 12.835564613342285, 14.030379295349121, -0.5975610017776489, 500)
+  direction: CCW
+  sweep: 113.625415deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.567625
+  helical pitch: 0.347741
+676: onCircular(false, 12.499661445617676, 12.50112533569336, -0.707317054271698, 10.963968276977539, 12.19601821899414, -0.707317054271698, 500)
+  direction: CCW
+  sweep: 113.625414deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.565709
+  helical pitch: 0.347741
+677: onCircular(false, 12.497782707214355, 12.500752449035645, -0.8170731663703918, 13.391661643981934, 11.217617988586426, -0.8170731663703918, 500)
+  direction: CCW
+  sweep: 113.625448deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.563795
+  helical pitch: 0.347741
+678: onCircular(false, 12.49887752532959, 12.499180793762207, -0.9268292784690857, 13.315237998962402, 13.830729484558105, -0.9268292784690857, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.561879
+  helical pitch: 0.347741
+679: onCircular(false, 12.499878883361816, 12.500813484191895, -1.0365853309631348, 10.954670906066895, 12.714862823486328, -1.0365853309631348, 500)
+  direction: CCW
+  sweep: 113.625389deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.559963
+  helical pitch: 0.347741
+680: onCircular(false, 12.497982025146484, 12.501076698303223, -1.1463414430618286, 12.920605659484863, 11.001441955566406, -1.1463414430618286, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.558048
+  helical pitch: 0.347741
+681: onCircular(false, 12.498501777648926, 12.49923324584961, -1.2560975551605225, 13.701594352722168, 13.486207008361816, -1.2560975551605225, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.556133
+  helical pitch: 0.347741
+682: onCircular(false, 12.499981880187988, 12.500448226928711, -1.3658536672592163, 11.1152925491333, 13.206297874450684, -1.3658536672592163, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.554216
+  helical pitch: 0.347741
+683: onCircular(false, 12.498275756835938, 12.501317977905273, -1.4756097793579102, 12.406621932983398, 10.9517240524292, -1.4756097793579102, 500)
+  direction: CCW
+  sweep: 113.625422deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.552302
+  helical pitch: 0.347741
+684: onCircular(false, 12.498162269592285, 12.499405860900879, -1.585365891456604, 13.952810287475586, 13.03577995300293, -1.585365891456604, 500)
+  direction: CCW
+  sweep: 113.625419deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.550386
+  helical pitch: 0.347741
+685: onCircular(false, 12.499959945678711, 12.500068664550781, -1.6951220035552979, 11.426910400390625, 13.616458892822266, -1.6951220035552979, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.548471
+  helical pitch: 0.347741
+686: onCircular(false, 12.498632431030273, 12.501449584960938, -1.8048779964447021, 11.906576156616211, 11.072707176208496, -1.8048779964447021, 500)
+  direction: CCW
+  sweep: 113.625428deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.546556
+  helical pitch: 0.34774
+687: onCircular(false, 12.497899055480957, 12.499679565429688, -1.914634108543396, 14.042245864868164, 12.529786109924316, -1.914634108543396, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54464
+  helical pitch: 0.347741
+688: onCircular(false, 12.4998140335083, 12.499716758728027, -2.02439022064209, 11.854127883911133, 13.900819778442383, -2.02439022064209, 500)
+  direction: CCW
+  sweep: 113.625376deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.542725
+  helical pitch: 0.347741
+689: onCircular(false, 12.49901294708252, 12.501456260681152, -2.1341464519500732, 11.47537899017334, 11.349820137023926, -2.1341464519500732, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.540809
+  helical pitch: 0.347741
+690: onCircular(false, 12.497739791870117, 12.500024795532227, -2.2439024448394775, 13.961257934570312, 12.024304389953613, -2.2439024448394775, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.538894
+  helical pitch: 0.34774
+691: onCircular(false, 12.499561309814453, 12.499432563781738, -2.353658437728882, 12.34908390045166, 14.029027938842773, -2.353658437728882, 500)
+  direction: CCW
+  sweep: 113.625406deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.536979
+  helical pitch: 0.347741
+692: onCircular(false, 12.499374389648438, 12.501338958740234, -2.4634146690368652, 11.159958839416504, 11.751416206359863, -2.4634146690368652, 500)
+  direction: CCW
+  sweep: 113.625397deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.535063
+  helical pitch: 0.347741
+693: onCircular(false, 12.497702598571777, 12.50040340423584, -2.5731706619262695, 13.720022201538086, 11.574943542480469, -2.5731706619262695, 500)
+  direction: CCW
+  sweep: 113.625436deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.533147
+  helical pitch: 0.34774
+694: onCircular(false, 12.49923038482666, 12.499247550964355, -2.682926893234253, 12.856823921203613, 13.988139152526855, -2.682926893234253, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.531232
+  helical pitch: 0.347741
+695: onCircular(false, 12.499677658081055, 12.501110076904297, -2.7926828861236572, 10.994154930114746, 12.232386589050293, -2.7926828861236572, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.529317
+  helical pitch: 0.34774
+696: onCircular(false, 12.497791290283203, 12.500773429870605, -2.9024391174316406, 13.346274375915527, 11.230721473693848, -2.9024391174316406, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.527402
+  helical pitch: 0.347741
+697: onCircular(false, 12.498855590820312, 12.499180793762207, -3.012195110321045, 13.321391105651855, 13.783915519714355, -3.012195110321045, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.525486
+  helical pitch: 0.34774
+698: onCircular(false, 12.49988842010498, 12.50079345703125, -3.121951103210449, 10.995089530944824, 12.73922348022461, -3.121951103210449, 500)
+  direction: CCW
+  sweep: 113.625425deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.523571
+  helical pitch: 0.34774
+699: onCircular(false, 12.49799633026123, 12.501092910766602, -3.2317073345184326, 12.882123947143555, 11.02872085571289, -3.2317073345184326, 500)
+  direction: CCW
+  sweep: 113.625465deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.521655
+  helical pitch: 0.347741
+700: onCircular(false, 12.498479843139648, 12.499239921569824, -3.341463327407837, 13.692000389099121, 13.440047264099121, -3.341463327407837, 500)
+  direction: CCW
+  sweep: 113.625399deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.51974
+  helical pitch: 0.347741
+701: onCircular(false, 12.499984741210938, 12.500425338745117, -3.4512195587158203, 11.161409378051758, 13.215973854064941, -3.4512195587158203, 500)
+  direction: CCW
+  sweep: 113.625426deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.517825
+  helical pitch: 0.347741
+702: onCircular(false, 12.498294830322266, 12.501328468322754, -3.5609755516052246, 12.379312515258789, 10.990096092224121, -3.5609755516052246, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.515909
+  helical pitch: 0.34774
+703: onCircular(false, 12.49814510345459, 12.499419212341309, -3.670731782913208, 13.92858600616455, 12.995416641235352, -3.670731782913208, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.513993
+  helical pitch: 0.347741
+704: onCircular(false, 12.499954223632812, 12.500046730041504, -3.7804877758026123, 11.47357177734375, 13.6104154586792, -3.7804877758026123, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.512078
+  helical pitch: 0.34774
+705: onCircular(false, 12.49865436553955, 12.501453399658203, -3.8902440071105957, 11.893447875976562, 11.117864608764648, -3.8902440071105957, 500)
+  direction: CCW
+  sweep: 113.625446deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.510163
+  helical pitch: 0.347741
+706: onCircular(false, 12.497886657714844, 12.499698638916016, -4, 14.006134033203125, 12.499698638916016, -4, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+  helical pitch: 0.34774
+707: onCircular(false, 12.497886657714844, 12.499698638916016, -4, 14.006134033203125, 12.499698638916016, -4, 500)
+  direction: CCW
+  sweep: 360deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+708: onMovement(MOVEMENT_CUTTING /*cutting*/)
+708: onLinear(14.008234024047852, 12.579943656921387, -4, 1000)
+709: onLinear(14.224403381347656, 13.184653282165527, -4, 1000)
+710: onLinear(14.30212688446045, 13.312946319580078, -4, 1000)
+711: onLinear(14.355518341064453, 13.453123092651367, -4, 1000)
+712: onLinear(14.386602401733398, 13.599865913391113, -4, 1000)
+713: onLinear(14.397886276245117, 13.758386611938477, -4, 1000)
+714: onLinear(14.38729476928711, 13.931939125061035, -4, 1000)
+715: onLinear(14.351011276245117, 14.11762809753418, -4, 1000)
+716: onLinear(14.285590171813965, 14.311793327331543, -4, 1000)
+717: onLinear(14.188111305236816, 14.510034561157227, -4, 1000)
+718: onLinear(14.056340217590332, 14.707256317138672, -4, 1000)
+719: onLinear(13.888906478881836, 14.897761344909668, -4, 1000)
+720: onLinear(13.685466766357422, 15.0753812789917, -4, 1000)
+721: onLinear(13.446866989135742, 15.23366641998291, -4, 1000)
+722: onLinear(13.175243377685547, 15.366122245788574, -4, 1000)
+723: onLinear(12.874080657958984, 15.466492652893066, -4, 1000)
+724: onLinear(12.548174858093262, 15.52906322479248, -4, 1000)
+725: onLinear(12.203520774841309, 15.54896068572998, -4, 1000)
+726: onLinear(11.84709644317627, 15.522411346435547, -4, 1000)
+727: onLinear(11.486600875854492, 15.446943283081055, -4, 1000)
+728: onLinear(11.130139350891113, 15.32149887084961, -4, 1000)
+729: onLinear(10.785907745361328, 15.146469116210938, -4, 1000)
+730: onLinear(10.461895942687988, 14.923650741577148, -4, 1000)
+731: onLinear(10.165630340576172, 14.656144142150879, -4, 1000)
+732: onLinear(9.903962135314941, 14.348210334777832, -4, 1000)
+733: onLinear(9.682908058166504, 14.005101203918457, -4, 1000)
+734: onLinear(9.50753116607666, 13.632885932922363, -4, 1000)
+735: onLinear(9.38186264038086, 13.23826789855957, -4, 1000)
+736: onLinear(9.308852195739746, 12.828413009643555, -4, 1000)
+737: onLinear(9.290351867675781, 12.410782814025879, -4, 1000)
+738: onLinear(9.327106475830078, 11.992972373962402, -4, 1000)
+739: onLinear(9.418780326843262, 11.582558631896973, -4, 1000)
+740: onLinear(9.563982009887695, 11.18696117401123, -4, 1000)
+741: onLinear(9.760316848754883, 10.81330394744873, -4, 1000)
+742: onLinear(10.004446983337402, 10.468292236328125, -4, 1000)
+743: onLinear(10.292163848876953, 10.158100128173828, -4, 1000)
+744: onLinear(10.618473052978516, 9.888259887695312, -4, 1000)
+745: onLinear(10.977693557739258, 9.663578033447266, -4, 1000)
+746: onLinear(11.363558769226074, 9.488046646118164, -4, 1000)
+747: onLinear(11.769332885742188, 9.364787101745605, -4, 1000)
+748: onLinear(12.187932968139648, 9.295990943908691, -4, 1000)
+749: onLinear(12.612051963806152, 9.282892227172852, -4, 1000)
+750: onLinear(13.034286499023438, 9.325742721557617, -4, 1000)
+751: onLinear(13.447269439697266, 9.423816680908203, -4, 1000)
+752: onLinear(13.843796730041504, 9.575416564941406, -4, 1000)
+753: onLinear(14.216954231262207, 9.777913093566895, -4, 1000)
+754: onLinear(14.560235023498535, 10.027786254882812, -4, 1000)
+755: onLinear(14.867655754089355, 10.320690155029297, -4, 1000)
+756: onLinear(15.133857727050781, 10.65152645111084, -4, 1000)
+757: onLinear(15.467076301574707, 11.200495719909668, -4, 1000)
+758: onLinear(15.756014823913574, 11.774007797241211, -4, 1000)
+759: onLinear(15.98871898651123, 12.343344688415527, -4, 1000)
+760: onLinear(16.125547409057617, 12.866121292114258, -4, 1000)
+761: onLinear(16.18755531311035, 13.363716125488281, -4, 1000)
+762: onLinear(16.183673858642578, 13.846368789672852, -4, 1000)
+763: onLinear(16.117164611816406, 14.318146705627441, -4, 1000)
+764: onLinear(15.989048957824707, 14.77735710144043, -4, 1000)
+765: onLinear(15.799952507019043, 15.219562530517578, -4, 1000)
+766: onLinear(15.550877571105957, 15.638777732849121, -4, 1000)
+767: onLinear(15.243614196777344, 16.028114318847656, -4, 1000)
+768: onLinear(14.8804931640625, 16.380685806274414, -4, 1000)
+769: onLinear(14.463197708129883, 16.690502166748047, -4, 1000)
+770: onLinear(13.996220588684082, 16.94964599609375, -4, 1000)
+771: onLinear(13.485843658447266, 17.15031623840332, -4, 1000)
+772: onLinear(12.93990707397461, 17.285419464111328, -4, 1000)
+773: onLinear(12.367661476135254, 17.348957061767578, -4, 1000)
+774: onLinear(11.779539108276367, 17.336349487304688, -4, 1000)
+775: onLinear(11.186843872070312, 17.244678497314453, -4, 1000)
+776: onLinear(10.601405143737793, 17.072860717773438, -4, 1000)
+777: onLinear(10.035213470458984, 16.82172203063965, -4, 1000)
+778: onLinear(9.500061988830566, 16.493986129760742, -4, 1000)
+779: onLinear(9.007370948791504, 16.094329833984375, -4, 1000)
+780: onLinear(8.567572593688965, 15.62906265258789, -4, 1000)
+781: onLinear(8.191701889038086, 15.108367919921875, -4, 1000)
+782: onLinear(7.887182235717773, 14.542973518371582, -4, 1000)
+783: onLinear(7.658638954162598, 13.942831993103027, -4, 1000)
+784: onLinear(7.509479999542236, 13.318208694458008, -4, 1000)
+785: onLinear(7.4418559074401855, 12.679594039916992, -4, 1000)
+786: onLinear(7.456631183624268, 12.037578582763672, -4, 1000)
+787: onLinear(7.553369522094727, 11.40272045135498, -4, 1000)
+788: onLinear(7.73034143447876, 10.785401344299316, -4, 1000)
+789: onLinear(7.9845499992370605, 10.195672035217285, -4, 1000)
+790: onLinear(8.311761856079102, 9.643101692199707, -4, 1000)
+791: onLinear(8.70650863647461, 9.136566162109375, -4, 1000)
+792: onLinear(9.162293434143066, 8.68416976928711, -4, 1000)
+793: onLinear(9.671700477600098, 8.293137550354004, -4, 1000)
+794: onLinear(10.226495742797852, 7.969710826873779, -4, 1000)
+795: onLinear(10.817741394042969, 7.719050407409668, -4, 1000)
+796: onLinear(11.435934066772461, 7.54515266418457, -4, 1000)
+797: onLinear(12.071148872375488, 7.450788497924805, -4, 1000)
+798: onLinear(12.71319580078125, 7.437454700469971, -4, 1000)
+799: onLinear(13.351781845092773, 7.505353927612305, -4, 1000)
+800: onLinear(13.976673126220703, 7.653387069702148, -4, 1000)
+801: onLinear(14.577857971191406, 7.8791728019714355, -4, 1000)
+802: onLinear(15.145709037780762, 8.179084777832031, -4, 1000)
+803: onLinear(15.671137809753418, 8.548310279846191, -4, 1000)
+804: onLinear(16.145736694335938, 8.980927467346191, -4, 1000)
+805: onLinear(16.567781448364258, 9.464953422546387, -4, 1000)
+806: onLinear(16.939979553222656, 9.988279342651367, -4, 1000)
+807: onLinear(17.267200469970703, 10.54084587097168, -4, 1000)
+808: onLinear(17.54780387878418, 11.11848258972168, -4, 1000)
+809: onLinear(17.7750301361084, 11.719123840332031, -4, 1000)
+810: onLinear(17.941505432128906, 12.339356422424316, -4, 1000)
+811: onLinear(18.040231704711914, 12.973907470703125, -4, 1000)
+812: onLinear(18.066810607910156, 13.615543365478516, -4, 1000)
+813: onLinear(18.019800186157227, 14.25600528717041, -4, 1000)
+814: onLinear(17.92542839050293, 14.749146461486816, -4, 1000)
+815: onLinear(17.916542053222656, 14.779237747192383, -4, 1000)
+816: onLinear(17.873977661132812, 14.900876998901367, -4, 1000)
+817: onLinear(17.821455001831055, 15.046384811401367, -4, 1000)
+818: onLinear(17.811031341552734, 15.069032669067383, -4, 1000)
+819: onLinear(17.735679626464844, 15.191892623901367, -4, 1000)
+820: onLinear(17.141368865966797, 16.137691497802734, -4, 1000)
+821: onLinear(17.115755081176758, 16.174068450927734, -4, 1000)
+822: onLinear(17.083492279052734, 16.21134376525879, -4, 1000)
+823: onLinear(16.210445404052734, 17.084388732910156, -4, 1000)
+824: onLinear(16.174068450927734, 17.115755081176758, -4, 1000)
+825: onLinear(16.137691497802734, 17.141368865966797, -4, 1000)
+826: onLinear(15.191892623901367, 17.735679626464844, -4, 1000)
+827: onLinear(15.069032669067383, 17.811031341552734, -4, 1000)
+828: onLinear(15.046384811401367, 17.821455001831055, -4, 1000)
+829: onLinear(14.900876998901367, 17.873977661132812, -4, 1000)
+830: onLinear(13.831711769104004, 18.247554779052734, -4, 1000)
+831: onLinear(13.736815452575684, 18.263134002685547, -4, 1000)
+832: onLinear(12.57275390625, 18.394264221191406, -4, 1000)
+833: onLinear(12.5, 18.40045166015625, -4, 1000)
+834: onLinear(12.416577339172363, 18.393062591552734, -4, 1000)
+835: onLinear(11.263184547424316, 18.263134002685547, -4, 1000)
+836: onLinear(11.168283462524414, 18.247554779052734, -4, 1000)
+837: onLinear(10.099123001098633, 17.873985290527344, -4, 1000)
+838: onLinear(9.953615188598633, 17.82146453857422, -4, 1000)
+839: onLinear(9.930939674377441, 17.811031341552734, -4, 1000)
+840: onLinear(9.808107376098633, 17.73569107055664, -4, 1000)
+841: onLinear(8.86230754852295, 17.141355514526367, -4, 1000)
+842: onLinear(8.82593059539795, 17.115737915039062, -4, 1000)
+843: onLinear(8.788677215576172, 17.083492279052734, -4, 1000)
+844: onLinear(7.915579795837402, 16.210445404052734, -4, 1000)
+845: onLinear(7.884213924407959, 16.174068450927734, -4, 1000)
+846: onLinear(7.858599662780762, 16.137691497802734, -4, 1000)
+847: onLinear(7.264337062835693, 15.191892623901367, -4, 1000)
+848: onLinear(7.188969135284424, 15.068990707397461, -4, 1000)
+849: onLinear(7.178574085235596, 15.046384811401367, -4, 1000)
+850: onLinear(7.1260552406311035, 14.900876998901367, -4, 1000)
+851: onLinear(6.769644737243652, 13.882323265075684, -4, 1000)
+852: onLinear(6.752446174621582, 13.831576347351074, -4, 1000)
+853: onLinear(6.736900806427002, 13.736815452575684, -4, 1000)
+854: onLinear(6.605742454528809, 12.57275390625, -4, 1000)
+855: onLinear(6.599554061889648, 12.5, -4, 1000)
+856: onLinear(6.606938362121582, 12.416632652282715, -4, 1000)
+857: onLinear(6.736900806427002, 11.263184547424316, -4, 1000)
+858: onLinear(6.752446174621582, 11.168418884277344, -4, 1000)
+859: onLinear(7.075131893157959, 10.244630813598633, -4, 1000)
+860: onLinear(7.126046657562256, 10.099123001098633, -4, 1000)
+861: onLinear(7.178563594818115, 9.953615188598633, -4, 1000)
+862: onLinear(7.188969135284424, 9.930980682373047, -4, 1000)
+863: onLinear(7.264326095581055, 9.808107376098633, -4, 1000)
+864: onLinear(7.85861349105835, 8.86230754852295, -4, 1000)
+865: onLinear(7.884230613708496, 8.82593059539795, -4, 1000)
+866: onLinear(7.916507720947266, 8.788646697998047, -4, 1000)
+867: onLinear(8.78955364227295, 7.915600776672363, -4, 1000)
+868: onLinear(8.82593059539795, 7.884230613708496, -4, 1000)
+869: onLinear(8.86230754852295, 7.85861349105835, -4, 1000)
+870: onLinear(9.808107376098633, 7.264326095581055, -4, 1000)
+871: onLinear(9.930980682373047, 7.188969135284424, -4, 1000)
+872: onLinear(9.953615188598633, 7.178563594818115, -4, 1000)
+873: onLinear(10.099123001098633, 7.126046657562256, -4, 1000)
+874: onLinear(11.117676734924316, 6.769643306732178, -4, 1000)
+875: onLinear(11.168418884277344, 6.752446174621582, -4, 1000)
+876: onLinear(11.263184547424316, 6.736900806427002, -4, 1000)
+877: onLinear(12.42724609375, 6.605742454528809, -4, 1000)
+878: onLinear(12.5, 6.599554061889648, -4, 1000)
+879: onLinear(12.583367347717285, 6.606938362121582, -4, 1000)
+880: onLinear(13.736815452575684, 6.736900806427002, -4, 1000)
+881: onLinear(13.831576347351074, 6.752446174621582, -4, 1000)
+882: onLinear(14.755369186401367, 7.075139045715332, -4, 1000)
+883: onLinear(14.900876998901367, 7.1260552406311035, -4, 1000)
+884: onLinear(15.046384811401367, 7.178574085235596, -4, 1000)
+885: onLinear(15.068990707397461, 7.188969135284424, -4, 1000)
+886: onLinear(15.191892623901367, 7.264337062835693, -4, 1000)
+887: onLinear(16.137691497802734, 7.858599662780762, -4, 1000)
+888: onLinear(16.174068450927734, 7.884213924407959, -4, 1000)
+889: onLinear(16.211374282836914, 7.916507720947266, -4, 1000)
+890: onLinear(17.084369659423828, 8.78955364227295, -4, 1000)
+891: onLinear(17.115737915039062, 8.82593059539795, -4, 1000)
+892: onLinear(17.141355514526367, 8.86230754852295, -4, 1000)
+893: onLinear(17.73569107055664, 9.808107376098633, -4, 1000)
+894: onLinear(17.811031341552734, 9.930939674377441, -4, 1000)
+895: onLinear(17.82146453857422, 9.953615188598633, -4, 1000)
+896: onLinear(17.873985290527344, 10.099123001098633, -4, 1000)
+897: onLinear(18.247554779052734, 11.168283462524414, -4, 1000)
+898: onLinear(18.263134002685547, 11.263184547424316, -4, 1000)
+899: onLinear(18.394264221191406, 12.42724609375, -4, 1000)
+900: onLinear(18.40045166015625, 12.5, -4, 1000)
+901: onLinear(18.393062591552734, 12.583422660827637, -4, 1000)
+902: onLinear(18.263134002685547, 13.736815452575684, -4, 1000)
+903: onLinear(18.247554779052734, 13.831711769104004, -4, 1000)
+904: onLinear(17.916542053222656, 14.779237747192383, -4, 1000)
+905: onMovement(MOVEMENT_LEAD_OUT /*lead out*/)
+905: onCircular(false, 17.62070083618164, 14.66397762298584, -4, 17.621458053588867, 14.981476783752441, -4, 1000)
+  direction: CCW
+  sweep: 68.5774deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+906: onLinear(17.62070083618164, 14.981477737426758, -4, 1000)
+907: onCircular(false, 17.62070083618164, 14.66397762298584, -4, 17.534664154052734, 14.969597816467285, -4, 1000)
+  direction: CCW
+  sweep: 15.72271deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+908: onCircular(false, 17.536083221435547, 14.970416069030762, -3.682500123977661, 17.39912986755371, 14.89138126373291, -3.957829236984253, 1000)
+  direction: CCW
+  sweep: 29.573301deg
+  normal: X=-0.499837 Y=0.866119 Z=0 
+  radius: 0.317504
+  helical pitch: 0.000003
+909: onCircular(false, 17.48299217224121, 15.028351783752441, -3.68300199508667, 17.317419052124023, 14.757923126220703, -3.7108945846557617, 1000)
+  direction: CCW
+  sweep: 54.671648deg
+  normal: X=-0.852844 Y=0.522166 Z=0 
+  radius: 0.318314
+  helical pitch: 0.000005
+910: onCircular(false, 17.410383224487305, 15.06017780303955, -3.682500123977661, 17.317045211791992, 14.756707191467285, -3.682500123977661, 1000)
+  direction: CCW
+  sweep: 5.13089deg
+  normal: X=-0.955812 Y=0.293979 Z=0 
+  radius: 0.3175
+  helical pitch: 0.00001
+911: onMovement(MOVEMENT_CUTTING /*cutting*/)
+911: onLinear(17.317045211791992, 14.756707191467285, 5, 1000)
+912: onLinear(13.975959777832031, 13.077258110046387, 5, 1000)
+913: onLinear(13.975959777832031, 13.077258110046387, -1.5, 1000)
+914: onMovement(MOVEMENT_RAMP_HELIX /*helix ramp*/)
+914: onCircular(false, 12.499933242797852, 12.500078201293945, -1.6097561120986938, 11.379602432250977, 13.62108325958252, -1.6097561120986938, 500)
+  direction: CCW
+  sweep: 113.625463deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.584864
+  helical pitch: 0.347741
+915: onCircular(false, 12.498579025268555, 12.501432418823242, -1.7195122241973877, 11.921207427978516, 11.02753734588623, -1.7195122241973877, 500)
+  direction: CCW
+  sweep: 113.625398deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.582948
+  helical pitch: 0.347741
+916: onCircular(false, 12.497879981994629, 12.499649047851562, -1.8292683362960815, 14.077712059020996, 12.561267852783203, -1.8292683362960815, 500)
+  direction: CCW
+  sweep: 113.625442deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.581033
+  helical pitch: 0.347741
+917: onCircular(false, 12.499794006347656, 12.499723434448242, -1.9390244483947754, 11.81104850769043, 13.920723915100098, -1.9390244483947754, 500)
+  direction: CCW
+  sweep: 113.625422deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.579118
+  helical pitch: 0.347741
+918: onCircular(false, 12.498958587646484, 12.501447677612305, -2.0487804412841797, 11.474322319030762, 11.302411079406738, -2.0487804412841797, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.577203
+  helical pitch: 0.34774
+919: onCircular(false, 12.497714042663574, 12.499991416931152, -2.158536672592163, 14.005048751831055, 12.042312622070312, -2.158536672592163, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.575287
+  helical pitch: 0.347741
+920: onCircular(false, 12.499547004699707, 12.499434471130371, -2.2682926654815674, 12.315017700195312, 14.0619478225708, -2.2682926654815674, 500)
+  direction: CCW
+  sweep: 113.625391deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.573372
+  helical pitch: 0.347741
+921: onCircular(false, 12.499322891235352, 12.501337051391602, -2.378048896789551, 11.143376350402832, 11.707056045532227, -2.378048896789551, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.571456
+  helical pitch: 0.347741
+922: onCircular(false, 12.49767017364502, 12.50036907196045, -2.487804889678955, 13.767231941223145, 11.577509880065918, -2.487804889678955, 500)
+  direction: CCW
+  sweep: 113.625407deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.56954
+  helical pitch: 0.347741
+923: onCircular(false, 12.499218940734863, 12.499242782592773, -2.5975608825683594, 12.835533142089844, 14.030366897583008, -2.5975608825683594, 500)
+  direction: CCW
+  sweep: 113.625436deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.567625
+  helical pitch: 0.34774
+924: onCircular(false, 12.499629974365234, 12.501113891601562, -2.7073171138763428, 10.963935852050781, 12.196005821228027, -2.7073171138763428, 500)
+  direction: CCW
+  sweep: 113.625449deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.56571
+  helical pitch: 0.347741
+925: onCircular(false, 12.497751235961914, 12.500740051269531, -2.817073106765747, 13.391630172729492, 11.217605590820312, -2.817073106765747, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.563795
+  helical pitch: 0.34774
+926: onCircular(false, 12.498846054077148, 12.499168395996094, -2.9268293380737305, 13.315206527709961, 13.830717086791992, -2.9268293380737305, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.561879
+  helical pitch: 0.347741
+927: onCircular(false, 12.499847412109375, 12.500801086425781, -3.0365853309631348, 10.954638481140137, 12.714850425720215, -3.0365853309631348, 500)
+  direction: CCW
+  sweep: 113.625393deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.559964
+  helical pitch: 0.347741
+928: onCircular(false, 12.497950553894043, 12.50106430053711, -3.146341562271118, 12.920573234558105, 11.001429557800293, -3.146341562271118, 500)
+  direction: CCW
+  sweep: 113.625407deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.558048
+  helical pitch: 0.347741
+929: onCircular(false, 12.498469352722168, 12.499220848083496, -3.2560975551605225, 13.70156192779541, 13.486194610595703, -3.2560975551605225, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.556133
+  helical pitch: 0.34774
+930: onCircular(false, 12.499950408935547, 12.500435829162598, -3.3658535480499268, 11.115260124206543, 13.20628547668457, -3.3658535480499268, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.554217
+  helical pitch: 0.34774
+931: onCircular(false, 12.498244285583496, 12.50130558013916, -3.47560977935791, 12.406590461730957, 10.951711654663086, -3.47560977935791, 500)
+  direction: CCW
+  sweep: 113.625406deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.552302
+  helical pitch: 0.347741
+932: onCircular(false, 12.498130798339844, 12.499393463134766, -3.5853657722473145, 13.952778816223145, 13.035767555236816, -3.5853657722473145, 500)
+  direction: CCW
+  sweep: 113.625419deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.550386
+  helical pitch: 0.34774
+933: onCircular(false, 12.49992847442627, 12.500056266784668, -3.695122003555298, 11.426878929138184, 13.616446495056152, -3.695122003555298, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.548471
+  helical pitch: 0.347741
+934: onCircular(false, 12.498600959777832, 12.501437187194824, -3.804877996444702, 11.90654468536377, 11.072694778442383, -3.804877996444702, 500)
+  direction: CCW
+  sweep: 113.625428deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.546556
+  helical pitch: 0.34774
+935: onCircular(false, 12.497867584228516, 12.499667167663574, -3.9146342277526855, 14.042214393615723, 12.529773712158203, -3.9146342277526855, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54464
+  helical pitch: 0.347741
+936: onCircular(false, 12.49978256225586, 12.499704360961914, -4.02439022064209, 11.854095458984375, 13.90080738067627, -4.02439022064209, 500)
+  direction: CCW
+  sweep: 113.625408deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.542725
+  helical pitch: 0.347741
+937: onCircular(false, 12.498980522155762, 12.501444816589355, -4.134146213531494, 11.475346565246582, 11.349807739257812, -4.134146213531494, 500)
+  direction: CCW
+  sweep: 113.625432deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54081
+  helical pitch: 0.34774
+938: onCircular(false, 12.497708320617676, 12.500012397766113, -4.243902206420898, 13.961226463317871, 12.0242919921875, -4.243902206420898, 500)
+  direction: CCW
+  sweep: 113.625471deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.538894
+  helical pitch: 0.34774
+939: onCircular(false, 12.499529838562012, 12.499421119689941, -4.353658676147461, 12.349052429199219, 14.02901554107666, -4.353658676147461, 500)
+  direction: CCW
+  sweep: 113.625444deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.536978
+  helical pitch: 0.347742
+940: onCircular(false, 12.49934196472168, 12.501326560974121, -4.463414669036865, 11.159926414489746, 11.75140380859375, -4.463414669036865, 500)
+  direction: CCW
+  sweep: 113.625432deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.535063
+  helical pitch: 0.34774
+941: onCircular(false, 12.497671127319336, 12.500391006469727, -4.5731706619262695, 13.719990730285645, 11.574931144714355, -4.5731706619262695, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.533147
+  helical pitch: 0.34774
+942: onCircular(false, 12.499197959899902, 12.499235153198242, -4.682926654815674, 12.856791496276855, 13.988126754760742, -4.682926654815674, 500)
+  direction: CCW
+  sweep: 113.625434deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.531232
+  helical pitch: 0.34774
+943: onCircular(false, 12.499645233154297, 12.501097679138184, -4.792683124542236, 10.994123458862305, 12.23237419128418, -4.792683124542236, 500)
+  direction: CCW
+  sweep: 113.625437deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.529316
+  helical pitch: 0.347742
+944: onCircular(false, 12.497759819030762, 12.500761032104492, -4.902439117431641, 13.346242904663086, 11.230709075927734, -4.902439117431641, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.527402
+  helical pitch: 0.34774
+945: onCircular(false, 12.498824119567871, 12.499168395996094, -5.012195110321045, 13.321358680725098, 13.783903121948242, -5.012195110321045, 500)
+  direction: CCW
+  sweep: 113.625459deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.525486
+  helical pitch: 0.34774
+946: onCircular(false, 12.499856948852539, 12.500781059265137, -5.121951103210449, 10.995058059692383, 12.739211082458496, -5.121951103210449, 500)
+  direction: CCW
+  sweep: 113.625395deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.523571
+  helical pitch: 0.347741
+947: onCircular(false, 12.497964859008789, 12.501081466674805, -5.2317070960998535, 12.882092475891113, 11.028708457946777, -5.2317070960998535, 500)
+  direction: CCW
+  sweep: 113.625421deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.521656
+  helical pitch: 0.34774
+948: onCircular(false, 12.498448371887207, 12.499227523803711, -5.341463565826416, 13.691967964172363, 13.440035820007324, -5.341463565826416, 500)
+  direction: CCW
+  sweep: 113.625449deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.51974
+  helical pitch: 0.347742
+949: onCircular(false, 12.49995231628418, 12.500412940979004, -5.45121955871582, 11.161377906799316, 13.215961456298828, -5.45121955871582, 500)
+  direction: CCW
+  sweep: 113.62538deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.517824
+  helical pitch: 0.347741
+950: onCircular(false, 12.498263359069824, 12.50131607055664, -5.560975551605225, 12.379281044006348, 10.990083694458008, -5.560975551605225, 500)
+  direction: CCW
+  sweep: 113.62545deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.515909
+  helical pitch: 0.34774
+951: onCircular(false, 12.498112678527832, 12.499406814575195, -5.670731544494629, 13.92855453491211, 12.995404243469238, -5.670731544494629, 500)
+  direction: CCW
+  sweep: 113.625403deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.513994
+  helical pitch: 0.347741
+952: onCircular(false, 12.499922752380371, 12.50003433227539, -5.780488014221191, 11.473539352416992, 13.610403060913086, -5.780488014221191, 500)
+  direction: CCW
+  sweep: 113.625444deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.512079
+  helical pitch: 0.347742
+953: onCircular(false, 12.49862289428711, 12.50144100189209, -5.890244007110596, 11.893416404724121, 11.117852210998535, -5.890244007110596, 500)
+  direction: CCW
+  sweep: 113.625419deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.510163
+  helical pitch: 0.34774
+954: onCircular(false, 12.497855186462402, 12.499686241149902, -6, 14.006102561950684, 12.499686241149902, -6, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+  helical pitch: 0.34774
+955: onCircular(false, 12.497855186462402, 12.499686241149902, -6, 14.006102561950684, 12.499686241149902, -6, 500)
+  direction: CCW
+  sweep: 360deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+956: onMovement(MOVEMENT_CUTTING /*cutting*/)
+956: onLinear(14.00820255279541, 12.57993221282959, -6, 1000)
+957: onLinear(14.224371910095215, 13.184640884399414, -6, 1000)
+958: onLinear(14.302094459533691, 13.312933921813965, -6, 1000)
+959: onLinear(14.355485916137695, 13.453110694885254, -6, 1000)
+960: onLinear(14.386570930480957, 13.599854469299316, -6, 1000)
+961: onLinear(14.397854804992676, 13.758374214172363, -6, 1000)
+962: onLinear(14.387263298034668, 13.931926727294922, -6, 1000)
+963: onLinear(14.35097885131836, 14.117615699768066, -6, 1000)
+964: onLinear(14.285558700561523, 14.31178092956543, -6, 1000)
+965: onLinear(14.188079833984375, 14.510022163391113, -6, 1000)
+966: onLinear(14.05630874633789, 14.707243919372559, -6, 1000)
+967: onLinear(13.888874053955078, 14.897748947143555, -6, 1000)
+968: onLinear(13.68543529510498, 15.075368881225586, -6, 1000)
+969: onLinear(13.4468355178833, 15.233654022216797, -6, 1000)
+970: onLinear(13.175211906433105, 15.366109848022461, -6, 1000)
+971: onLinear(12.874048233032227, 15.466480255126953, -6, 1000)
+972: onLinear(12.54814338684082, 15.529050827026367, -6, 1000)
+973: onLinear(12.20348834991455, 15.548948287963867, -6, 1000)
+974: onLinear(11.847064971923828, 15.522398948669434, -6, 1000)
+975: onLinear(11.48656940460205, 15.446930885314941, -6, 1000)
+976: onLinear(11.130107879638672, 15.321486473083496, -6, 1000)
+977: onLinear(10.785876274108887, 15.146456718444824, -6, 1000)
+978: onLinear(10.461864471435547, 14.923638343811035, -6, 1000)
+979: onLinear(10.16559886932373, 14.656131744384766, -6, 1000)
+980: onLinear(9.9039306640625, 14.348197937011719, -6, 1000)
+981: onLinear(9.682876586914062, 14.005088806152344, -6, 1000)
+982: onLinear(9.507499694824219, 13.63287353515625, -6, 1000)
+983: onLinear(9.381831169128418, 13.238255500793457, -6, 1000)
+984: onLinear(9.308820724487305, 12.828400611877441, -6, 1000)
+985: onLinear(9.290319442749023, 12.410771369934082, -6, 1000)
+986: onLinear(9.327075004577637, 11.992959976196289, -6, 1000)
+987: onLinear(9.41874885559082, 11.58254623413086, -6, 1000)
+988: onLinear(9.563950538635254, 11.186948776245117, -6, 1000)
+989: onLinear(9.760285377502441, 10.813291549682617, -6, 1000)
+990: onLinear(10.004415512084961, 10.468279838562012, -6, 1000)
+991: onLinear(10.292132377624512, 10.158087730407715, -6, 1000)
+992: onLinear(10.618441581726074, 9.8882474899292, -6, 1000)
+993: onLinear(10.977662086486816, 9.663565635681152, -6, 1000)
+994: onLinear(11.363526344299316, 9.48803424835205, -6, 1000)
+995: onLinear(11.769301414489746, 9.364774703979492, -6, 1000)
+996: onLinear(12.187901496887207, 9.295978546142578, -6, 1000)
+997: onLinear(12.612019538879395, 9.282879829406738, -6, 1000)
+998: onLinear(13.03425407409668, 9.325730323791504, -6, 1000)
+999: onLinear(13.447237014770508, 9.42380428314209, -6, 1000)
+1000: onLinear(13.843765258789062, 9.575404167175293, -6, 1000)
+1001: onLinear(14.216922760009766, 9.777901649475098, -6, 1000)
+1002: onLinear(14.560203552246094, 10.0277738571167, -6, 1000)
+1003: onLinear(14.867623329162598, 10.320677757263184, -6, 1000)
+1004: onLinear(15.133825302124023, 10.651514053344727, -6, 1000)
+1005: onLinear(15.467044830322266, 11.200483322143555, -6, 1000)
+1006: onLinear(15.755983352661133, 11.773996353149414, -6, 1000)
+1007: onLinear(15.988687515258789, 12.34333324432373, -6, 1000)
+1008: onLinear(16.12551498413086, 12.866108894348145, -6, 1000)
+1009: onLinear(16.187522888183594, 13.363703727722168, -6, 1000)
+1010: onLinear(16.183643341064453, 13.846356391906738, -6, 1000)
+1011: onLinear(16.11713218688965, 14.318135261535645, -6, 1000)
+1012: onLinear(15.989017486572266, 14.777344703674316, -6, 1000)
+1013: onLinear(15.799921035766602, 15.219550132751465, -6, 1000)
+1014: onLinear(15.550846099853516, 15.638765335083008, -6, 1000)
+1015: onLinear(15.243582725524902, 16.028100967407227, -6, 1000)
+1016: onLinear(14.880461692810059, 16.380672454833984, -6, 1000)
+1017: onLinear(14.463166236877441, 16.690488815307617, -6, 1000)
+1018: onLinear(13.99618911743164, 16.949634552001953, -6, 1000)
+1019: onLinear(13.485812187194824, 17.15030288696289, -6, 1000)
+1020: onLinear(12.939874649047852, 17.2854061126709, -6, 1000)
+1021: onLinear(12.367630004882812, 17.34894561767578, -6, 1000)
+1022: onLinear(11.779507637023926, 17.336336135864258, -6, 1000)
+1023: onLinear(11.186812400817871, 17.244665145874023, -6, 1000)
+1024: onLinear(10.601372718811035, 17.07284927368164, -6, 1000)
+1025: onLinear(10.035181999206543, 16.82171058654785, -6, 1000)
+1026: onLinear(9.500030517578125, 16.493974685668945, -6, 1000)
+1027: onLinear(9.007338523864746, 16.094318389892578, -6, 1000)
+1028: onLinear(8.567541122436523, 15.629050254821777, -6, 1000)
+1029: onLinear(8.191670417785645, 15.108355522155762, -6, 1000)
+1030: onLinear(7.887150764465332, 14.542961120605469, -6, 1000)
+1031: onLinear(7.658607006072998, 13.942819595336914, -6, 1000)
+1032: onLinear(7.509448051452637, 13.318196296691895, -6, 1000)
+1033: onLinear(7.441824436187744, 12.679581642150879, -6, 1000)
+1034: onLinear(7.456599712371826, 12.037566184997559, -6, 1000)
+1035: onLinear(7.553337574005127, 11.402708053588867, -6, 1000)
+1036: onLinear(7.73030948638916, 10.785388946533203, -6, 1000)
+1037: onLinear(7.984518051147461, 10.195659637451172, -6, 1000)
+1038: onLinear(8.31173038482666, 9.643089294433594, -6, 1000)
+1039: onLinear(8.706477165222168, 9.136553764343262, -6, 1000)
+1040: onLinear(9.162261962890625, 8.684157371520996, -6, 1000)
+1041: onLinear(9.671669006347656, 8.29312515258789, -6, 1000)
+1042: onLinear(10.22646427154541, 7.969698429107666, -6, 1000)
+1043: onLinear(10.817709922790527, 7.719038009643555, -6, 1000)
+1044: onLinear(11.43590259552002, 7.545140743255615, -6, 1000)
+1045: onLinear(12.071117401123047, 7.450776100158691, -6, 1000)
+1046: onLinear(12.713164329528809, 7.437442302703857, -6, 1000)
+1047: onLinear(13.351750373840332, 7.505341529846191, -6, 1000)
+1048: onLinear(13.976641654968262, 7.653374671936035, -6, 1000)
+1049: onLinear(14.577826499938965, 7.879160404205322, -6, 1000)
+1050: onLinear(15.14567756652832, 8.179072380065918, -6, 1000)
+1051: onLinear(15.671106338500977, 8.548297882080078, -6, 1000)
+1052: onLinear(16.14570426940918, 8.980915069580078, -6, 1000)
+1053: onLinear(16.5677490234375, 9.464941024780273, -6, 1000)
+1054: onLinear(16.93994903564453, 9.988266944885254, -6, 1000)
+1055: onLinear(17.267168045043945, 10.540833473205566, -6, 1000)
+1056: onLinear(17.547771453857422, 11.118470191955566, -6, 1000)
+1057: onLinear(17.774999618530273, 11.719111442565918, -6, 1000)
+1058: onLinear(17.94147491455078, 12.339344024658203, -6, 1000)
+1059: onLinear(18.040199279785156, 12.973895072937012, -6, 1000)
+1060: onLinear(18.06678009033203, 13.615530967712402, -6, 1000)
+1061: onLinear(18.01976776123047, 14.255992889404297, -6, 1000)
+1062: onLinear(17.92535400390625, 14.749360084533691, -6, 1000)
+1063: onLinear(17.916465759277344, 14.779452323913574, -6, 1000)
+1064: onLinear(17.873977661132812, 14.900876998901367, -6, 1000)
+1065: onLinear(17.821455001831055, 15.046384811401367, -6, 1000)
+1066: onLinear(17.811031341552734, 15.069032669067383, -6, 1000)
+1067: onLinear(17.735679626464844, 15.191892623901367, -6, 1000)
+1068: onLinear(17.141368865966797, 16.137691497802734, -6, 1000)
+1069: onLinear(17.115755081176758, 16.174068450927734, -6, 1000)
+1070: onLinear(17.083492279052734, 16.21134376525879, -6, 1000)
+1071: onLinear(16.210445404052734, 17.084388732910156, -6, 1000)
+1072: onLinear(16.174068450927734, 17.115755081176758, -6, 1000)
+1073: onLinear(16.137691497802734, 17.141368865966797, -6, 1000)
+1074: onLinear(15.191892623901367, 17.735679626464844, -6, 1000)
+1075: onLinear(15.069032669067383, 17.811031341552734, -6, 1000)
+1076: onLinear(15.046384811401367, 17.821455001831055, -6, 1000)
+1077: onLinear(14.900876998901367, 17.873977661132812, -6, 1000)
+1078: onLinear(13.831711769104004, 18.247554779052734, -6, 1000)
+1079: onLinear(13.736815452575684, 18.263134002685547, -6, 1000)
+1080: onLinear(12.57275390625, 18.394264221191406, -6, 1000)
+1081: onLinear(12.5, 18.40045166015625, -6, 1000)
+1082: onLinear(12.416577339172363, 18.393062591552734, -6, 1000)
+1083: onLinear(11.263184547424316, 18.263134002685547, -6, 1000)
+1084: onLinear(11.168283462524414, 18.247554779052734, -6, 1000)
+1085: onLinear(10.099123001098633, 17.873985290527344, -6, 1000)
+1086: onLinear(9.953615188598633, 17.82146453857422, -6, 1000)
+1087: onLinear(9.930939674377441, 17.811031341552734, -6, 1000)
+1088: onLinear(9.808107376098633, 17.73569107055664, -6, 1000)
+1089: onLinear(8.86230754852295, 17.141355514526367, -6, 1000)
+1090: onLinear(8.82593059539795, 17.115737915039062, -6, 1000)
+1091: onLinear(8.788677215576172, 17.083492279052734, -6, 1000)
+1092: onLinear(7.915579795837402, 16.210445404052734, -6, 1000)
+1093: onLinear(7.884213924407959, 16.174068450927734, -6, 1000)
+1094: onLinear(7.858599662780762, 16.137691497802734, -6, 1000)
+1095: onLinear(7.264337062835693, 15.191892623901367, -6, 1000)
+1096: onLinear(7.188969135284424, 15.068990707397461, -6, 1000)
+1097: onLinear(7.178574085235596, 15.046384811401367, -6, 1000)
+1098: onLinear(7.1260552406311035, 14.900876998901367, -6, 1000)
+1099: onLinear(6.769644737243652, 13.882323265075684, -6, 1000)
+1100: onLinear(6.752446174621582, 13.831576347351074, -6, 1000)
+1101: onLinear(6.736900806427002, 13.736815452575684, -6, 1000)
+1102: onLinear(6.605742454528809, 12.57275390625, -6, 1000)
+1103: onLinear(6.599554061889648, 12.5, -6, 1000)
+1104: onLinear(6.606938362121582, 12.416632652282715, -6, 1000)
+1105: onLinear(6.736900806427002, 11.263184547424316, -6, 1000)
+1106: onLinear(6.752446174621582, 11.168418884277344, -6, 1000)
+1107: onLinear(7.075131893157959, 10.244630813598633, -6, 1000)
+1108: onLinear(7.126046657562256, 10.099123001098633, -6, 1000)
+1109: onLinear(7.178563594818115, 9.953615188598633, -6, 1000)
+1110: onLinear(7.188969135284424, 9.930980682373047, -6, 1000)
+1111: onLinear(7.264326095581055, 9.808107376098633, -6, 1000)
+1112: onLinear(7.85861349105835, 8.86230754852295, -6, 1000)
+1113: onLinear(7.884230613708496, 8.82593059539795, -6, 1000)
+1114: onLinear(7.916507720947266, 8.788646697998047, -6, 1000)
+1115: onLinear(8.78955364227295, 7.915600776672363, -6, 1000)
+1116: onLinear(8.82593059539795, 7.884230613708496, -6, 1000)
+1117: onLinear(8.86230754852295, 7.85861349105835, -6, 1000)
+1118: onLinear(9.808107376098633, 7.264326095581055, -6, 1000)
+1119: onLinear(9.930980682373047, 7.188969135284424, -6, 1000)
+1120: onLinear(9.953615188598633, 7.178563594818115, -6, 1000)
+1121: onLinear(10.099123001098633, 7.126046657562256, -6, 1000)
+1122: onLinear(11.117676734924316, 6.769643306732178, -6, 1000)
+1123: onLinear(11.168418884277344, 6.752446174621582, -6, 1000)
+1124: onLinear(11.263184547424316, 6.736900806427002, -6, 1000)
+1125: onLinear(12.42724609375, 6.605742454528809, -6, 1000)
+1126: onLinear(12.5, 6.599554061889648, -6, 1000)
+1127: onLinear(12.583367347717285, 6.606938362121582, -6, 1000)
+1128: onLinear(13.736815452575684, 6.736900806427002, -6, 1000)
+1129: onLinear(13.831576347351074, 6.752446174621582, -6, 1000)
+1130: onLinear(14.755369186401367, 7.075139045715332, -6, 1000)
+1131: onLinear(14.900876998901367, 7.1260552406311035, -6, 1000)
+1132: onLinear(15.046384811401367, 7.178574085235596, -6, 1000)
+1133: onLinear(15.068990707397461, 7.188969135284424, -6, 1000)
+1134: onLinear(15.191892623901367, 7.264337062835693, -6, 1000)
+1135: onLinear(16.137691497802734, 7.858599662780762, -6, 1000)
+1136: onLinear(16.174068450927734, 7.884213924407959, -6, 1000)
+1137: onLinear(16.211374282836914, 7.916507720947266, -6, 1000)
+1138: onLinear(17.084369659423828, 8.78955364227295, -6, 1000)
+1139: onLinear(17.115737915039062, 8.82593059539795, -6, 1000)
+1140: onLinear(17.141355514526367, 8.86230754852295, -6, 1000)
+1141: onLinear(17.73569107055664, 9.808107376098633, -6, 1000)
+1142: onLinear(17.811031341552734, 9.930939674377441, -6, 1000)
+1143: onLinear(17.82146453857422, 9.953615188598633, -6, 1000)
+1144: onLinear(17.873985290527344, 10.099123001098633, -6, 1000)
+1145: onLinear(18.247554779052734, 11.168283462524414, -6, 1000)
+1146: onLinear(18.263134002685547, 11.263184547424316, -6, 1000)
+1147: onLinear(18.394264221191406, 12.42724609375, -6, 1000)
+1148: onLinear(18.40045166015625, 12.5, -6, 1000)
+1149: onLinear(18.393062591552734, 12.583422660827637, -6, 1000)
+1150: onLinear(18.263134002685547, 13.736815452575684, -6, 1000)
+1151: onLinear(18.247554779052734, 13.831711769104004, -6, 1000)
+1152: onLinear(17.916465759277344, 14.779452323913574, -6, 1000)
+1153: onMovement(MOVEMENT_LEAD_OUT /*lead out*/)
+1153: onCircular(false, 17.62062644958496, 14.664191246032715, -6, 17.621383666992188, 14.981690406799316, -6, 1000)
+  direction: CCW
+  sweep: 68.577115deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+1154: onLinear(17.62062644958496, 14.981691360473633, -6, 1000)
+1155: onCircular(false, 17.62062644958496, 14.664191246032715, -6, 17.534589767456055, 14.96981143951416, -6, 1000)
+  direction: CCW
+  sweep: 15.72271deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+1156: onCircular(false, 17.536008834838867, 14.970629692077637, -5.682499885559082, 17.39905548095703, 14.891594886779785, -5.957829475402832, 1000)
+  direction: CCW
+  sweep: 29.573259deg
+  normal: X=-0.499837 Y=0.866119 Z=0 
+  radius: 0.317504
+  helical pitch: 0.000003
+1157: onCircular(false, 17.48291778564453, 15.028565406799316, -5.68300199508667, 17.317344665527344, 14.758137702941895, -5.710894584655762, 1000)
+  direction: CCW
+  sweep: 54.671657deg
+  normal: X=-0.852844 Y=0.522166 Z=0 
+  radius: 0.318314
+  helical pitch: 0.000002
+1158: onCircular(false, 17.410308837890625, 15.060391426086426, -5.682499885559082, 17.316970825195312, 14.756921768188477, -5.682499885559082, 1000)
+  direction: CCW
+  sweep: 5.130947deg
+  normal: X=-0.955812 Y=0.293979 Z=0 
+  radius: 0.317499
+  helical pitch: 0.00001
+1159: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1159: onLinear(17.316970825195312, 14.756921768188477, 5, 1000)
+1160: onLinear(13.97619915008545, 13.07719612121582, 5, 1000)
+1161: onLinear(13.97619915008545, 13.07719612121582, -3.5, 1000)
+1162: onMovement(MOVEMENT_RAMP_HELIX /*helix ramp*/)
+1162: onCircular(false, 12.500171661376953, 12.500016212463379, -3.6097559928894043, 11.379841804504395, 13.621021270751953, -3.6097559928894043, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.584863
+  helical pitch: 0.34774
+1163: onCircular(false, 12.498817443847656, 12.501370429992676, -3.7195122241973877, 11.921446800231934, 11.027475357055664, -3.7195122241973877, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.582948
+  helical pitch: 0.347741
+1164: onCircular(false, 12.498119354248047, 12.499587059020996, -3.829268217086792, 14.077950477600098, 12.561205863952637, -3.829268217086792, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.581032
+  helical pitch: 0.34774
+1165: onCircular(false, 12.500033378601074, 12.499661445617676, -3.9390244483947754, 11.811287879943848, 13.920661926269531, -3.9390244483947754, 500)
+  direction: CCW
+  sweep: 113.625421deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.579118
+  helical pitch: 0.347741
+1166: onCircular(false, 12.499197959899902, 12.501385688781738, -4.04878044128418, 11.47456169128418, 11.302349090576172, -4.04878044128418, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.577203
+  helical pitch: 0.34774
+1167: onCircular(false, 12.497953414916992, 12.499929428100586, -4.158536434173584, 14.005288124084473, 12.042250633239746, -4.158536434173584, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.575287
+  helical pitch: 0.34774
+1168: onCircular(false, 12.499786376953125, 12.499372482299805, -4.2682929039001465, 12.315256118774414, 14.061885833740234, -4.2682929039001465, 500)
+  direction: CCW
+  sweep: 113.625425deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.573372
+  helical pitch: 0.347742
+1169: onCircular(false, 12.499561309814453, 12.501275062561035, -4.378048896789551, 11.143614768981934, 11.70699405670166, -4.378048896789551, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.571456
+  helical pitch: 0.34774
+1170: onCircular(false, 12.497908592224121, 12.500307083129883, -4.487804889678955, 13.767471313476562, 11.577447891235352, -4.487804889678955, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.569541
+  helical pitch: 0.34774
+1171: onCircular(false, 12.499458312988281, 12.499180793762207, -4.597560882568359, 12.835771560668945, 14.030304908752441, -4.597560882568359, 500)
+  direction: CCW
+  sweep: 113.62547deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.567625
+  helical pitch: 0.34774
+1172: onCircular(false, 12.499868392944336, 12.50105094909668, -4.707316875457764, 10.9641752243042, 12.195943832397461, -4.707316875457764, 500)
+  direction: CCW
+  sweep: 113.625414deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.565709
+  helical pitch: 0.34774
+1173: onCircular(false, 12.497990608215332, 12.500678062438965, -4.817073345184326, 13.391868591308594, 11.217543601989746, -4.817073345184326, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.563794
+  helical pitch: 0.347742
+1174: onCircular(false, 12.499085426330566, 12.499106407165527, -4.9268293380737305, 13.315444946289062, 13.830655097961426, -4.9268293380737305, 500)
+  direction: CCW
+  sweep: 113.625475deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.561879
+  helical pitch: 0.34774
+1175: onCircular(false, 12.500085830688477, 12.500739097595215, -5.036585330963135, 10.954877853393555, 12.714788436889648, -5.036585330963135, 500)
+  direction: CCW
+  sweep: 113.625389deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.559963
+  helical pitch: 0.347741
+1176: onCircular(false, 12.498188972473145, 12.501002311706543, -5.146341323852539, 12.920812606811523, 11.001367568969727, -5.146341323852539, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.558048
+  helical pitch: 0.34774
+1177: onCircular(false, 12.498708724975586, 12.49915885925293, -5.256097793579102, 13.701801300048828, 13.486132621765137, -5.256097793579102, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.556133
+  helical pitch: 0.347742
+1178: onCircular(false, 12.500189781188965, 12.500373840332031, -5.365853786468506, 11.115499496459961, 13.206223487854004, -5.365853786468506, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.554217
+  helical pitch: 0.34774
+1179: onCircular(false, 12.498482704162598, 12.501243591308594, -5.47560977935791, 12.406828880310059, 10.95164966583252, -5.47560977935791, 500)
+  direction: CCW
+  sweep: 113.625422deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.552302
+  helical pitch: 0.34774
+1180: onCircular(false, 12.498370170593262, 12.4993314743042, -5.5853657722473145, 13.953018188476562, 13.03570556640625, -5.5853657722473145, 500)
+  direction: CCW
+  sweep: 113.625454deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.550386
+  helical pitch: 0.34774
+1181: onCircular(false, 12.500166893005371, 12.499994277954102, -5.695121765136719, 11.427117347717285, 13.616384506225586, -5.695121765136719, 500)
+  direction: CCW
+  sweep: 113.625466deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.548471
+  helical pitch: 0.34774
+1182: onCircular(false, 12.498839378356934, 12.501375198364258, -5.804878234863281, 11.906783103942871, 11.072632789611816, -5.804878234863281, 500)
+  direction: CCW
+  sweep: 113.625428deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.546556
+  helical pitch: 0.347742
+1183: onCircular(false, 12.498106002807617, 12.499605178833008, -5.9146342277526855, 14.042452812194824, 12.529711723327637, -5.9146342277526855, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54464
+  helical pitch: 0.34774
+1184: onCircular(false, 12.500020980834961, 12.499642372131348, -6.02439022064209, 11.854334831237793, 13.900745391845703, -6.02439022064209, 500)
+  direction: CCW
+  sweep: 113.625376deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.542725
+  helical pitch: 0.347741
+1185: onCircular(false, 12.49921989440918, 12.501381874084473, -6.134146213531494, 11.4755859375, 11.349745750427246, -6.134146213531494, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.540809
+  helical pitch: 0.34774
+1186: onCircular(false, 12.497946739196777, 12.499950408935547, -6.243902206420898, 13.961464881896973, 12.024230003356934, -6.243902206420898, 500)
+  direction: CCW
+  sweep: 113.625445deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.538894
+  helical pitch: 0.34774
+1187: onCircular(false, 12.49976921081543, 12.499358177185059, -6.353658676147461, 12.349291801452637, 14.028953552246094, -6.353658676147461, 500)
+  direction: CCW
+  sweep: 113.625417deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.536979
+  helical pitch: 0.347742
+1188: onCircular(false, 12.499581336975098, 12.501264572143555, -6.463414669036865, 11.160165786743164, 11.751341819763184, -6.463414669036865, 500)
+  direction: CCW
+  sweep: 113.625432deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.535063
+  helical pitch: 0.34774
+1189: onCircular(false, 12.497909545898438, 12.50032901763916, -6.5731706619262695, 13.720229148864746, 11.574869155883789, -6.5731706619262695, 500)
+  direction: CCW
+  sweep: 113.625436deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.533147
+  helical pitch: 0.34774
+1190: onCircular(false, 12.49943733215332, 12.499173164367676, -6.682926654815674, 12.857030868530273, 13.988064765930176, -6.682926654815674, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.531232
+  helical pitch: 0.34774
+1191: onCircular(false, 12.499884605407715, 12.501035690307617, -6.792683124542236, 10.994361877441406, 12.232312202453613, -6.792683124542236, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.529317
+  helical pitch: 0.347742
+1192: onCircular(false, 12.497998237609863, 12.500699043273926, -6.902439117431641, 13.346482276916504, 11.230647087097168, -6.902439117431641, 500)
+  direction: CCW
+  sweep: 113.625457deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.527402
+  helical pitch: 0.34774
+1193: onCircular(false, 12.499062538146973, 12.499106407165527, -7.012195110321045, 13.321598052978516, 13.783841133117676, -7.012195110321045, 500)
+  direction: CCW
+  sweep: 113.625399deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.525486
+  helical pitch: 0.347741
+1194: onCircular(false, 12.50009536743164, 12.50071907043457, -7.121951103210449, 10.995296478271484, 12.73914909362793, -7.121951103210449, 500)
+  direction: CCW
+  sweep: 113.625425deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.523571
+  helical pitch: 0.34774
+1195: onCircular(false, 12.49820327758789, 12.501018524169922, -7.2317070960998535, 12.882330894470215, 11.028646469116211, -7.2317070960998535, 500)
+  direction: CCW
+  sweep: 113.625465deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.521655
+  helical pitch: 0.34774
+1196: onCircular(false, 12.498686790466309, 12.499165534973145, -7.341463565826416, 13.692207336425781, 13.439972877502441, -7.341463565826416, 500)
+  direction: CCW
+  sweep: 113.625399deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.51974
+  helical pitch: 0.347742
+1197: onCircular(false, 12.500191688537598, 12.500350952148438, -7.45121955871582, 11.161617279052734, 13.215899467468262, -7.45121955871582, 500)
+  direction: CCW
+  sweep: 113.625409deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.517824
+  helical pitch: 0.347741
+1198: onCircular(false, 12.498502731323242, 12.501254081726074, -7.560975551605225, 12.37951946258545, 10.990021705627441, -7.560975551605225, 500)
+  direction: CCW
+  sweep: 113.625414deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.515909
+  helical pitch: 0.34774
+1199: onCircular(false, 12.49835205078125, 12.499344825744629, -7.670731544494629, 13.928793907165527, 12.995342254638672, -7.670731544494629, 500)
+  direction: CCW
+  sweep: 113.625439deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.513994
+  helical pitch: 0.34774
+1200: onCircular(false, 12.500162124633789, 12.499972343444824, -7.780488014221191, 11.47377872467041, 13.61034107208252, -7.780488014221191, 500)
+  direction: CCW
+  sweep: 113.625444deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.512079
+  helical pitch: 0.347742
+1201: onCircular(false, 12.498861312866211, 12.501379013061523, -7.890244007110596, 11.893654823303223, 11.117790222167969, -7.890244007110596, 500)
+  direction: CCW
+  sweep: 113.625446deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.510163
+  helical pitch: 0.34774
+1202: onCircular(false, 12.498093605041504, 12.499624252319336, -8, 14.006340980529785, 12.499624252319336, -8, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+  helical pitch: 0.34774
+1203: onCircular(false, 12.498093605041504, 12.499624252319336, -8, 14.006340980529785, 12.499624252319336, -8, 500)
+  direction: CCW
+  sweep: 360deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+1204: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1204: onLinear(14.008440971374512, 12.579869270324707, -8, 1000)
+1205: onLinear(14.224610328674316, 13.184578895568848, -8, 1000)
+1206: onLinear(14.30233383178711, 13.312871932983398, -8, 1000)
+1207: onLinear(14.355725288391113, 13.453047752380371, -8, 1000)
+1208: onLinear(14.386810302734375, 13.599791526794434, -8, 1000)
+1209: onLinear(14.398093223571777, 13.758312225341797, -8, 1000)
+1210: onLinear(14.38750171661377, 13.931864738464355, -8, 1000)
+1211: onLinear(14.351218223571777, 14.1175537109375, -8, 1000)
+1212: onLinear(14.285797119140625, 14.311718940734863, -8, 1000)
+1213: onLinear(14.188318252563477, 14.509960174560547, -8, 1000)
+1214: onLinear(14.056548118591309, 14.707181930541992, -8, 1000)
+1215: onLinear(13.889113426208496, 14.897686958312988, -8, 1000)
+1216: onLinear(13.685674667358398, 15.07530689239502, -8, 1000)
+1217: onLinear(13.447073936462402, 15.23359203338623, -8, 1000)
+1218: onLinear(13.175450325012207, 15.366047859191895, -8, 1000)
+1219: onLinear(12.874287605285645, 15.466418266296387, -8, 1000)
+1220: onLinear(12.548382759094238, 15.5289888381958, -8, 1000)
+1221: onLinear(12.203727722167969, 15.5488862991333, -8, 1000)
+1222: onLinear(11.84730339050293, 15.522336959838867, -8, 1000)
+1223: onLinear(11.486807823181152, 15.446868896484375, -8, 1000)
+1224: onLinear(11.13034725189209, 15.32142448425293, -8, 1000)
+1225: onLinear(10.786115646362305, 15.146394729614258, -8, 1000)
+1226: onLinear(10.462102890014648, 14.923576354980469, -8, 1000)
+1227: onLinear(10.165837287902832, 14.6560697555542, -8, 1000)
+1228: onLinear(9.904169082641602, 14.348135948181152, -8, 1000)
+1229: onLinear(9.68311595916748, 14.005026817321777, -8, 1000)
+1230: onLinear(9.507739067077637, 13.632811546325684, -8, 1000)
+1231: onLinear(9.38206958770752, 13.23819351196289, -8, 1000)
+1232: onLinear(9.309060096740723, 12.828338623046875, -8, 1000)
+1233: onLinear(9.290558815002441, 12.4107084274292, -8, 1000)
+1234: onLinear(9.327313423156738, 11.992897987365723, -8, 1000)
+1235: onLinear(9.418987274169922, 11.582484245300293, -8, 1000)
+1236: onLinear(9.564188957214355, 11.18688678741455, -8, 1000)
+1237: onLinear(9.760523796081543, 10.81322956085205, -8, 1000)
+1238: onLinear(10.004653930664062, 10.468217849731445, -8, 1000)
+1239: onLinear(10.292370796203613, 10.158025741577148, -8, 1000)
+1240: onLinear(10.618680953979492, 9.888185501098633, -8, 1000)
+1241: onLinear(10.977900505065918, 9.663503646850586, -8, 1000)
+1242: onLinear(11.363765716552734, 9.487972259521484, -8, 1000)
+1243: onLinear(11.769539833068848, 9.364712715148926, -8, 1000)
+1244: onLinear(12.188139915466309, 9.295916557312012, -8, 1000)
+1245: onLinear(12.612258911132812, 9.282817840576172, -8, 1000)
+1246: onLinear(13.034493446350098, 9.325668334960938, -8, 1000)
+1247: onLinear(13.447476387023926, 9.423742294311523, -8, 1000)
+1248: onLinear(13.844003677368164, 9.575342178344727, -8, 1000)
+1249: onLinear(14.217161178588867, 9.777838706970215, -8, 1000)
+1250: onLinear(14.560441970825195, 10.027711868286133, -8, 1000)
+1251: onLinear(14.867862701416016, 10.320615768432617, -8, 1000)
+1252: onLinear(15.134064674377441, 10.65145206451416, -8, 1000)
+1253: onLinear(15.467283248901367, 11.200421333312988, -8, 1000)
+1254: onLinear(15.756221771240234, 11.773933410644531, -8, 1000)
+1255: onLinear(15.98892593383789, 12.343270301818848, -8, 1000)
+1256: onLinear(16.125755310058594, 12.866046905517578, -8, 1000)
+1257: onLinear(16.187763214111328, 13.363641738891602, -8, 1000)
+1258: onLinear(16.183881759643555, 13.846294403076172, -8, 1000)
+1259: onLinear(16.11737060546875, 14.318072319030762, -8, 1000)
+1260: onLinear(15.989255905151367, 14.77728271484375, -8, 1000)
+1261: onLinear(15.800159454345703, 15.219488143920898, -8, 1000)
+1262: onLinear(15.551084518432617, 15.638703346252441, -8, 1000)
+1263: onLinear(15.243821144104004, 16.028039932250977, -8, 1000)
+1264: onLinear(14.880701065063477, 16.380611419677734, -8, 1000)
+1265: onLinear(14.46340560913086, 16.690427780151367, -8, 1000)
+1266: onLinear(13.996427536010742, 16.94957160949707, -8, 1000)
+1267: onLinear(13.486050605773926, 17.15024185180664, -8, 1000)
+1268: onLinear(12.94011402130127, 17.28534507751465, -8, 1000)
+1269: onLinear(12.367868423461914, 17.3488826751709, -8, 1000)
+1270: onLinear(11.779746055603027, 17.336275100708008, -8, 1000)
+1271: onLinear(11.187050819396973, 17.244604110717773, -8, 1000)
+1272: onLinear(10.601612091064453, 17.072786331176758, -8, 1000)
+1273: onLinear(10.035420417785645, 16.82164764404297, -8, 1000)
+1274: onLinear(9.500268936157227, 16.493911743164062, -8, 1000)
+1275: onLinear(9.007577896118164, 16.094255447387695, -8, 1000)
+1276: onLinear(8.567779541015625, 15.628988265991211, -8, 1000)
+1277: onLinear(8.191908836364746, 15.108293533325195, -8, 1000)
+1278: onLinear(7.887389659881592, 14.542899131774902, -8, 1000)
+1279: onLinear(7.658845901489258, 13.942757606506348, -8, 1000)
+1280: onLinear(7.5096869468688965, 13.318134307861328, -8, 1000)
+1281: onLinear(7.442063331604004, 12.679519653320312, -8, 1000)
+1282: onLinear(7.456838130950928, 12.037504196166992, -8, 1000)
+1283: onLinear(7.553576469421387, 11.4026460647583, -8, 1000)
+1284: onLinear(7.73054838180542, 10.785326957702637, -8, 1000)
+1285: onLinear(7.984756946563721, 10.195597648620605, -8, 1000)
+1286: onLinear(8.311969757080078, 9.643027305603027, -8, 1000)
+1287: onLinear(8.70671558380127, 9.136491775512695, -8, 1000)
+1288: onLinear(9.162500381469727, 8.68409538269043, -8, 1000)
+1289: onLinear(9.671907424926758, 8.293063163757324, -8, 1000)
+1290: onLinear(10.226702690124512, 7.9696364402771, -8, 1000)
+1291: onLinear(10.817949295043945, 7.718976020812988, -8, 1000)
+1292: onLinear(11.436141014099121, 7.545078277587891, -8, 1000)
+1293: onLinear(12.071355819702148, 7.450714111328125, -8, 1000)
+1294: onLinear(12.713403701782227, 7.437380313873291, -8, 1000)
+1295: onLinear(13.35198974609375, 7.505279541015625, -8, 1000)
+1296: onLinear(13.976880073547363, 7.653312683105469, -8, 1000)
+1297: onLinear(14.578064918518066, 7.879098415374756, -8, 1000)
+1298: onLinear(15.145915985107422, 8.179010391235352, -8, 1000)
+1299: onLinear(15.671344757080078, 8.548235893249512, -8, 1000)
+1300: onLinear(16.145944595336914, 8.980853080749512, -8, 1000)
+1301: onLinear(16.5679874420166, 9.464879035949707, -8, 1000)
+1302: onLinear(16.940187454223633, 9.988204956054688, -8, 1000)
+1303: onLinear(17.26740837097168, 10.540771484375, -8, 1000)
+1304: onLinear(17.548011779785156, 11.118408203125, -8, 1000)
+1305: onLinear(17.775238037109375, 11.719049453735352, -8, 1000)
+1306: onLinear(17.941713333129883, 12.339282035827637, -8, 1000)
+1307: onLinear(18.04043960571289, 12.973833084106445, -8, 1000)
+1308: onLinear(18.067018508911133, 13.615468978881836, -8, 1000)
+1309: onLinear(18.02000617980957, 14.25593090057373, -8, 1000)
+1310: onLinear(17.925851821899414, 14.74793529510498, -8, 1000)
+1311: onLinear(17.91696548461914, 14.778027534484863, -8, 1000)
+1312: onLinear(17.873977661132812, 14.900876998901367, -8, 1000)
+1313: onLinear(17.821455001831055, 15.046384811401367, -8, 1000)
+1314: onLinear(17.811031341552734, 15.069032669067383, -8, 1000)
+1315: onLinear(17.735679626464844, 15.191892623901367, -8, 1000)
+1316: onLinear(17.141368865966797, 16.137691497802734, -8, 1000)
+1317: onLinear(17.115755081176758, 16.174068450927734, -8, 1000)
+1318: onLinear(17.083492279052734, 16.21134376525879, -8, 1000)
+1319: onLinear(16.210445404052734, 17.084388732910156, -8, 1000)
+1320: onLinear(16.174068450927734, 17.115755081176758, -8, 1000)
+1321: onLinear(16.137691497802734, 17.141368865966797, -8, 1000)
+1322: onLinear(15.191892623901367, 17.735679626464844, -8, 1000)
+1323: onLinear(15.069032669067383, 17.811031341552734, -8, 1000)
+1324: onLinear(15.046384811401367, 17.821455001831055, -8, 1000)
+1325: onLinear(14.900876998901367, 17.873977661132812, -8, 1000)
+1326: onLinear(13.831711769104004, 18.247554779052734, -8, 1000)
+1327: onLinear(13.736815452575684, 18.263134002685547, -8, 1000)
+1328: onLinear(12.57275390625, 18.394264221191406, -8, 1000)
+1329: onLinear(12.5, 18.40045166015625, -8, 1000)
+1330: onLinear(12.416577339172363, 18.393062591552734, -8, 1000)
+1331: onLinear(11.263184547424316, 18.263134002685547, -8, 1000)
+1332: onLinear(11.168283462524414, 18.247554779052734, -8, 1000)
+1333: onLinear(10.099123001098633, 17.873985290527344, -8, 1000)
+1334: onLinear(9.953615188598633, 17.82146453857422, -8, 1000)
+1335: onLinear(9.930939674377441, 17.811031341552734, -8, 1000)
+1336: onLinear(9.808107376098633, 17.73569107055664, -8, 1000)
+1337: onLinear(8.86230754852295, 17.141355514526367, -8, 1000)
+1338: onLinear(8.82593059539795, 17.115737915039062, -8, 1000)
+1339: onLinear(8.788677215576172, 17.083492279052734, -8, 1000)
+1340: onLinear(7.915579795837402, 16.210445404052734, -8, 1000)
+1341: onLinear(7.884213924407959, 16.174068450927734, -8, 1000)
+1342: onLinear(7.858599662780762, 16.137691497802734, -8, 1000)
+1343: onLinear(7.264337062835693, 15.191892623901367, -8, 1000)
+1344: onLinear(7.188969135284424, 15.068990707397461, -8, 1000)
+1345: onLinear(7.178574085235596, 15.046384811401367, -8, 1000)
+1346: onLinear(7.1260552406311035, 14.900876998901367, -8, 1000)
+1347: onLinear(6.769644737243652, 13.882323265075684, -8, 1000)
+1348: onLinear(6.752446174621582, 13.831576347351074, -8, 1000)
+1349: onLinear(6.736900806427002, 13.736815452575684, -8, 1000)
+1350: onLinear(6.605742454528809, 12.57275390625, -8, 1000)
+1351: onLinear(6.599554061889648, 12.5, -8, 1000)
+1352: onLinear(6.606938362121582, 12.416632652282715, -8, 1000)
+1353: onLinear(6.736900806427002, 11.263184547424316, -8, 1000)
+1354: onLinear(6.752446174621582, 11.168418884277344, -8, 1000)
+1355: onLinear(7.075131893157959, 10.244630813598633, -8, 1000)
+1356: onLinear(7.126046657562256, 10.099123001098633, -8, 1000)
+1357: onLinear(7.178563594818115, 9.953615188598633, -8, 1000)
+1358: onLinear(7.188969135284424, 9.930980682373047, -8, 1000)
+1359: onLinear(7.264326095581055, 9.808107376098633, -8, 1000)
+1360: onLinear(7.85861349105835, 8.86230754852295, -8, 1000)
+1361: onLinear(7.884230613708496, 8.82593059539795, -8, 1000)
+1362: onLinear(7.916507720947266, 8.788646697998047, -8, 1000)
+1363: onLinear(8.78955364227295, 7.915600776672363, -8, 1000)
+1364: onLinear(8.82593059539795, 7.884230613708496, -8, 1000)
+1365: onLinear(8.86230754852295, 7.85861349105835, -8, 1000)
+1366: onLinear(9.808107376098633, 7.264326095581055, -8, 1000)
+1367: onLinear(9.930980682373047, 7.188969135284424, -8, 1000)
+1368: onLinear(9.953615188598633, 7.178563594818115, -8, 1000)
+1369: onLinear(10.099123001098633, 7.126046657562256, -8, 1000)
+1370: onLinear(11.117676734924316, 6.769643306732178, -8, 1000)
+1371: onLinear(11.168418884277344, 6.752446174621582, -8, 1000)
+1372: onLinear(11.263184547424316, 6.736900806427002, -8, 1000)
+1373: onLinear(12.42724609375, 6.605742454528809, -8, 1000)
+1374: onLinear(12.5, 6.599554061889648, -8, 1000)
+1375: onLinear(12.583367347717285, 6.606938362121582, -8, 1000)
+1376: onLinear(13.736815452575684, 6.736900806427002, -8, 1000)
+1377: onLinear(13.831576347351074, 6.752446174621582, -8, 1000)
+1378: onLinear(14.755369186401367, 7.075139045715332, -8, 1000)
+1379: onLinear(14.900876998901367, 7.1260552406311035, -8, 1000)
+1380: onLinear(15.046384811401367, 7.178574085235596, -8, 1000)
+1381: onLinear(15.068990707397461, 7.188969135284424, -8, 1000)
+1382: onLinear(15.191892623901367, 7.264337062835693, -8, 1000)
+1383: onLinear(16.137691497802734, 7.858599662780762, -8, 1000)
+1384: onLinear(16.174068450927734, 7.884213924407959, -8, 1000)
+1385: onLinear(16.211374282836914, 7.916507720947266, -8, 1000)
+1386: onLinear(17.084369659423828, 8.78955364227295, -8, 1000)
+1387: onLinear(17.115737915039062, 8.82593059539795, -8, 1000)
+1388: onLinear(17.141355514526367, 8.86230754852295, -8, 1000)
+1389: onLinear(17.73569107055664, 9.808107376098633, -8, 1000)
+1390: onLinear(17.811031341552734, 9.930939674377441, -8, 1000)
+1391: onLinear(17.82146453857422, 9.953615188598633, -8, 1000)
+1392: onLinear(17.873985290527344, 10.099123001098633, -8, 1000)
+1393: onLinear(18.247554779052734, 11.168283462524414, -8, 1000)
+1394: onLinear(18.263134002685547, 11.263184547424316, -8, 1000)
+1395: onLinear(18.394264221191406, 12.42724609375, -8, 1000)
+1396: onLinear(18.40045166015625, 12.5, -8, 1000)
+1397: onLinear(18.393062591552734, 12.583422660827637, -8, 1000)
+1398: onLinear(18.263134002685547, 13.736815452575684, -8, 1000)
+1399: onLinear(18.247554779052734, 13.831711769104004, -8, 1000)
+1400: onLinear(17.91696548461914, 14.778027534484863, -8, 1000)
+1401: onMovement(MOVEMENT_LEAD_OUT /*lead out*/)
+1401: onCircular(false, 17.621126174926758, 14.662766456604004, -8, 17.62188148498535, 14.980265617370605, -8, 1000)
+  direction: CCW
+  sweep: 68.577459deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+1402: onLinear(17.621126174926758, 14.980266571044922, -8, 1000)
+1403: onCircular(false, 17.621126174926758, 14.662766456604004, -8, 17.53508949279785, 14.968387603759766, -8, 1000)
+  direction: CCW
+  sweep: 15.722663deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.317501
+1404: onCircular(false, 17.53650665283203, 14.969205856323242, -7.682499885559082, 17.399553298950195, 14.890170097351074, -7.957829475402832, 1000)
+  direction: CCW
+  sweep: 29.573631deg
+  normal: X=-0.499837 Y=0.866119 Z=0 
+  radius: 0.317505
+  helical pitch: 0.000004
+1405: onCircular(false, 17.483415603637695, 15.027141571044922, -7.68300199508667, 17.317842483520508, 14.756712913513184, -7.710894584655762, 1000)
+  direction: CCW
+  sweep: 54.671543deg
+  normal: X=-0.852844 Y=0.522166 Z=0 
+  radius: 0.318314
+  helical pitch: 0.000002
+1406: onCircular(false, 17.41080665588379, 15.058967590332031, -7.682499885559082, 17.317468643188477, 14.755496978759766, -7.682499885559082, 1000)
+  direction: CCW
+  sweep: 5.130932deg
+  normal: X=-0.955812 Y=0.293979 Z=0 
+  radius: 0.3175
+  helical pitch: 0.00001
+1407: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1407: onLinear(17.317468643188477, 14.755496978759766, 5, 1000)
+1408: onLinear(13.976189613342285, 13.07747745513916, 5, 1000)
+1409: onLinear(13.976189613342285, 13.07747745513916, -5.5, 1000)
+1410: onMovement(MOVEMENT_RAMP_HELIX /*helix ramp*/)
+1410: onCircular(false, 12.500162124633789, 12.500297546386719, -5.609755992889404, 11.37983226776123, 13.62130355834961, -5.609755992889404, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.584864
+  helical pitch: 0.34774
+1411: onCircular(false, 12.498807907104492, 12.501652717590332, -5.719511985778809, 11.92143726348877, 11.027756690979004, -5.719511985778809, 500)
+  direction: CCW
+  sweep: 113.625467deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.582949
+  helical pitch: 0.34774
+1412: onCircular(false, 12.498109817504883, 12.499868392944336, -5.829268455505371, 14.077940940856934, 12.561487197875977, -5.829268455505371, 500)
+  direction: CCW
+  sweep: 113.625443deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.581032
+  helical pitch: 0.347742
+1413: onCircular(false, 12.50002384185791, 12.499943733215332, -5.939024448394775, 11.811278343200684, 13.920944213867188, -5.939024448394775, 500)
+  direction: CCW
+  sweep: 113.625456deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.579118
+  helical pitch: 0.34774
+1414: onCircular(false, 12.499188423156738, 12.501667022705078, -6.04878044128418, 11.474552154541016, 11.302631378173828, -6.04878044128418, 500)
+  direction: CCW
+  sweep: 113.625421deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.577202
+  helical pitch: 0.34774
+1415: onCircular(false, 12.497943878173828, 12.500210762023926, -6.158536434173584, 14.005278587341309, 12.042531967163086, -6.158536434173584, 500)
+  direction: CCW
+  sweep: 113.625453deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.575287
+  helical pitch: 0.34774
+1416: onCircular(false, 12.499776840209961, 12.499654769897461, -6.2682929039001465, 12.31524658203125, 14.062167167663574, -6.2682929039001465, 500)
+  direction: CCW
+  sweep: 113.625462deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.573371
+  helical pitch: 0.347742
+1417: onCircular(false, 12.499551773071289, 12.501556396484375, -6.378048896789551, 11.14360523223877, 11.707275390625, -6.378048896789551, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.571456
+  helical pitch: 0.34774
+1418: onCircular(false, 12.497899055480957, 12.500588417053223, -6.487804889678955, 13.767461776733398, 11.577729225158691, -6.487804889678955, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.569541
+  helical pitch: 0.34774
+1419: onCircular(false, 12.499448776245117, 12.499462127685547, -6.597560882568359, 12.835762023925781, 14.030586242675781, -6.597560882568359, 500)
+  direction: CCW
+  sweep: 113.62547deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.567625
+  helical pitch: 0.34774
+1420: onCircular(false, 12.499858856201172, 12.501333236694336, -6.707316875457764, 10.964165687561035, 12.1962251663208, -6.707316875457764, 500)
+  direction: CCW
+  sweep: 113.625456deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.565709
+  helical pitch: 0.34774
+1421: onCircular(false, 12.497980117797852, 12.500960350036621, -6.817073345184326, 13.39185905456543, 11.217825889587402, -6.817073345184326, 500)
+  direction: CCW
+  sweep: 113.625414deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.563795
+  helical pitch: 0.347742
+1422: onCircular(false, 12.499075889587402, 12.499388694763184, -6.9268293380737305, 13.315435409545898, 13.830936431884766, -6.9268293380737305, 500)
+  direction: CCW
+  sweep: 113.625457deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.561878
+  helical pitch: 0.34774
+1423: onCircular(false, 12.500076293945312, 12.501021385192871, -7.036585330963135, 10.95486831665039, 12.715069770812988, -7.036585330963135, 500)
+  direction: CCW
+  sweep: 113.625442deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.559963
+  helical pitch: 0.34774
+1424: onCircular(false, 12.49817943572998, 12.501283645629883, -7.146341323852539, 12.92080307006836, 11.001649856567383, -7.146341323852539, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.558048
+  helical pitch: 0.34774
+1425: onCircular(false, 12.498699188232422, 12.49944019317627, -7.256097793579102, 13.701791763305664, 13.486413955688477, -7.256097793579102, 500)
+  direction: CCW
+  sweep: 113.625441deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.556133
+  helical pitch: 0.347742
+1426: onCircular(false, 12.500179290771484, 12.500655174255371, -7.365853786468506, 11.115489959716797, 13.20650577545166, -7.365853786468506, 500)
+  direction: CCW
+  sweep: 113.625418deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.554217
+  helical pitch: 0.34774
+1427: onCircular(false, 12.498473167419434, 12.501524925231934, -7.47560977935791, 12.406819343566895, 10.951931953430176, -7.47560977935791, 500)
+  direction: CCW
+  sweep: 113.625451deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.552301
+  helical pitch: 0.34774
+1428: onCircular(false, 12.498359680175781, 12.499612808227539, -7.5853657722473145, 13.953007698059082, 13.03598690032959, -7.5853657722473145, 500)
+  direction: CCW
+  sweep: 113.625421deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.550386
+  helical pitch: 0.34774
+1429: onCircular(false, 12.500157356262207, 12.500275611877441, -7.695121765136719, 11.427107810974121, 13.616666793823242, -7.695121765136719, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.548472
+  helical pitch: 0.34774
+1430: onCircular(false, 12.49882984161377, 12.501656532287598, -7.804878234863281, 11.906773567199707, 11.072915077209473, -7.804878234863281, 500)
+  direction: CCW
+  sweep: 113.625439deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.546555
+  helical pitch: 0.347742
+1431: onCircular(false, 12.498096466064453, 12.499887466430664, -7.9146342277526855, 14.04244327545166, 12.529993057250977, -7.9146342277526855, 500)
+  direction: CCW
+  sweep: 113.625408deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54464
+  helical pitch: 0.347741
+1432: onCircular(false, 12.500011444091797, 12.499924659729004, -8.02439022064209, 11.854325294494629, 13.901026725769043, -8.02439022064209, 500)
+  direction: CCW
+  sweep: 113.625426deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.542724
+  helical pitch: 0.34774
+1433: onCircular(false, 12.499210357666016, 12.501664161682129, -8.134146690368652, 11.475576400756836, 11.350027084350586, -8.134146690368652, 500)
+  direction: CCW
+  sweep: 113.625432deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.54081
+  helical pitch: 0.347742
+1434: onCircular(false, 12.497937202453613, 12.500232696533203, -8.243902206420898, 13.961455345153809, 12.024511337280273, -8.243902206420898, 500)
+  direction: CCW
+  sweep: 113.625388deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.538894
+  helical pitch: 0.347739
+1435: onCircular(false, 12.49975872039795, 12.499640464782715, -8.353658676147461, 12.349281311035156, 14.029234886169434, -8.353658676147461, 500)
+  direction: CCW
+  sweep: 113.625444deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.536978
+  helical pitch: 0.347742
+1436: onCircular(false, 12.499571800231934, 12.501546859741211, -8.463414192199707, 11.16015625, 11.751623153686523, -8.463414192199707, 500)
+  direction: CCW
+  sweep: 113.625424deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.535063
+  helical pitch: 0.347739
+1437: onCircular(false, 12.497900009155273, 12.5006103515625, -8.57317066192627, 13.720219612121582, 11.575150489807129, -8.57317066192627, 500)
+  direction: CCW
+  sweep: 113.625436deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.533147
+  helical pitch: 0.347742
+1438: onCircular(false, 12.499427795410156, 12.499454498291016, -8.682927131652832, 12.85702133178711, 13.988346099853516, -8.682927131652832, 500)
+  direction: CCW
+  sweep: 113.625455deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.531232
+  helical pitch: 0.347742
+1439: onCircular(false, 12.49987506866455, 12.501317024230957, -8.792682647705078, 10.994352340698242, 12.232593536376953, -8.792682647705078, 500)
+  direction: CCW
+  sweep: 113.62543deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.529317
+  helical pitch: 0.347739
+1440: onCircular(false, 12.4979887008667, 12.500980377197266, -8.90243911743164, 13.346471786499023, 11.230928421020508, -8.90243911743164, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.527402
+  helical pitch: 0.347742
+1441: onCircular(false, 12.499053001403809, 12.499387741088867, -9.012195587158203, 13.321588516235352, 13.784122467041016, -9.012195587158203, 500)
+  direction: CCW
+  sweep: 113.625429deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.525486
+  helical pitch: 0.347742
+1442: onCircular(false, 12.500085830688477, 12.501001358032227, -9.12195110321045, 10.99528694152832, 12.73943042755127, -9.12195110321045, 500)
+  direction: CCW
+  sweep: 113.62548deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.523571
+  helical pitch: 0.347739
+1443: onCircular(false, 12.498193740844727, 12.501300811767578, -9.231707572937012, 12.88232135772705, 11.02892780303955, -9.231707572937012, 500)
+  direction: CCW
+  sweep: 113.625421deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.521656
+  helical pitch: 0.347742
+1444: onCircular(false, 12.498677253723145, 12.499446868896484, -9.341463088989258, 13.692197799682617, 13.440255165100098, -9.341463088989258, 500)
+  direction: CCW
+  sweep: 113.625427deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.519741
+  helical pitch: 0.347739
+1445: onCircular(false, 12.500182151794434, 12.500633239746094, -9.45121955871582, 11.161606788635254, 13.216180801391602, -9.45121955871582, 500)
+  direction: CCW
+  sweep: 113.625457deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.517825
+  helical pitch: 0.347742
+1446: onCircular(false, 12.498492240905762, 12.50153636932373, -9.560976028442383, 12.379509925842285, 10.990303993225098, -9.560976028442383, 500)
+  direction: CCW
+  sweep: 113.625419deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.515909
+  helical pitch: 0.347742
+1447: onCircular(false, 12.498342514038086, 12.499626159667969, -9.670731544494629, 13.928783416748047, 12.995624542236328, -9.670731544494629, 500)
+  direction: CCW
+  sweep: 113.625487deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.513993
+  helical pitch: 0.347739
+1448: onCircular(false, 12.500151634216309, 12.500253677368164, -9.780488014221191, 11.473769187927246, 13.61062240600586, -9.780488014221191, 500)
+  direction: CCW
+  sweep: 113.625383deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.512078
+  helical pitch: 0.347742
+1449: onCircular(false, 12.498851776123047, 12.501660346984863, -9.890243530273438, 11.893645286560059, 11.118072509765625, -9.890243530273438, 500)
+  direction: CCW
+  sweep: 113.625431deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.510162
+  helical pitch: 0.347739
+1450: onCircular(false, 12.49808406829834, 12.499905586242676, -10, 14.006331443786621, 12.499905586242676, -10, 500)
+  direction: CCW
+  sweep: 113.625438deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+  helical pitch: 0.347742
+1451: onCircular(false, 12.49808406829834, 12.499905586242676, -10, 14.006331443786621, 12.499905586242676, -10, 500)
+  direction: CCW
+  sweep: 360deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 1.508247
+1452: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1452: onLinear(14.008431434631348, 12.580151557922363, -10, 1000)
+1453: onLinear(14.224600791931152, 13.184860229492188, -10, 1000)
+1454: onLinear(14.302324295043945, 13.313154220581055, -10, 1000)
+1455: onLinear(14.35571575164795, 13.453330039978027, -10, 1000)
+1456: onLinear(14.386799812316895, 13.60007381439209, -10, 1000)
+1457: onLinear(14.398083686828613, 13.758594512939453, -10, 1000)
+1458: onLinear(14.387492179870605, 13.932146072387695, -10, 1000)
+1459: onLinear(14.351208686828613, 14.11783504486084, -10, 1000)
+1460: onLinear(14.285787582397461, 14.31200122833252, -10, 1000)
+1461: onLinear(14.188308715820312, 14.510241508483887, -10, 1000)
+1462: onLinear(14.056538581848145, 14.707464218139648, -10, 1000)
+1463: onLinear(13.889103889465332, 14.897968292236328, -10, 1000)
+1464: onLinear(13.685665130615234, 15.075589179992676, -10, 1000)
+1465: onLinear(13.447064399719238, 15.233874320983887, -10, 1000)
+1466: onLinear(13.175440788269043, 15.366329193115234, -10, 1000)
+1467: onLinear(12.87427806854248, 15.466699600219727, -10, 1000)
+1468: onLinear(12.548373222351074, 15.529271125793457, -10, 1000)
+1469: onLinear(12.203718185424805, 15.54916763305664, -10, 1000)
+1470: onLinear(11.847293853759766, 15.522619247436523, -10, 1000)
+1471: onLinear(11.486798286437988, 15.447151184082031, -10, 1000)
+1472: onLinear(11.13033676147461, 15.32170581817627, -10, 1000)
+1473: onLinear(10.786105155944824, 15.146676063537598, -10, 1000)
+1474: onLinear(10.462093353271484, 14.923857688903809, -10, 1000)
+1475: onLinear(10.165827751159668, 14.656352043151855, -10, 1000)
+1476: onLinear(9.904159545898438, 14.348417282104492, -10, 1000)
+1477: onLinear(9.683106422424316, 14.005309104919434, -10, 1000)
+1478: onLinear(9.507728576660156, 13.633092880249023, -10, 1000)
+1479: onLinear(9.382060050964355, 13.23847484588623, -10, 1000)
+1480: onLinear(9.309050559997559, 12.828620910644531, -10, 1000)
+1481: onLinear(9.290549278259277, 12.410990715026855, -10, 1000)
+1482: onLinear(9.327303886413574, 11.993180274963379, -10, 1000)
+1483: onLinear(9.418977737426758, 11.58276653289795, -10, 1000)
+1484: onLinear(9.564179420471191, 11.18716812133789, -10, 1000)
+1485: onLinear(9.760514259338379, 10.81351089477539, -10, 1000)
+1486: onLinear(10.004644393920898, 10.468500137329102, -10, 1000)
+1487: onLinear(10.29236125946045, 10.158307075500488, -10, 1000)
+1488: onLinear(10.618670463562012, 9.888467788696289, -10, 1000)
+1489: onLinear(10.977890968322754, 9.663784980773926, -10, 1000)
+1490: onLinear(11.36375617980957, 9.48825454711914, -10, 1000)
+1491: onLinear(11.769530296325684, 9.364994049072266, -10, 1000)
+1492: onLinear(12.188130378723145, 9.296197891235352, -10, 1000)
+1493: onLinear(12.612249374389648, 9.283099174499512, -10, 1000)
+1494: onLinear(13.034483909606934, 9.325950622558594, -10, 1000)
+1495: onLinear(13.447466850280762, 9.424023628234863, -10, 1000)
+1496: onLinear(13.843994140625, 9.575624465942383, -10, 1000)
+1497: onLinear(14.217151641845703, 9.778120994567871, -10, 1000)
+1498: onLinear(14.560432434082031, 10.027994155883789, -10, 1000)
+1499: onLinear(14.867853164672852, 10.320897102355957, -10, 1000)
+1500: onLinear(15.134055137634277, 10.6517333984375, -10, 1000)
+1501: onLinear(15.467273712158203, 11.200702667236328, -10, 1000)
+1502: onLinear(15.75621223449707, 11.774215698242188, -10, 1000)
+1503: onLinear(15.988916397094727, 12.343552589416504, -10, 1000)
+1504: onLinear(16.12574577331543, 12.866329193115234, -10, 1000)
+1505: onLinear(16.187753677368164, 13.363923072814941, -10, 1000)
+1506: onLinear(16.18387222290039, 13.846575736999512, -10, 1000)
+1507: onLinear(16.117361068725586, 14.318354606628418, -10, 1000)
+1508: onLinear(15.989246368408203, 14.77756404876709, -10, 1000)
+1509: onLinear(15.800149917602539, 15.219769477844238, -10, 1000)
+1510: onLinear(15.551074981689453, 15.638984680175781, -10, 1000)
+1511: onLinear(15.24381160736084, 16.0283203125, -10, 1000)
+1512: onLinear(14.880691528320312, 16.38089370727539, -10, 1000)
+1513: onLinear(14.463396072387695, 16.690710067749023, -10, 1000)
+1514: onLinear(13.996417999267578, 16.949853897094727, -10, 1000)
+1515: onLinear(13.486041069030762, 17.150524139404297, -10, 1000)
+1516: onLinear(12.940104484558105, 17.285627365112305, -10, 1000)
+1517: onLinear(12.36785888671875, 17.349164962768555, -10, 1000)
+1518: onLinear(11.779736518859863, 17.33655548095703, -10, 1000)
+1519: onLinear(11.187041282653809, 17.244884490966797, -10, 1000)
+1520: onLinear(10.601602554321289, 17.073068618774414, -10, 1000)
+1521: onLinear(10.03541088104248, 16.821929931640625, -10, 1000)
+1522: onLinear(9.500259399414062, 16.49419403076172, -10, 1000)
+1523: onLinear(9.007568359375, 16.09453773498535, -10, 1000)
+1524: onLinear(8.567770004272461, 15.629270553588867, -10, 1000)
+1525: onLinear(8.191899299621582, 15.108574867248535, -10, 1000)
+1526: onLinear(7.8873796463012695, 14.543181419372559, -10, 1000)
+1527: onLinear(7.658836364746094, 13.943038940429688, -10, 1000)
+1528: onLinear(7.509677410125732, 13.318416595458984, -10, 1000)
+1529: onLinear(7.442053318023682, 12.679800987243652, -10, 1000)
+1530: onLinear(7.456828594207764, 12.037785530090332, -10, 1000)
+1531: onLinear(7.553566932678223, 11.402928352355957, -10, 1000)
+1532: onLinear(7.730538845062256, 10.785608291625977, -10, 1000)
+1533: onLinear(7.984747409820557, 10.195878982543945, -10, 1000)
+1534: onLinear(8.311960220336914, 9.643308639526367, -10, 1000)
+1535: onLinear(8.706706047058105, 9.136774063110352, -10, 1000)
+1536: onLinear(9.162490844726562, 8.68437671661377, -10, 1000)
+1537: onLinear(9.671897888183594, 8.293344497680664, -10, 1000)
+1538: onLinear(10.226693153381348, 7.969918251037598, -10, 1000)
+1539: onLinear(10.817939758300781, 7.719257831573486, -10, 1000)
+1540: onLinear(11.436131477355957, 7.545360088348389, -10, 1000)
+1541: onLinear(12.071346282958984, 7.450995922088623, -10, 1000)
+1542: onLinear(12.713394165039062, 7.437662124633789, -10, 1000)
+1543: onLinear(13.351980209350586, 7.505561351776123, -10, 1000)
+1544: onLinear(13.9768705368042, 7.653594493865967, -10, 1000)
+1545: onLinear(14.578055381774902, 7.879379749298096, -10, 1000)
+1546: onLinear(15.145906448364258, 8.179291725158691, -10, 1000)
+1547: onLinear(15.671335220336914, 8.548517227172852, -10, 1000)
+1548: onLinear(16.14593505859375, 8.981135368347168, -10, 1000)
+1549: onLinear(16.567977905273438, 9.465161323547363, -10, 1000)
+1550: onLinear(16.94017791748047, 9.988487243652344, -10, 1000)
+1551: onLinear(17.267398834228516, 10.54105281829834, -10, 1000)
+1552: onLinear(17.548002243041992, 11.11868953704834, -10, 1000)
+1553: onLinear(17.77522850036621, 11.719330787658691, -10, 1000)
+1554: onLinear(17.94170379638672, 12.339563369750977, -10, 1000)
+1555: onLinear(18.040430068969727, 12.974115371704102, -10, 1000)
+1556: onLinear(18.06700897216797, 13.615750312805176, -10, 1000)
+1557: onLinear(18.019996643066406, 14.256213188171387, -10, 1000)
+1558: onLinear(17.925949096679688, 14.747658729553223, -10, 1000)
+1559: onLinear(17.917062759399414, 14.777750968933105, -10, 1000)
+1560: onLinear(17.873977661132812, 14.900876998901367, -10, 1000)
+1561: onLinear(17.821455001831055, 15.046384811401367, -10, 1000)
+1562: onLinear(17.811031341552734, 15.069032669067383, -10, 1000)
+1563: onLinear(17.735679626464844, 15.191892623901367, -10, 1000)
+1564: onLinear(17.141368865966797, 16.137691497802734, -10, 1000)
+1565: onLinear(17.115755081176758, 16.174068450927734, -10, 1000)
+1566: onLinear(17.083492279052734, 16.21134376525879, -10, 1000)
+1567: onLinear(16.210445404052734, 17.084388732910156, -10, 1000)
+1568: onLinear(16.174068450927734, 17.115755081176758, -10, 1000)
+1569: onLinear(16.137691497802734, 17.141368865966797, -10, 1000)
+1570: onLinear(15.191892623901367, 17.735679626464844, -10, 1000)
+1571: onLinear(15.069032669067383, 17.811031341552734, -10, 1000)
+1572: onLinear(15.046384811401367, 17.821455001831055, -10, 1000)
+1573: onLinear(14.900876998901367, 17.873977661132812, -10, 1000)
+1574: onLinear(13.831711769104004, 18.247554779052734, -10, 1000)
+1575: onLinear(13.736815452575684, 18.263134002685547, -10, 1000)
+1576: onLinear(12.57275390625, 18.394264221191406, -10, 1000)
+1577: onLinear(12.5, 18.40045166015625, -10, 1000)
+1578: onLinear(12.416577339172363, 18.393062591552734, -10, 1000)
+1579: onLinear(11.263184547424316, 18.263134002685547, -10, 1000)
+1580: onLinear(11.168283462524414, 18.247554779052734, -10, 1000)
+1581: onLinear(10.099123001098633, 17.873985290527344, -10, 1000)
+1582: onLinear(9.953615188598633, 17.82146453857422, -10, 1000)
+1583: onLinear(9.930939674377441, 17.811031341552734, -10, 1000)
+1584: onLinear(9.808107376098633, 17.73569107055664, -10, 1000)
+1585: onLinear(8.86230754852295, 17.141355514526367, -10, 1000)
+1586: onLinear(8.82593059539795, 17.115737915039062, -10, 1000)
+1587: onLinear(8.788677215576172, 17.083492279052734, -10, 1000)
+1588: onLinear(7.915579795837402, 16.210445404052734, -10, 1000)
+1589: onLinear(7.884213924407959, 16.174068450927734, -10, 1000)
+1590: onLinear(7.858599662780762, 16.137691497802734, -10, 1000)
+1591: onLinear(7.264337062835693, 15.191892623901367, -10, 1000)
+1592: onLinear(7.188969135284424, 15.068990707397461, -10, 1000)
+1593: onLinear(7.178574085235596, 15.046384811401367, -10, 1000)
+1594: onLinear(7.1260552406311035, 14.900876998901367, -10, 1000)
+1595: onLinear(6.769644737243652, 13.882323265075684, -10, 1000)
+1596: onLinear(6.752446174621582, 13.831576347351074, -10, 1000)
+1597: onLinear(6.736900806427002, 13.736815452575684, -10, 1000)
+1598: onLinear(6.605742454528809, 12.57275390625, -10, 1000)
+1599: onLinear(6.599554061889648, 12.5, -10, 1000)
+1600: onLinear(6.606938362121582, 12.416632652282715, -10, 1000)
+1601: onLinear(6.736900806427002, 11.263184547424316, -10, 1000)
+1602: onLinear(6.752446174621582, 11.168418884277344, -10, 1000)
+1603: onLinear(7.075131893157959, 10.244630813598633, -10, 1000)
+1604: onLinear(7.126046657562256, 10.099123001098633, -10, 1000)
+1605: onLinear(7.178563594818115, 9.953615188598633, -10, 1000)
+1606: onLinear(7.188969135284424, 9.930980682373047, -10, 1000)
+1607: onLinear(7.264326095581055, 9.808107376098633, -10, 1000)
+1608: onLinear(7.85861349105835, 8.86230754852295, -10, 1000)
+1609: onLinear(7.884230613708496, 8.82593059539795, -10, 1000)
+1610: onLinear(7.916507720947266, 8.788646697998047, -10, 1000)
+1611: onLinear(8.78955364227295, 7.915600776672363, -10, 1000)
+1612: onLinear(8.82593059539795, 7.884230613708496, -10, 1000)
+1613: onLinear(8.86230754852295, 7.85861349105835, -10, 1000)
+1614: onLinear(9.808107376098633, 7.264326095581055, -10, 1000)
+1615: onLinear(9.930980682373047, 7.188969135284424, -10, 1000)
+1616: onLinear(9.953615188598633, 7.178563594818115, -10, 1000)
+1617: onLinear(10.099123001098633, 7.126046657562256, -10, 1000)
+1618: onLinear(11.117676734924316, 6.769643306732178, -10, 1000)
+1619: onLinear(11.168418884277344, 6.752446174621582, -10, 1000)
+1620: onLinear(11.263184547424316, 6.736900806427002, -10, 1000)
+1621: onLinear(12.42724609375, 6.605742454528809, -10, 1000)
+1622: onLinear(12.5, 6.599554061889648, -10, 1000)
+1623: onLinear(12.583367347717285, 6.606938362121582, -10, 1000)
+1624: onLinear(13.736815452575684, 6.736900806427002, -10, 1000)
+1625: onLinear(13.831576347351074, 6.752446174621582, -10, 1000)
+1626: onLinear(14.755369186401367, 7.075139045715332, -10, 1000)
+1627: onLinear(14.900876998901367, 7.1260552406311035, -10, 1000)
+1628: onLinear(15.046384811401367, 7.178574085235596, -10, 1000)
+1629: onLinear(15.068990707397461, 7.188969135284424, -10, 1000)
+1630: onLinear(15.191892623901367, 7.264337062835693, -10, 1000)
+1631: onLinear(16.137691497802734, 7.858599662780762, -10, 1000)
+1632: onLinear(16.174068450927734, 7.884213924407959, -10, 1000)
+1633: onLinear(16.211374282836914, 7.916507720947266, -10, 1000)
+1634: onLinear(17.084369659423828, 8.78955364227295, -10, 1000)
+1635: onLinear(17.115737915039062, 8.82593059539795, -10, 1000)
+1636: onLinear(17.141355514526367, 8.86230754852295, -10, 1000)
+1637: onLinear(17.73569107055664, 9.808107376098633, -10, 1000)
+1638: onLinear(17.811031341552734, 9.930939674377441, -10, 1000)
+1639: onLinear(17.82146453857422, 9.953615188598633, -10, 1000)
+1640: onLinear(17.873985290527344, 10.099123001098633, -10, 1000)
+1641: onLinear(18.247554779052734, 11.168283462524414, -10, 1000)
+1642: onLinear(18.263134002685547, 11.263184547424316, -10, 1000)
+1643: onLinear(18.394264221191406, 12.42724609375, -10, 1000)
+1644: onLinear(18.40045166015625, 12.5, -10, 1000)
+1645: onLinear(18.393062591552734, 12.583422660827637, -10, 1000)
+1646: onLinear(18.263134002685547, 13.736815452575684, -10, 1000)
+1647: onLinear(18.247554779052734, 13.831711769104004, -10, 1000)
+1648: onLinear(17.917062759399414, 14.777750968933105, -10, 1000)
+1649: onMovement(MOVEMENT_LEAD_OUT /*lead out*/)
+1649: onCircular(false, 17.6212215423584, 14.662489891052246, -10, 17.621978759765625, 14.979989051818848, -10, 1000)
+  direction: CCW
+  sweep: 68.57724deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.3175
+1650: onLinear(17.6212215423584, 14.979990005493164, -10, 1000)
+1651: onCircular(false, 17.6212215423584, 14.662489891052246, -10, 17.31756591796875, 14.755220413208008, -10, 1000)
+  direction: CCW
+  sweep: 73.018348deg
+  normal: X=0 Y=0 Z=1 (XY)
+  radius: 0.317499
+1652: onCircular(false, 17.31756591796875, 14.755220413208008, -9.682499885559082, 17.224834442138672, 14.451563835144043, -9.682499885559082, 1000)
+  direction: CCW
+  sweep: 90deg
+  normal: X=-0.956399 Y=0.292063 Z=0 
+  radius: 0.3175
+  helical pitch: 0.000005
+1653: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1653: onLinear(17.224834442138672, 14.451563835144043, 15, 1000)
+1654: onSectionEnd()
+  STATE position=[17.224834, 14.451564, 15]
+  STATE spindleSpeed=10000
+  STATE radiusCompensation=RADIUS_COMPENSATION_OFF // off
+1654: onClose()
