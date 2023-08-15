@@ -32,6 +32,23 @@ from typing import Iterable, Iterator, Any
 ) = [None] * 10
 
 
+class StepLine:
+    def __init__(self, ln_nbr: int, parmed_line: str, x: float | None = None, y: float | None = None):
+        self.ln_nbr = ln_nbr
+        self.x = x
+        self.y = y
+        self.parmed_line = parmed_line
+
+    def gen_repeated_cmd(self, grbr_plot, offset_x, offset_y):
+        if self.x is not None and self.y is not None:
+            x_val = grbr_plot.gcs.encode_grbr_coord(self.x + offset_x)
+            y_val = grbr_plot.gcs.encode_grbr_coord(self.y + offset_y)
+            cmd = self.parmed_line.format(x_val, y_val)
+        else:
+            cmd = self.parmed_line
+        return self.ln_nbr, cmd
+
+
 class GrbrCoordSys:
     def __init__(self, int_len: int, dec_len: int, zero_supp: str = "L", units: str = None):
         """Create a Gerber Coordinate System Object - handles parsing coordinate values
@@ -74,12 +91,37 @@ class GrbrCoordSys:
         # insert the decimal point int_len characters into the parsed string, cast to a float and set the sign
         return multiplier * float(f"{parsed_string[:self.int_len]}.{parsed_string[self.int_len:]}")
 
+    def encode_grbr_coord(self, float_nbr) -> str:
+        int_part = str(abs(int(float_nbr)))
+        dec_part = str(abs(int(round(float_nbr - int(float_nbr), self.dec_len) * 10**self.dec_len)))
+        gerber_coord = f"{int_part.zfill(self.int_len)}{dec_part.zfill(self.dec_len)}"
+        if self.zero_supp == "L":
+            gerber_coord = gerber_coord.lstrip("0")
+        elif self.zero_supp == "T":
+            gerber_coord = gerber_coord.rstrip("0")
+        gerber_coord = gerber_coord or "0"
+        if float_nbr < 0:
+            gerber_coord = f"-{gerber_coord}"
+        return gerber_coord
+
     def set_units(self, units: str) -> None:
         """Set the units that the coordinates are in.
 
         :param units: MM - metric, IN - empirical
         """
         self.units = units
+
+
+StepRepeatCmd = namedtuple(
+    "StepRepeatCmd",
+    [
+        "step_x_repeat",
+        "step_y_repeat",
+        "step_i_distance",
+        "step_j_distance",
+        "empty_sr_cmd",
+    ],
+)
 
 
 class GrbrPlot:
@@ -244,10 +286,13 @@ class GrbrPlot:
         self.curr_y: float = 0  # the current y coordinate
         self.region_mode: bool = False  # tracks if we are in a region definition (G36 on /G37 off)
         self.polarity: str = "dark"  # tracks what the current layer's polarity is "dark" or "clear" (a layer can only be either dark or clear and cannot be changed) (%LP)
-        self.step_repeat = (1, 1, None, None)  # the settings for the current step repeat operation (%SR)
-        self.step_repeat_flag = False  # set to true when we are inside a step and repeat command
         # an empty %SR*% will end and EXECUTE the current step and repeat command
         # a non-empty %SR...*% will end and EXECUTE the current step and repeat command and begin another step and repeat command
+        self.step_repeat_flag = False  # set to true when we are inside a step and repeat command
+        # the settings for the current step repeat operation (%SR)
+        self.step_x_repeat, self.step_y_repeat = 1, 1
+        self.step_i_distance, self.step_j_distance = 0, 0
+        self.step_lines: list[StepLine] = []
         self.aperture: str | None = None  # the current aperture (set by Dnn* where nn >= 10)
         self.interpolation_mode: str | None = (  # the current interpolation mode (G01 linear, G02 CW circular, G03 CCW circular)
             None
@@ -331,7 +376,7 @@ class GrbrPlot:
 
         parameters for the %FS command
         1. Zero suppression - only L (leading zero suppression) is supported
-           T (trailing zero suppression)is deprecated and D (no zero suppression) is invalid acording to the specs
+           T (trailing zero suppression)is deprecated and D (no zero suppression) is invalid according to the specs
         2. Coordinate Notation - only A (absolute notation) is supported
            I (incremental notation) is deprecated
         3. number of integer and decimal digits for the x coordinate
@@ -411,7 +456,7 @@ class GrbrPlot:
         3. modifier set - optional list of `X` delimited modifier values. The modifiers specified
            or required depends on aperture name being used
 
-        The allowed range of aperture ID valuess is from 10 up to 2,147,483,647. The values 0 to 9
+        The allowed range of aperture ID values is from 10 up to 2,147,483,647. The values 0 to 9
         are reserved and cannot be used. Once an aperture id is assigned it cannot be re-assigned,
         thus apertures are uniquely identified by aperture id.
 
@@ -465,7 +510,7 @@ class GrbrPlot:
 
         # split the modifies for the aperture, if there are no modifiers an empty list will be used
         aperture_params = aperture_params_str.split("X") if aperture_params_str else []
-        # store the aperture definition as a tuple with the name and modfiers/parameters
+        # store the aperture definition as a tuple with the name and modifiers/parameters
         self.aperture_lkp[aperture_id] = (aperture_type, aperture_params)
 
         if APRTR_ADD_DISP:
@@ -583,6 +628,10 @@ class GrbrPlot:
         m_cmd = m.group(1)
 
         if m_cmd == "M02":
+            if self.step_repeat_flag:
+                # todo: see if we can turn print a waning instead of raising an exception and
+                #   then call the function that replicates the SR block.
+                raise ValueError(f"End of file encountered within an open SR block command.")
             # TODO: perform any processing needed to occur before exiting
             # TODO: clean up any resources in use/open
             pass
@@ -765,6 +814,230 @@ class GrbrPlot:
         else:
             raise Exception(f"D Command: {d_cmd} not implemented or not in aperture dictionary")
 
+    def step_repeat(self, ln_nbr: int, line: str):
+        """
+        %SR X Y I J *%
+
+        X - number of times to repeat along the X axis (x >= 1)
+        Y - number of times to repeat along the Y axis (y >= 1)
+        I - defines the step distance (in units) along the X axis (x >= 0)
+        J - defines the step distance (in units) along the Y axis (Y >= 0)
+
+        The specification is a bit confusing here. When you draw the graphic objects to be replicated, it is
+        stated that they are specified in the global coordinate system. And hence have the same origin.
+        But when you specify the step distance, the figure given in the specification shows it being
+        measured relative from the lower left of the object its self, and not the origin.
+
+        I guess if you draw a region that starts at point 10,10 - lines to point 20,10, then to 20,20,
+        then to 10,20 and finally ends at 10,10 (i.e., a square that is 10 by 10, with its lower left
+        positioned at point 10,10) -- then specify 3 X repeats and 2 Y repeats with step distances of
+        15, 15, then there would be six 10 x 10 squares with their lower left corners located at the
+        following absolute positions (copying in the sequence Y first then X):
+            column 1:
+            row 1 - 10, 10
+            row 2 - 10, 25
+            column 2:
+            row 1 - 25, 10
+            row 2 - 25, 25
+            column 3:
+            row 1 - 40, 10
+            row 2 - 40, 25
+
+        The specification goes out of its way to say that the SR Block, contains the graphic objects and
+        NOT the gerber commands. So how do we go about describing what the SR block does? I can think of
+        2 alternatives.
+
+        Alternative 1: Print out the gerber commands at the coordinates given in the commands
+        themselves. Perhaps with a lines that states START of SR BLOCK / END OF SR BLOCK. Then after the
+        Last command, print out a line saying replicating SR Block with offsets of i, j and list out what
+        the offsets would be for each column/row that is replicated. Using the example above:
+
+        ### START of SR BLOCK ###
+        Move To: 10, 10
+        Line To: 20, 10
+        Line To: 20, 20
+        Line To: 10, 20
+        Line To: 10, 10
+        ## Will replicate block
+        - 3 times in the X asis with offset of 15 mm
+        - 2 times in the Y axis with offset of 15 mm
+        ## column 1:
+          row 1: origin 0, 0
+          row 2: origin 0, 15
+        ## column 2:
+          row 1: origin 15, 0
+          row 2: origin 15, 15
+        ## column 2:
+          row 1: origin 30, 0
+          row 2: origin 30, 15
+        ### END OF SR BLOCK ###
+
+        I don't find this particularly helpful as you have to manually calculate the coordinates of each
+        MOVE to and LINE to command. But this is truer to the specification...
+
+        Alternative 2: would be to list the commands adjusted multiple times adjusted for their offsets.
+        This would be more informative (in my opinion).
+        ### START of SR BLOCK ###
+        ## Will replicate block
+        - 3 times in the X asis with offset of 15 mm
+        - 2 times in the Y axis with offset of 15 mm
+        ## providing the following effective offsets:
+            col 1, row 1: origin 0, 0
+            col 1, row 2: origin 0, 15
+            col 2, row 1: origin 15, 0
+            col 2, row 2: origin 15, 15
+            col 3, row 1: origin 30, 0
+            col 3, row 2: origin 30, 15
+        ## column 1:
+          row 1:
+            Move To: 10, 10
+            Line To: 20, 10
+            Line To: 20, 20
+            Line To: 10, 20
+            Line To: 10, 10
+          row 2:
+            Move To: 10, 25
+            Line To: 20, 25
+            Line To: 20, 35
+            Line To: 10, 35
+            Line To: 10, 25
+        ## column 2:
+          row 1:
+            Move To: 25, 10
+            Line To: 35, 10
+            Line To: 35, 20
+            Line To: 25, 20
+            Line To: 25, 10
+          row 2:
+            Move To: 25, 25
+            Line To: 35, 25
+            Line To: 35, 35
+            Line To: 25, 35
+            Line To: 25, 25
+        ## column 3:
+          row 1:
+            Move To: 40, 10
+            Line To: 50, 10
+            Line To: 50, 20
+            Line To: 40, 20
+            Line To: 40, 10
+          row 2:
+            Move To: 40, 25
+            Line To: 50, 25
+            Line To: 50, 35
+            Line To: 40, 35
+            Line To: 40, 25
+        ### END OF SR BLOCK ###
+
+        When the number of repeats in either X or Y is greater than 1 step & repeat mode is enabled
+        and block accumulation is initiated. The spec seems to indicate that it is invalid to have
+        a repeat value of 0, and that a repeat value of 1 effectively does not actually repeat the
+        given commands on the axis with the value of 1. Additionally, if the repeat value is 1, then
+        the corresponding step distance should be 0.
+
+        The current step & repeat mode is ended by another SR command (empty or non-empty). When the next
+        SR command is encountered, the current SR block is closed and then replicated (in the image plane)
+        according to the parameters in the current SR command. Each copy of the block contains identical
+        graphics objects.
+
+        The reference point of a block is the image's origin, (point 0, 0, of the global coordinate space).
+
+        Blocks are copied first in the Y direction and then in the X direction.
+
+        A step & repeat block can contain different polarities.
+
+        Note that the SR block contains a graphics object, not the Gerber commands. It is the graphics
+        object that is replicated. The graphics objects in each copy are always identical.
+
+            | The specification seems to be hinting here that if any command that changes the graphics state
+            | within the block would only affect interpolation commands that come after it, and would only
+            | affect the single iteration. That is, for example, if we executed an %LPD*% prior to entering
+            | the SR block, then enter the SR block draw a square region (dark polarity) and then executed
+            | an %LPC*% at the end of the block. When repeated, all square regions would have dark polarity
+            | and none would have clear polarity.
+
+        Example:
+        %SRX3Y2I5.0J4.0*%
+        G04 Block accumulation started. All the graphics*
+        G04 objects created below added to the block*
+        ...
+        G04 Block accumulation is about to finish*
+        %SR*%
+        G04 The block is finished and replicated*
+        """
+        sr_cmd = self.parse_sr_cmd(line)
+
+        # we are currently in a Step Repeat Block - method called from: parse_cmds_sr_mode
+        if self.step_repeat_flag:
+            self.replicat_sr_block(ln_nbr)
+            if not sr_cmd.empty_sr_cmd:
+                self.start_sr_block(sr_cmd)
+
+        # we are not currently in a Step Repeat Block - method called from: parse_cmds_non_sr_mode
+        else:
+            if sr_cmd.empty_sr_cmd:
+                raise ValueError("Exit (empty) SR Command without corresponding Open (non-empty) SR Command")
+            self.start_sr_block(sr_cmd)
+
+    @staticmethod
+    def parse_sr_cmd(line) -> StepRepeatCmd:
+        m = re.match(r"^%SR(?:X(\d*))?(?:Y(\d*))?(?:I(-?\d*))?(?:J(-?\d*))?\*%$", line)
+        step_x_repeat, step_y_repeat = m.group(1), m.group(2)
+        step_i_distance, step_j_distance = m.group(3), m.group(4)
+        empty_sr_cmd = (
+            step_x_repeat is None and step_y_repeat is None and step_i_distance is None and step_j_distance is None
+        )
+        return StepRepeatCmd(
+            step_x_repeat,
+            step_y_repeat,
+            step_i_distance,
+            step_j_distance,
+            empty_sr_cmd,
+        )
+
+    def replicat_sr_block(self, ln_nbr):
+        units = self.gcs.units
+        print(f"[{ln_nbr:0>3}] ### START of SR BLOCK ###")
+        print("     ## Will replicate block:")
+        print(f"     - {self.step_x_repeat} times in the X asis with offset of {self.step_i_distance} {units}")
+        print(f"     - {self.step_y_repeat} times in the Y asis with offset of {self.step_j_distance} {units}")
+        print("     ## providing the following effective offsets:")
+        o_x, o_y = 0, 0
+        for i in range(1, self.step_x_repeat + 1):
+            for j in range(1, self.step_y_repeat + 1):
+                print(f"         col {i}, row {j}: origin {o_x}, {o_y}")
+                o_x += self.step_j_distance
+                o_y += self.step_j_distance
+        o_x, o_y = 0, 0
+        for i in range(1, self.step_x_repeat + 1):
+            print(f"## column {i}:")
+            for j in range(1, self.step_y_repeat + 1):
+                print(f"  row {j}:")
+                for line in self.step_lines:
+                    ln_nbr, cmd = line.gen_repeated_cmd(self, o_x, o_y)
+                    parse_cmds_non_sr_mode(self, cmd, ln_nbr)
+        # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
+
+    def start_sr_block(self, sr_cmd: StepRepeatCmd):
+        self.step_x_repeat = sr_cmd.step_x_repeat or 1
+        self.step_y_repeat = sr_cmd.step_y_repeat or 1
+        self.step_i_distance = sr_cmd.step_i_distance or 0
+        self.step_j_distance = sr_cmd.step_j_distance or 0
+
+        if (self.step_i_distance == 0 and self.step_x_repeat != 1) or (
+            self.step_j_distance == 0 and self.step_y_repeat != 1
+        ):
+            raise ValueError(
+                f"Distance value of 0.0 must have a repeat value of 1. X: "
+                f"{self.step_i_distance}/{self.step_x_repeat}, Y: {self.step_j_distance}/{self.step_y_repeat}"
+            )
+        if self.step_x_repeat == 1 and self.step_y_repeat == 1:
+            raise ValueError(f"Both X and Y repeat values are 1, no need for %SR command.")
+
+        # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
+        self.step_repeat_flag = True
+        self.step_lines = []
+
     def parse_attribute(self, ln_nbr: int, line: str):
         """Parse the all %Tx attribute command and update the appropriate attribute dictionary.
 
@@ -818,7 +1091,7 @@ class GrbrPlot:
         elif attrib_type in ("TF", "TA", "TO"):
             # when setting a new attrib, there will be at least 1 attrib value after the attrib name, store as a list of str
             attrib_vals = attrib_value.split(",")
-            # store the list of values in the appropriate attribute dictionary under the attrib's name
+            # store the list of values in the appropriate attribute dictionary under the attribute's name
             self.curr_attribs[attrib_type][attrib_name] = attrib_vals
 
             if ATTRIB_DISP:
@@ -936,7 +1209,7 @@ def main():
     grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu.gbr"
     # grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu copy.gbr"
 
-    # get the command line arugments passed in
+    # get the command line arguments passed in
     test_args = None
     if TESTING:
         test_args = [grbr_fn, "-pSAC"] + sys.argv[1:]
@@ -951,66 +1224,101 @@ def main():
 
     # main loop to process each command in the gerber file
     for ln_nbr, line in enumerate(grbr_plot.lines, 1):
-        # process the coordinate format specifier command
-        if line.startswith("%FSLAX") and line.endswith("*%"):
-            grbr_plot.parse_coord_fmt(ln_nbr, line)
-
-        # process the Units Mode command
-        elif line.startswith("%MO") and line.endswith("*%"):
-            grbr_plot.parse_units(ln_nbr, line)
-
-        # process the set Layer Polarity command
-        elif line.startswith("%LP") and line.endswith("*%"):
-            grbr_plot.parse_polarity(ln_nbr, line)
-
-        # process the Aperture Definition command
-        elif line.startswith("%ADD") and line.endswith("*%"):
-            grbr_plot.pase_aperture_def(ln_nbr, line)
-
-        # process the Macro Aperture command
-        elif line.startswith("%AM") and line.endswith("*%"):
-            print(f"[{ln_nbr:0>3}] ------ APERTURE MACRO COMMAND ------")
-            process_macro(line)
-
-        # process the Step and Repeat command
-        elif line.startswith("%SR") and line.endswith("*%"):
-            # TODO: process step and repeat commands
-            """
-            Example:
-            %SRX3Y2I5.0J4.0*%
-            G04 Block accumulation started. All the graphics*
-            G04 objects created below added to the block*
-            ...
-            G04 Block accumulation is about to finish*
-            %SR*%
-            G04 The block is finished and replicated*
-            """
-            pass
-
-        # process any of the Create Attribute commands or Attribute Delete command
-        elif line[0:3] in ("%TF", "%TA", "%TD", "%TO") and line.endswith("*%"):
-            grbr_plot.parse_attribute(ln_nbr, line)
-
-        # process any of the Gnn commands
-        elif line.startswith("G") and line.endswith("*"):
-            grbr_plot.parse_g_cmd(ln_nbr, line)
-
-        # process the End-Of-File command
-        elif line.startswith("M") and line.endswith("*"):
-            grbr_plot.parse_m_cmd(ln_nbr, line)
-
-        # process any of the Dnn commands
-        elif line[0] in ("D", "X", "Y", "I", "J") and line.endswith("*"):
-            grbr_plot.parse_d_cmd(ln_nbr, line)
-
-        # handel invalid gerber command
+        if not grbr_plot.step_repeat_flag:
+            parse_cmds_non_sr_mode(grbr_plot, line, ln_nbr)
         else:
-            output_bad_grbr(ln_nbr, line)
+            parse_cmds_sr_mode(grbr_plot, line, ln_nbr)
 
     # output various summaries
     output_attrib_hist(grbr_plot)
     output_comment_hist(grbr_plot)
     output_final_attrib_state(grbr_plot)
+
+
+def parse_cmds_sr_mode(grbr_plot, line, ln_nbr):
+    # process D01, D02, D03 commands
+    if m := re.match(r"^(?:X(\d*))?(?:Y(\d*))?((?:I-?\d*)?(?:J-?\d*)?D0[123]\*)$", line):
+        x = grbr_plot.gcs.parse_grbr_coord(m.group(1)) if m.group(1) else grbr_plot.curr_x
+        y = grbr_plot.gcs.parse_grbr_coord(m.group(2)) if m.group(2) else grbr_plot.curr_y
+        rem_cmd = m.group(3)
+        grbr_plot.step_lines.append(StepLine(ln_nbr, f"X{{0}}Y{{1}}{rem_cmd}", x, y))
+
+    # process the set Layer Polarity command or any of the Gnn commands or Set Aperture (Dnn where nn >= 10) cmd
+    elif re.match(r"^%LP.\*%|G0*(?:1|2|3|4|36|37|74|75).*\*|D\d*\*$", line):
+        grbr_plot.step_lines.append(StepLine(ln_nbr, line))
+
+    # process the Step and Repeat command (to exit sr mode most likely)
+    elif line.startswith("%SR") and line.endswith("*%"):
+        grbr_plot.step_repeat(ln_nbr, line)
+
+    # make sure the command is one that is accepted in SR mode
+    elif re.match(r"^((%(?:FS|MO|AD|AM|TF|TA|TO|TD)).*\*%)|((M0*2).*\*)$", line):
+        # TODO: incorporate the captured values into the error message
+        output_non_sr_cmd(ln_nbr, line)
+
+    # handel invalid gerber command
+    else:
+        output_bad_grbr(ln_nbr, line)
+
+
+def parse_cmds_non_sr_mode(grbr_plot, line, ln_nbr):
+    # process the coordinate format specifier command
+    if line.startswith("%FSLAX") and line.endswith("*%"):
+        grbr_plot.parse_coord_fmt(ln_nbr, line)
+
+    # process the Units Mode command
+    elif line.startswith("%MO") and line.endswith("*%"):
+        grbr_plot.parse_units(ln_nbr, line)
+
+    # process the set Layer Polarity command
+    elif line.startswith("%LP") and line.endswith("*%"):
+        grbr_plot.parse_polarity(ln_nbr, line)
+
+    # process the Aperture Definition command
+    elif line.startswith("%ADD") and line.endswith("*%"):
+        grbr_plot.pase_aperture_def(ln_nbr, line)
+
+    # process the Macro Aperture command
+    elif line.startswith("%AM") and line.endswith("*%"):
+        print(f"[{ln_nbr:0>3}] ------ APERTURE MACRO COMMAND ------")
+        process_macro(line)
+
+    # process the Step and Repeat command
+    elif line.startswith("%SR") and line.endswith("*%"):
+        grbr_plot.step_repeat(ln_nbr, line)
+
+    # process any of the Create Attribute commands or Attribute Delete command
+    elif line[0:3] in ("%TF", "%TA", "%TD", "%TO") and line.endswith("*%"):
+        grbr_plot.parse_attribute(ln_nbr, line)
+
+    # process any of the Gnn commands
+    elif line.startswith("G") and line.endswith("*"):
+        grbr_plot.parse_g_cmd(ln_nbr, line)
+
+    # process the End-Of-File command
+    elif line.startswith("M") and line.endswith("*"):
+        grbr_plot.parse_m_cmd(ln_nbr, line)
+
+    # process any of the Dnn commands
+    elif line[0] in ("D", "X", "Y", "I", "J") and line.endswith("*"):
+        grbr_plot.parse_d_cmd(ln_nbr, line)
+
+    # handel invalid gerber command
+    else:
+        output_bad_grbr(ln_nbr, line)
+
+
+def output_non_sr_cmd(ln_nbr: int, line: str) -> None:
+    """Prints out a warning message when an unsupported command is encountered in an SR Block, then continues.
+
+    :param ln_nbr: line number of the command
+    :param line: the gerber command to process
+    """
+    print("")
+    print("* " * 50)
+    print(f"[{ln_nbr:0>3}] WARNING GERBER CODE: {line} IS NOT SUPPORTED IN AN %SR COMMAND BLOCK")
+    print("* " * 50)
+    print("")
 
 
 def output_bad_grbr(ln_nbr: int, line: str) -> None:
@@ -1663,7 +1971,7 @@ def get_outline_modifiers(p_mods: list[str]) -> list[str]:
 
     the modifiers need to be reordered so
     1. that the variable number of x, y values can be collected using *args (and *args is not allowed in the middle
-       of a function definition's parameter list
+       of a function definition's parameter list)
     2. and so we can use named positional parameters in the process_outline_primitive funtion, but pass *params
        when the function is called by the process_macro function
     """
