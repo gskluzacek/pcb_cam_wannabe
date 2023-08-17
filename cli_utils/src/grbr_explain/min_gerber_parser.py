@@ -39,6 +39,12 @@ class StepLine:
         self.y = y
         self.parmed_line = parmed_line
 
+    def __str__(self):
+        return f"ln: {self.ln_nbr}, x: {self.x}, y: {self.y}, line: {self.parmed_line}"
+
+    def __repr__(self):
+        return str(self)
+
     def gen_repeated_cmd(self, grbr_plot, offset_x, offset_y):
         if self.x is not None and self.y is not None:
             x_val = grbr_plot.gcs.encode_grbr_coord(self.x + offset_x)
@@ -629,7 +635,7 @@ class GrbrPlot:
 
         if m_cmd == "M02":
             if self.step_repeat_flag:
-                # todo: see if we can turn print a waning instead of raising an exception and
+                # todo: see if we can print a waning instead of raising an exception and
                 #   then call the function that replicates the SR block.
                 raise ValueError(f"End of file encountered within an open SR block command.")
             # TODO: perform any processing needed to occur before exiting
@@ -970,14 +976,18 @@ class GrbrPlot:
         # we are currently in a Step Repeat Block - method called from: parse_cmds_sr_mode
         if self.step_repeat_flag:
             self.replicat_sr_block(ln_nbr)
+            self.step_repeat_flag = False
+            # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
+            print(f"[{ln_nbr:0>3}] ### END OF SR BLOCK ###")
             if not sr_cmd.empty_sr_cmd:
-                self.start_sr_block(sr_cmd)
+                self.start_sr_block(ln_nbr, sr_cmd)
+
 
         # we are not currently in a Step Repeat Block - method called from: parse_cmds_non_sr_mode
         else:
             if sr_cmd.empty_sr_cmd:
                 raise ValueError("Exit (empty) SR Command without corresponding Open (non-empty) SR Command")
-            self.start_sr_block(sr_cmd)
+            self.start_sr_block(ln_nbr, sr_cmd)
 
     @staticmethod
     def parse_sr_cmd(line) -> StepRepeatCmd:
@@ -996,36 +1006,26 @@ class GrbrPlot:
         )
 
     def replicat_sr_block(self, ln_nbr):
-        units = self.gcs.units
-        print(f"[{ln_nbr:0>3}] ### START of SR BLOCK ###")
-        print("     ## Will replicate block:")
-        print(f"     - {self.step_x_repeat} times in the X asis with offset of {self.step_i_distance} {units}")
-        print(f"     - {self.step_y_repeat} times in the Y asis with offset of {self.step_j_distance} {units}")
-        print("     ## providing the following effective offsets:")
-        o_x, o_y = 0, 0
-        for i in range(1, self.step_x_repeat + 1):
-            for j in range(1, self.step_y_repeat + 1):
-                print(f"         col {i}, row {j}: origin {o_x}, {o_y}")
-                o_x += self.step_j_distance
-                o_y += self.step_j_distance
-        o_x, o_y = 0, 0
+        o_x = 0.0
         for i in range(1, self.step_x_repeat + 1):
             print(f"## column {i}:")
+            o_y = 0.0
             for j in range(1, self.step_y_repeat + 1):
                 print(f"  row {j}:")
                 for line in self.step_lines:
                     ln_nbr, cmd = line.gen_repeated_cmd(self, o_x, o_y)
                     parse_cmds_non_sr_mode(self, cmd, ln_nbr)
-        # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
+                o_y += self.step_j_distance
+            o_x += self.step_j_distance
 
-    def start_sr_block(self, sr_cmd: StepRepeatCmd):
-        self.step_x_repeat = sr_cmd.step_x_repeat or 1
-        self.step_y_repeat = sr_cmd.step_y_repeat or 1
-        self.step_i_distance = sr_cmd.step_i_distance or 0
-        self.step_j_distance = sr_cmd.step_j_distance or 0
+    def start_sr_block(self, ln_nbr, sr_cmd: StepRepeatCmd):
+        self.step_x_repeat = int(sr_cmd.step_x_repeat or "1")
+        self.step_y_repeat = int(sr_cmd.step_y_repeat or "1")
+        self.step_i_distance = float(sr_cmd.step_i_distance or "0.0")
+        self.step_j_distance = float(sr_cmd.step_j_distance or "0.0")
 
-        if (self.step_i_distance == 0 and self.step_x_repeat != 1) or (
-            self.step_j_distance == 0 and self.step_y_repeat != 1
+        if (self.step_i_distance == 0.0 and self.step_x_repeat != 1) or (
+            self.step_j_distance == 0.0 and self.step_y_repeat != 1
         ):
             raise ValueError(
                 f"Distance value of 0.0 must have a repeat value of 1. X: "
@@ -1037,6 +1037,20 @@ class GrbrPlot:
         # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
         self.step_repeat_flag = True
         self.step_lines = []
+
+        units = self.gcs.units
+        print(f"[{ln_nbr:0>3}] ### START of SR BLOCK ###")
+        print("     ## Will replicate block:")
+        print(f"     - {self.step_x_repeat} times in the X asis with offset of {self.step_i_distance} {units}")
+        print(f"     - {self.step_y_repeat} times in the Y asis with offset of {self.step_j_distance} {units}")
+        print("     ## providing the following effective offsets:")
+        o_x = 0.0
+        for i in range(1, self.step_x_repeat + 1):
+            o_y = 0.0
+            for j in range(1, self.step_y_repeat + 1):
+                print(f"         col {i}, row {j}: origin {o_x}, {o_y}")
+                o_y += self.step_j_distance
+            o_x += self.step_j_distance
 
     def parse_attribute(self, ln_nbr: int, line: str):
         """Parse the all %Tx attribute command and update the appropriate attribute dictionary.
@@ -1202,12 +1216,13 @@ def get_args(args_list: list[str] | None = None) -> argparse.Namespace:
 
 
 def main():
-    TESTING = False
+    TESTING = True
     # grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-Edge_Cuts.gbr"
     # grbr_fn_f_mask = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Mask.gbr"
     # grbr_fn_f_cu = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu.gbr"
-    grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu.gbr"
+    # grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu.gbr"
     # grbr_fn = "/Users/gregskluzacek/Documents/PCB/KiCad/cnc_test/cnc_test-F_Cu copy.gbr"
+    grbr_fn = "/Users/gregskluzacek/Documents/repos/pcb_cam_wannabe/test_gerber_files/sr_block_1.gbr"
 
     # get the command line arguments passed in
     test_args = None
