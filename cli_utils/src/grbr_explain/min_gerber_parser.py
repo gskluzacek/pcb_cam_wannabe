@@ -33,19 +33,75 @@ from typing import Iterable, Iterator, Any
 
 
 class StepLine:
+    """Class to enable rending Gerber commands within a Step Repeat block (%SR).
+
+    With regards to the %SR command, gerber commands fall into 1 of 3 categories:
+    1 - not allowed in an SR command block
+        - %FS       - %MO       - %AD       - %AM
+        - %TF       - %TA       - %TO       - %TD
+        - M02*
+    2 - allowed, but not affected by the SR Command offset when rendered
+        - G01*      - G02*      - G03*      - G04*
+        - G36*      - G37*      - G74*      - G75*
+        - %LP       - Dnn (where nn >= 10)
+    3 - allowed and affected by the SR Command offset when rendered
+        - D01*      - D02*      - D03*
+    """
     def __init__(self, ln_nbr: int, parmed_line: str, x: float | None = None, y: float | None = None):
+        """Create a new instance of a command contained within a SR Command Block.
+
+        :param ln_nbr: The line number within the normalized file for the gerber command
+        :param parmed_line: either 1) a formate string with 2 placeholders for X & Y
+            or 2) a string without any placeholders if the gerber command is not affected by the SR
+            Command offset when rendered (in this case X & Y should be set to None).
+        :param x: the original X coordinate parsed from the command in the SR command block
+            a value of None should be passed if the gerber command is not affected by the SR Command
+            offset when rendered
+        :param y: the original Y coordinate parsed from the command in the SR command block
+            a value of None should be passed if the gerber command is not affected by the SR Command
+            offset when rendered
+
+        StepLines are later rendered when replicating the command contained by the SR Command Block.
+        The SR command will specify how many times the command should be replicated in both the X and
+        Y axis as well as the X & Y offset distance that should be applied when replicating.
+        """
         self.ln_nbr = ln_nbr
         self.x = x
         self.y = y
         self.parmed_line = parmed_line
 
     def __str__(self):
+        """Generates a string representation of a StepLine object.
+
+        :return:
+        """
         return f"ln: {self.ln_nbr}, x: {self.x}, y: {self.y}, line: {self.parmed_line}"
 
     def __repr__(self):
+        """Generates a python string representation of a StepLine object.
+
+        :return:
+        """
         return str(self)
 
-    def gen_repeated_cmd(self, grbr_plot, offset_x, offset_y):
+    def gen_repeated_cmd(self, grbr_plot, offset_x: float, offset_y: float) -> tuple[int, str]:
+        """Apply the SR offset values and generate the rendered command with the updated x, y values.
+
+        :param grbr_plot: GrbrPlot object to use when accessing the graphics state
+        :param offset_x: the current X offset to apply to the current commands coordinates
+        :param offset_y: the current Y offset to apply to the current commands coordinates
+        :return: a tuple with the commands line number and the rendered gerber command
+
+        When a command within a SR block is not affected by the application of the SR offset values when
+        being rendered, it will have a value of None for both its X and Y attributes. There is nothing
+        to render, so we just return the parmed_line attribute which doesn't contain and format specifiers.
+
+        The X and Y attributes of the StepLine object and the x and y offset values passed in are float values
+        After we apply the offset values to the x, y values, we must encode the resulting X, Y float values
+        as Gerber Coordinates per the format specified in the %FS command.
+
+        After encoding, we can then generate the updated string value with new X, Y values.
+        """
         if self.x is not None and self.y is not None:
             x_val = grbr_plot.gcs.encode_grbr_coord(self.x + offset_x)
             y_val = grbr_plot.gcs.encode_grbr_coord(self.y + offset_y)
@@ -98,14 +154,30 @@ class GrbrCoordSys:
         return multiplier * float(f"{parsed_string[:self.int_len]}.{parsed_string[self.int_len:]}")
 
     def encode_grbr_coord(self, float_nbr) -> str:
+        """Format a Floating Point number as a Gerber Coordinate using the format specified by the %FS command.
+
+        :param float_nbr: value to be formatted as a coordinate
+        :return: the formatted value
+
+        The float number is broken into an integer part and a decimal part. Each part is left padded with zeros
+        as specified by the %FS command. Depending on the zero suppression value (L - leading, T - trailing or
+        D - none) leading or trailing zeros are stripped accordingly. If the float number passed in has a value
+        of 0, we must set the value being returned to "0" as all the zeros will have been striped. Finally,
+        We prefix the formatted gerber coordinate with a '-' if the float number passed in is negative.
+        """
+        # split the float number into its integer and decimal parts
         int_part = str(abs(int(float_nbr)))
         dec_part = str(abs(int(round(float_nbr - int(float_nbr), self.dec_len) * 10**self.dec_len)))
+        # pad the parts and combine them
         gerber_coord = f"{int_part.zfill(self.int_len)}{dec_part.zfill(self.dec_len)}"
+        # perform the needed zero suppression
         if self.zero_supp == "L":
             gerber_coord = gerber_coord.lstrip("0")
         elif self.zero_supp == "T":
             gerber_coord = gerber_coord.rstrip("0")
+        # if we get an empty string after suppressing the zeros, set the gerber coord to "0"
         gerber_coord = gerber_coord or "0"
+        # check if the input was a negative number and add a "-" as needed
         if float_nbr < 0:
             gerber_coord = f"-{gerber_coord}"
         return gerber_coord
@@ -113,11 +185,12 @@ class GrbrCoordSys:
     def set_units(self, units: str) -> None:
         """Set the units that the coordinates are in.
 
-        :param units: MM - metric, IN - empirical
+        :param units: mm - metric, in - empirical
         """
         self.units = units
 
 
+# Tuple used when parsing the step repeat (%SR) command
 StepRepeatCmd = namedtuple(
     "StepRepeatCmd",
     [
@@ -317,31 +390,36 @@ class GrbrPlot:
         self.lines: list[str] = self.read_and_normalize_grbr()  # the normalized gerber commands
 
     def read_and_normalize_grbr(self) -> list[str]:
-        # read the gerber file and return a list of strings containing 1 command or extended command per string
-        #   note: extended MA commands will contain multiple data blocks
-        #
-        # step 1 -> grbr_text
-        #   1. read file in as a list of strings
-        #   2. remove leading & trailing white space from each string
-        #   3. convert the list of string to 1 big string
-        #
-        # step 2 -> norm_grbr_text
-        # loop over each character in grbr_text adding newlines as needed
-        #   1. at the end of every extended command %xx...*%
-        #      note: extended commands containing multiple data blocks (%MA) will be
-        #      formatted as 1 line. We will handle splitting these into in separate data blocks
-        #      in the function that handles AM extended commands.
-        #           am_cmd = "%AMDONUTFIX*1,1,0.100,0,0*1,0,0.080,0,0*%"
-        #           dblks = am_cmd[3:-2].split("*")
-        #   2. at the end of every function command ...xnn* / xnn*
-        #   3. with the following exception: if the function command is the last command in an
-        #      extended command, no newline is added
-        #
-        # step 3 -> norm_grbr_lines
-        #   1. join norm_grbr_text back into a big string
-        #   2. remove the last newline from the string
-        #   3. split the string on newlines back into a list of commands/extended commands
+        """Read a Gerber file and return the contents as a list of normalized gerber commands.
 
+        :return: the file contents that have been normalized and split into a list of commands, 1 per list item.
+
+        read the gerber file and return a list of strings containing 1 command or extended command per string
+          note: extended MA commands will contain multiple data blocks
+
+        step 1 -> grbr_text
+          1. read file in as a list of strings
+          2. remove leading & trailing white space from each string
+          3. convert the list of string to 1 big string
+
+        step 2 -> norm_grbr_text
+        loop over each character in grbr_text adding newlines as needed
+          1. at the end of every extended command %xx...*%
+             note: extended commands containing multiple data blocks (%MA) will be
+             formatted as 1 line. We will handle splitting these into in separate data blocks
+             in the function that handles AM extended commands.
+                  am_cmd = "%AMDONUTFIX*1,1,0.100,0,0*1,0,0.080,0,0*%"
+                  dblks = am_cmd[3:-2].split("*")
+          2. at the end of every function command ...xnn* / xnn*
+          3. with the following exception: if the function command is the last command in an
+             extended command, no newline is added
+
+        step 3 -> norm_grbr_lines
+          1. join norm_grbr_text back into a big string
+          2. remove the last newline from the string
+          3. split the string on newlines back into a list of commands/extended commands
+
+        """
         # step 1
         with open(self.grbr_fn) as gfh:
             grbr_lines = gfh.readlines()
@@ -523,8 +601,7 @@ class GrbrPlot:
             print(f"[{ln_nbr:0>3}] ADD aperture:  {aperture_id:>5} {aperture_type:>11}        {aperture_params}")
 
     def parse_g_cmd(self, ln_nbr: int, line: str) -> None:
-        R"""
-        Parse Gnn gerber codes.
+        R""" Parse Gnn gerber codes.
 
         :param ln_nbr: line number of the command
         :param line: the gerber command to process
@@ -647,8 +724,7 @@ class GrbrPlot:
         print(f"[{ln_nbr:0>3}] ### END OF FILE ###")
 
     def parse_d_cmd(self, ln_nbr: int, line: str) -> None:
-        """
-        Parse the Dnn gerber code and take the appropriate actions.
+        """ Parse the Dnn gerber code and take the appropriate actions.
 
         :param ln_nbr: line number of the command
         :param line: the gerber command to process
@@ -821,7 +897,28 @@ class GrbrPlot:
             raise Exception(f"D Command: {d_cmd} not implemented or not in aperture dictionary")
 
     def step_repeat(self, ln_nbr: int, line: str):
-        """
+        """Process an opening or closing Step Repeat (%SR) command.
+
+        :param ln_nbr: file line number of where the SR command appeared
+        :param line: SR command to be parsed
+
+        parses the values from the SR command and checks the Graphics State's step_repeat_flag, then
+        either calls start_sr_block is we are not currently in a SR block (flag is false) or calls
+        replicate_sr_block if we are already in an SR block (flag is true).
+
+        Starting the SR block will
+        - place the x, y, i, j values into the Graphics State
+        - validate the sr commands values and raise an exception if necessary
+        - ste the step_repeat_flag to True
+        - clear the step_lines
+        - print out the details of the SR Block x, y, i, j values
+
+        Ending the SR block will
+        - print out the collected command with their X Y values rendered as appropriate
+
+        Once the opening SR command has been processed all subsequent gerber commands will be collected
+        into a command block until the corresponding closing SR command is encountered.
+
         %SR X Y I J *%
 
         X - number of times to repeat along the X axis (x >= 1)
@@ -975,28 +1072,36 @@ class GrbrPlot:
 
         # we are currently in a Step Repeat Block - method called from: parse_cmds_sr_mode
         if self.step_repeat_flag:
-            self.replicat_sr_block(ln_nbr)
+            self.replicate_sr_block()
             self.step_repeat_flag = False
             # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
             print(f"[{ln_nbr:0>3}] ### END OF SR BLOCK ###")
             if not sr_cmd.empty_sr_cmd:
                 self.start_sr_block(ln_nbr, sr_cmd)
 
-
         # we are not currently in a Step Repeat Block - method called from: parse_cmds_non_sr_mode
         else:
             if sr_cmd.empty_sr_cmd:
-                raise ValueError("Exit (empty) SR Command without corresponding Open (non-empty) SR Command")
+                raise ValueError("Closing (empty) SR Command without corresponding Opening (non-empty) SR Command")
             self.start_sr_block(ln_nbr, sr_cmd)
 
     @staticmethod
     def parse_sr_cmd(line) -> StepRepeatCmd:
+        """Helper function to parse the SR command and return a Named Tuple with the data.
+
+        :param line: The SR command to be parsed
+        :return: Named Tuple with the X, Y, I and J values and a flag to indicate if all parameters
+            were not present. This condition indicates a closing SR command without starting a new SR block.
+        """
         m = re.match(r"^%SR(?:X(\d*))?(?:Y(\d*))?(?:I(-?\d*))?(?:J(-?\d*))?\*%$", line)
         step_x_repeat, step_y_repeat = m.group(1), m.group(2)
         step_i_distance, step_j_distance = m.group(3), m.group(4)
+
+        # if all SR command values are empty/not present, then this is a closing SR command
         empty_sr_cmd = (
             step_x_repeat is None and step_y_repeat is None and step_i_distance is None and step_j_distance is None
         )
+
         return StepRepeatCmd(
             step_x_repeat,
             step_y_repeat,
@@ -1005,25 +1110,52 @@ class GrbrPlot:
             empty_sr_cmd,
         )
 
-    def replicat_sr_block(self, ln_nbr):
+    def replicate_sr_block(self) -> None:
+        """Replicate the commands contained in the current SR Command Block.
+
+        This method will output (replicate) the commands contained in the current SR
+        Command Block, the number of time specified in the Opening SR command's step X repeat
+        step Y repeat (Y * Y) with the appropriate column and row headings.
+        """
+        # outer repeat loop for the x-axis, incrementing the x offset each iteration of the loop
         o_x = 0.0
         for i in range(1, self.step_x_repeat + 1):
             print(f"## column {i}:")
+            # inner repeat loop for the y-axis, incrementing the y offset each iteration of the loop
             o_y = 0.0
             for j in range(1, self.step_y_repeat + 1):
                 print(f"  row {j}:")
+                # loop over each command in the SR Command Block
                 for line in self.step_lines:
+                    # render the command for the given x & y offset values
                     ln_nbr, cmd = line.gen_repeated_cmd(self, o_x, o_y)
+                    # parse the rendered command
                     parse_cmds_non_sr_mode(self, cmd, ln_nbr)
                 o_y += self.step_j_distance
             o_x += self.step_j_distance
 
     def start_sr_block(self, ln_nbr, sr_cmd: StepRepeatCmd):
+        """Set the Graphics State to begin processing a new SR command Block.
+
+        :param ln_nbr: line number of the opening SR command
+        :param sr_cmd: the opening SR command represented by the StepRepeatCmd Named tuple
+
+        Starting the SR block will
+        - place the x, y, i, j values into the Graphics State
+        - validate the sr commands values and raise an exception if necessary
+        - set the step_repeat_flag to True
+        - clear the step_lines
+        - print out the details of the SR Block x, y, i, j values
+
+        """
+        # update the Graphics state with the SR Blocks parameters as Ints and Floats
+        # setting appropriate default values
         self.step_x_repeat = int(sr_cmd.step_x_repeat or "1")
         self.step_y_repeat = int(sr_cmd.step_y_repeat or "1")
         self.step_i_distance = float(sr_cmd.step_i_distance or "0.0")
         self.step_j_distance = float(sr_cmd.step_j_distance or "0.0")
 
+        # validate that the step distance is 0 if the repeat count is 1
         if (self.step_i_distance == 0.0 and self.step_x_repeat != 1) or (
             self.step_j_distance == 0.0 and self.step_y_repeat != 1
         ):
@@ -1031,19 +1163,23 @@ class GrbrPlot:
                 f"Distance value of 0.0 must have a repeat value of 1. X: "
                 f"{self.step_i_distance}/{self.step_x_repeat}, Y: {self.step_j_distance}/{self.step_y_repeat}"
             )
+        # validate that both of the repeat values are not 1
         if self.step_x_repeat == 1 and self.step_y_repeat == 1:
             raise ValueError(f"Both X and Y repeat values are 1, no need for %SR command.")
 
         # TODO: should we save the graphics state when entering an SR Block and restore it when we exit the SR Block?
+        # set the flag and clear the step lines
         self.step_repeat_flag = True
         self.step_lines = []
 
+        # output the initial SR block details
         units = self.gcs.units
         print(f"[{ln_nbr:0>3}] ### START of SR BLOCK ###")
         print("     ## Will replicate block:")
         print(f"     - {self.step_x_repeat} times in the X asis with offset of {self.step_i_distance} {units}")
         print(f"     - {self.step_y_repeat} times in the Y asis with offset of {self.step_j_distance} {units}")
         print("     ## providing the following effective offsets:")
+        # output what the origin will be for each iteration of the SR block's X & Y offset values.
         o_x = 0.0
         for i in range(1, self.step_x_repeat + 1):
             o_y = 0.0
@@ -1250,16 +1386,54 @@ def main():
     output_final_attrib_state(grbr_plot)
 
 
-def parse_cmds_sr_mode(grbr_plot, line, ln_nbr):
+def parse_cmds_sr_mode(grbr_plot: GrbrPlot, line: str, ln_nbr: int) -> None:
+    """Process a gerber command when in SR mode.
+
+    :param grbr_plot: graphics state object to use while processing the command
+    :param line: gerber command to be processed
+    :param ln_nbr: the file line number of the command
+
+    We are in SR mode when the step_repeat_flag is True
+
+    With regards to the %SR command, gerber commands fall into 1 of 3 categories:
+    1 - not allowed in an SR command block
+        - %FS       - %MO       - %AD       - %AM
+        - %TF       - %TA       - %TO       - %TD
+        - M02*
+    2 - allowed, but not affected by the SR Command offset when rendered
+        - G01*      - G02*      - G03*      - G04*
+        - G36*      - G37*      - G74*      - G75*
+        - %LP       - Dnn (where nn >= 10)
+    3 - allowed and affected by the SR Command offset when rendered
+        - D01*      - D02*      - D03*
+
+    for gerber commands that fall into the first category, we print out a warning message and
+    ignore the command
+
+    for gerber commands in the second category, we simply append the unaltered command and
+    line number to the list of Step Lines (the SR Command Block)
+
+    for gerber command in the third category, we must parse out the X and Y coordinate values
+    into float number values or if not present, set the x y coords to the current x y value.
+    The remaining portion of the command, if any, is parsed out into its onw variable. We
+    Then create a format string with 2 placeholders (the first for the X value and the second
+    for the Y value). We then create a StepLine object and append it to the list of commands
+    for the current SR command block.
+    """
     # process D01, D02, D03 commands
     if m := re.match(r"^(?:X(\d*))?(?:Y(\d*))?((?:I-?\d*)?(?:J-?\d*)?D0[123]\*)$", line):
+        # parse the gerber coord string into a float if present else default to the current point x/y float number
         x = grbr_plot.gcs.parse_grbr_coord(m.group(1)) if m.group(1) else grbr_plot.curr_x
         y = grbr_plot.gcs.parse_grbr_coord(m.group(2)) if m.group(2) else grbr_plot.curr_y
+        # get the remaining portion of the command
         rem_cmd = m.group(3)
+        # we create a format string with placeholders for the x & y values which will be rendered
+        # when the commands are replicated. For example: "X{0}Y{0}D01*".format(x + x_offset, y + y_offset)
         grbr_plot.step_lines.append(StepLine(ln_nbr, f"X{{0}}Y{{1}}{rem_cmd}", x, y))
 
     # process the set Layer Polarity command or any of the Gnn commands or Set Aperture (Dnn where nn >= 10) cmd
     elif re.match(r"^%LP.\*%|G0*(?:1|2|3|4|36|37|74|75).*\*|D\d*\*$", line):
+        # we just use the command text unaltered and create the StepLine object
         grbr_plot.step_lines.append(StepLine(ln_nbr, line))
 
     # process the Step and Repeat command (to exit sr mode most likely)
@@ -1276,7 +1450,13 @@ def parse_cmds_sr_mode(grbr_plot, line, ln_nbr):
         output_bad_grbr(ln_nbr, line)
 
 
-def parse_cmds_non_sr_mode(grbr_plot, line, ln_nbr):
+def parse_cmds_non_sr_mode(grbr_plot: GrbrPlot, line: str, ln_nbr: int):
+    """Process a gerber command when in non-SR mode (normal mode).
+
+    :param grbr_plot: graphics state object to use while processing the command
+    :param line: gerber command to be processed
+    :param ln_nbr: the file line number of the command
+    """
     # process the coordinate format specifier command
     if line.startswith("%FSLAX") and line.endswith("*%"):
         grbr_plot.parse_coord_fmt(ln_nbr, line)
